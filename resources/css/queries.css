@@ -39,6 +39,22 @@
     h3 {
         font-size: 150%;
     }
+
+    .project-tab .row {
+      flex-wrap: wrap;
+    }
+
+    .project-tab .row img {
+      flex: 60%;
+    }
+
+    .project-tab .row img {
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+
+
+
 }
 
 

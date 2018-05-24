@@ -392,7 +392,7 @@ html body.mfp-zoom-out-cur header nav.sticky {
 }
 
 .section-profile i {
-  color: black;
+  color: #555;
 }
 
 .fa-arrow-alt-circle-down {
@@ -421,7 +421,7 @@ html body.mfp-zoom-out-cur header nav.sticky {
     color: white !important;
     padding: 4px 6px !important;
     font-size: 75%;
-    background-color: black;
+    background-color: #555;
     display: inline-block;
     vertical-align: middle;
     height: 27px;
@@ -559,8 +559,33 @@ span.location  {
 
 
 #projects h3 {
-  font-size: 130%;
+  font-size: 120%;
 }
+
+#projects .tab {
+  margin-bottom: 20px;
+}
+
+.project-tab .row {
+  display: flex;
+}
+
+.project-tab .row * {
+  margin-top:auto;
+  margin-bottom:auto;
+  flex: 50%
+}
+
+.project-tab .row img,
+.hydrodata {
+  margin-right: 30px;
+}
+
+
+
+
+
+
 /* ----------------------------------------------- */
 /* FOOTER */
 /* ----------------------------------------------- */
@@ -612,6 +637,7 @@ footer p {
     color: #888;
     text-align: center;
     margin-top: 20px;
+    font-size: 130%
 }
 
 
