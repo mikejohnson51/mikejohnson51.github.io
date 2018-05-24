@@ -232,7 +232,7 @@ a:active {
 /* ----------------------------------------------- */
 
 header {
-    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url(./img/mCherry-min.jpg);
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url(./img/world_etr.gif);
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(./img/world_etr.gif);
     background-size: cover;
     background-position: center;
@@ -317,12 +317,14 @@ header h3 {
     margin-top: 30px;
     cursor: pointer;
     display: none;
+    border: 0 !important;
 }
 
 .mobile-nav-icon i {
     font-size: 200%;
     color: #fff;
 }
+
 
 /* Sticky navi */
 .sticky {
