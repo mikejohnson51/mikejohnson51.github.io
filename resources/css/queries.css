@@ -170,6 +170,10 @@
         float: none;
         margin: 0;
     }
+    
+    .tab button {
+        font-size: 100%;
+    }
 
 
 }
