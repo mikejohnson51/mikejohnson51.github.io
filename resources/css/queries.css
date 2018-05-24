@@ -17,6 +17,16 @@
     header {
       background-attachment: scroll;
     }
+    
+    .logo, 
+    .logo-black { 
+        width: 130px; 
+    }
+    
+    #Teaching .details { max-width: 500px;}
+    
+    #Affiliations .icon-small { margin-left: 5px !important;}
+    #Publication .fa-link { margin-left: 10px !important;}
 
     .long-copy {
         width: 80%;
@@ -39,21 +49,6 @@
     h3 {
         font-size: 150%;
     }
-
-    .project-tab .row {
-      flex-wrap: wrap;
-    }
-
-    .project-tab .row img {
-      flex: 60%;
-    }
-
-    .project-tab .row img {
-      max-width: 400px;
-      margin-bottom: 20px;
-    }
-
-
 
 }
 
@@ -110,14 +105,28 @@
     .section-projects h3 {
         font-size: 80% !important;
     }
+    
+    .profile-photo { 
+        width: 50%; 
+        margin-left: 25%;
+    }
+    
+    .tab button {
+        font-size: 80%;
+    }
+    
+    .description-container { padding: 0px;}
+    #Publication .title { font-size: 110%;}
+    .description-container { margin-bottom: 20px;}
+    #Presentations .span-2-of-3 {margin-bottom: 40px;}
+    
+    .education .span-1-of-3 {margin-bottom: 2px;}
+
 
     .long-copy {
         width: 100%;
         margin-left: 0%;
     }
-
-    .profile-photo { width: 40%; }
-
 
     .section-presentations .span-1-of-3 {
       text-align: center;
@@ -131,6 +140,17 @@
     .popup-gallery-inverts {
        text-align: center;
     }
+    
+    .project-tab .row {
+      flex-wrap: wrap;
+    }
+
+    .project-tab .row img {
+      max-width: 250px;
+      margin-bottom: 20px;
+    }
+    
+    footer .col { max-width: 50% !important;}
 
 
 }
