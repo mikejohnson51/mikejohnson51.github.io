@@ -1,0 +1,644 @@
+/* ----------------------------------------------- */
+/* BASIC SETUP */
+/* ----------------------------------------------- */
+
+:root {
+  --main-accent-1:  #e67e22;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #fff;
+  color: #555;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  line-height: 1.64;
+}
+
+
+/* ----------------------------------------------- */
+/* REUSABLE COMPONENTS */
+/* ----------------------------------------------- */
+
+
+.row {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+section {
+    padding: 80px 0;
+}
+
+.off-color {
+  background-color: #f1f1f1;
+}
+
+/* ----- HEADINGS ----- */
+h1,
+h2,
+h3 {
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 400%;
+    word-spacing: 4px;
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: 600;
+}
+
+h1:after {
+    display: block;
+    height: 1px;
+    background-color: #fff;
+    content: " ";
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 360%;
+    word-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+h3 {
+    font-size: 185%;
+    margin-bottom: 15px;
+    color: var(--main-accent-1);
+}
+
+hr {
+    border-color: #727878;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+    width: 60%;
+    margin: 40px auto;
+}
+
+/* ----- PARAGRAPHS ----- */
+.long-copy {
+    line-height: 145%;
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 30px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+.seperator {
+    color: #BCBCBC;
+}
+
+
+
+/* ----- ICONS ----- */
+.icon-big {
+    font-size: 350%;
+    display: block;
+    color: #e67e22;
+    margin-bottom: 10px;
+}
+
+.icon-small {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    color: #e67e22;
+    font-size: 120%;
+    margin-left: -8px;
+    /*secrets to align text and icons*/
+    line-height: 120%;
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+li {
+  list-style: none;
+}
+
+iframe[src^="https://buttons.github.io/buttons"],
+.btn[href="https://github.com/"] {
+    margin-bottom: -3px;
+}
+
+.fa-link {
+  transform: rotate(45deg);
+}
+
+
+/* ----- LINKS ----- */
+
+a:link,
+a:visited {
+    color: #e67e22;
+    text-decoration: none;
+    padding-bottom: 1px;
+    border-bottom: 1px solid transparent;
+    -webkit-transition: border-bottom 0.2s, color 0.2s;
+    transition: border-bottom 0.2s, color 0.2s;
+}
+
+a:hover,
+a:active {
+    border-bottom: 1px solid var(--main-accent-1);
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+/* Headers */
+
+.title {
+  font-size:130%;
+  color: var(--main-accent-1) !important;
+  border-bottom: 0 !important;
+}
+
+.description span {
+  font-weight: 700;
+}
+
+/* Tabs */
+
+/* Style the tab */
+.tab {
+   overflow: hidden;
+   background-color: transparent;
+   text-align: center;
+   margin-bottom: 20px;
+}
+
+.section-projects .tab {
+  margin-bottom: 0;
+  font-size: 90%;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+   background-color: inherit;
+   float: left;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   padding: 14px 16px;
+   transition: 0.3s;
+}
+
+.tab button h3 {
+  margin: 0;
+  color: inherit;
+}
+
+.tab button:hover,
+.tab button.active {
+  background-color: #f1ecec;
+}
+
+.tab button:hover h3,
+.tab button.active h3 {
+  color: var(--main-accent-1);
+}
+
+/* Style the tab content */
+.tabcontent,
+.tabcontent-project {
+   display: none;
+   padding: 6px 12px;
+}
+
+/* ----------------------------------------------- */
+/* HEADER */
+/* ----------------------------------------------- */
+
+header {
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url(./img/mCherry-min.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(./img/world_etr.gif);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+}
+
+.hero-text-box {
+    position: absolute;
+    width: 1140px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.scroll-down {
+    font-size: 70%;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 2%;
+    color: white;
+}
+
+
+header h3 {
+    color: #fff;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 160%;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    float: left;
+    margin-top: 45px;
+}
+
+.logo-black {
+    display: none;
+    width: 150px;
+    height: auto;
+    float: left;
+    margin: 10px 0;
+}
+
+/* Main navi */
+.main-nav {
+    float: right;
+    list-style: none;
+    margin-top: 55px;
+}
+
+.main-nav li {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.main-nav li a:link,
+.main-nav li a:visited {
+    padding: 8px 0;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 90%;
+    border-bottom: 2px solid transparent;
+    -webkit-transition: border-bottom 0.2s;
+    transition: border-bottom 0.2s;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+    border-bottom: 2px solid #e67e22;
+}
+
+/* Mobile navi */
+.mobile-nav-icon {
+    float: right;
+    margin-top: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+.mobile-nav-icon i {
+    font-size: 200%;
+    color: #fff;
+}
+
+/* Sticky navi */
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 2px #efefef;
+    z-index: 9999;
+}
+
+.sticky .main-nav { margin-top: 18px; }
+
+.sticky .main-nav li a:link,
+.sticky .main-nav li a:visited {
+    padding: 16px 0;
+    color: #555;
+}
+
+.sticky .logo { display: none; }
+.sticky .logo-black { display: block; }
+
+html body.mfp-zoom-out-cur header nav.sticky {
+    display: none;
+}
+
+
+/* ----------------------------------------------- */
+/* Profile */
+/* ----------------------------------------------- */
+
+.profile-info {
+    max-width: 530px;
+}
+
+.profile-photo {
+  max-width: 250px;
+  border: 5px solid #280d37;
+  border-radius: 100%;
+  margin-right: 60px;
+  float:left;
+
+}
+
+.description {
+    float: left;
+}
+
+#profile h3 {
+  margin-bottom: 0;
+}
+
+.social-link {
+  border: 0 !important;
+  margin-right: 6px;
+}
+
+.section-profile i {
+  color: black;
+}
+
+.fa-arrow-alt-circle-down {
+    font-size: 1.3em !important;
+    color: white !important;
+    margin-right: 3px;
+}
+
+.fa-2x {
+    vertical-align: -22%;
+}
+
+.section-profile .ai {
+  vertical-align: 13%;
+}
+
+.about-me {
+    margin-top: 30px;
+}
+
+.section-profile .social-links,
+.download-links {
+    float: left !important;
+}
+
+.btn-download {
+    border: 1px solid #bbbbbb !important;
+    border-bottom-color: #a2a2a2;
+    background-repeat: repeat-x;
+    border-radius: 4px;
+    color: white !important;
+    padding: 4px 6px !important;
+    font-size: 75%;
+    background-color: black;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn-download:hover {
+    background-color: var(--main-accent-1);
+}
+
+
+
+
+/* ----------------------------------------------- */
+/* Experience */
+/* ----------------------------------------------- */
+span.location  {
+  color: var(--main-accent-1);
+}
+
+.list {
+  line-height: 2.5;
+}
+
+.date,
+.details {
+  float: left;
+}
+
+.date {
+  min-width: 100px;
+}
+
+#Teaching .date {
+  min-width: 160px;
+}
+
+.aoi_map {
+  width: 100%;
+  height: 400px;
+  border: 1px solid grey !important;
+}
+
+#Affiliations .title {
+  font-size: 90%;
+}
+
+#Affiliations .title .icon-small {
+  margin-left: -4px;
+  font-size: 100%;
+}
+
+.center {
+  text-align: center !important;
+}
+
+/* Centering Content - Hacky Approach Until Find Something Better
+.row.education {
+    margin-left: 42px;
+}
+
+#Awards .row {
+    margin-left: 300px;
+}
+
+#Teaching .row {
+    margin-left: 280px;
+}
+
+
+*/
+
+.minors {
+  margin-left: 25px;
+}
+
+/* ----------------------------------------------- */
+/* Publications and Presentations */
+/* ----------------------------------------------- */
+
+#publications h2 {
+  font-size: 300%;
+}
+
+.thumbnail {
+  width: 100%;
+}
+
+.dev-bio-cover {
+  height: 200px;
+  width: auto !important;
+}
+
+.dev-bio-cover img {
+  text-align: right;
+}
+
+.collapsible {
+    background-color: transparent;
+    color: var(--main-accent-1);
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 100%;
+}
+
+.content {
+    padding: 0px 25px;
+    max-height: 0;
+    margin-top: -2px;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}
+
+.active {
+    background-color: #f3efe0;
+}
+
+.description-container {
+    padding: 0 30px;
+}
+
+.title .icon-small {
+  margin-left: 5px;
+  font-size: 100%;
+}
+
+/* ----------------------------------------------- */
+/* Projects */
+/* ----------------------------------------------- */
+
+
+#projects h3 {
+  font-size: 130%;
+}
+/* ----------------------------------------------- */
+/* FOOTER */
+/* ----------------------------------------------- */
+
+footer {
+    background-color: #3e3e3e;
+    padding: 50px;
+    font-size: 80%;
+}
+
+.footer-nav {
+    list-style: none;
+    float: left;
+}
+
+.social-links {
+    list-style: none;
+    float: right;
+}
+
+.footer-nav li,
+.social-links li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer-nav li:last-child,
+.social-links li:last-child {
+    margin-right: 0;
+}
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-links li a:link,
+.social-links li a:visited {
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+.footer-nav li a:hover,
+.footer-nav li a:active {
+    color: #ddd;
+}
+
+footer p {
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-links li a:link,
+.social-links li a:visited {
+    font-size: 160%;
+}
+
+.ion-social-reddit,
+.fa-github,
+.ion-pound {
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+.fa-github-square:hover {
+    color: #4078c0;
+}
+
+.fa-researchgate:hover {
+    color: #00d0af;
+}
+
+.ai-google-scholar-square:hover {
+    color: #4285f4;
+}
+
+
+.cm-box {
+    font-size: 70%;
+}
+
+.insert-options {
+    list-style: none;
+}
+
+.fa-lg {
+  margin-right: 5px;
+}
