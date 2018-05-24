@@ -166,7 +166,10 @@
       margin-bottom: 20px;
     }
 
-    footer .col { max-width: 50% !important;}
+    footer .span-1-of-2 {
+        float: none;
+        margin: 0;
+    }
 
 
 }
