@@ -18,6 +18,16 @@
       background-attachment: scroll;
     }
 
+    .logo,
+    .logo-black {
+        width: 130px;
+    }
+
+    #Teaching .details { max-width: 500px;}
+
+    #Affiliations .icon-small { margin-left: 5px !important;}
+    #Publication .fa-link { margin-left: 10px !important;}
+
     .long-copy {
         width: 80%;
         margin-left: 10%;
@@ -39,6 +49,7 @@
     h3 {
         font-size: 150%;
     }
+
 }
 
 
@@ -57,34 +68,50 @@
 
 
     .main-nav { display: none; }
-    .mobile-nav-icon {display: inline-block;}
+    .mobile-nav-icon {
+       display: inline-block;
+       position: relative;
+       z-index: 9999;
+    }
 
     .main-nav {
-        float: left;
-        margin-top: 30px;
-        margin-left: 25px;
+       float: none;
+       position: absolute;
+       z-index: 8888;
+       width: 100%;
+       /*height: 100vh;*/
+       margin: 0;
+       margin-left: -4%;
+       background-color: rgba(0, 0, 0, 0.9);
+       text-align: center;
+       padding: 10px 0;
     }
 
     .main-nav li {
-        display: block;
+       display: block;
+       margin-left: 0;
+       font-size: 110%;
     }
 
     .main-nav li a:link,
     .main-nav li a:visited {
-        display: block;
-        border: 0;
-        padding: 10px 0;
-        font-size: 100%;
+       display: block;
+       border: 0;
+       padding: 10px 0;
+       font-size: 100%;
     }
 
-    .sticky .main-nav { margin-top: 10px; }
+    .sticky .main-nav { margin-top: 0; }
 
     .sticky .main-nav li a:link,
-    .sticky .main-nav li a:visited { padding: 10px 0; }
+    .sticky .main-nav li a:visited {
+       padding: 10px 0;
+       color: #fff;
+    }
+
     .sticky .mobile-nav-icon { margin-top: 10px; }
     .sticky .mobile-nav-icon i { color: #555; }
-
-
+    .sticky .mobile-nav-icon i.ion-close-round { color: #fff; }
 
     h1 { font-size: 180%; }
     h2 { font-size: 150%; }
@@ -95,13 +122,27 @@
         font-size: 80% !important;
     }
 
+    .profile-photo {
+        width: 40%;
+        margin-left: 30%;
+    }
+
+    .tab button {
+        font-size: 80%;
+    }
+
+    .description-container { padding: 0px;}
+    #Publication .title { font-size: 110%;}
+    .description-container { margin-bottom: 20px;}
+    #Presentations .span-2-of-3 {margin-bottom: 40px;}
+
+    .education .span-1-of-3 {margin-bottom: 2px;}
+
+
     .long-copy {
         width: 100%;
         margin-left: 0%;
     }
-
-    .profile-photo { width: 40%; }
-
 
     .section-presentations .span-1-of-3 {
       text-align: center;
@@ -114,6 +155,24 @@
 
     .popup-gallery-inverts {
        text-align: center;
+    }
+
+    .project-tab .row {
+      flex-wrap: wrap;
+    }
+
+    .project-tab .row img {
+      max-width: 300px;
+      margin-bottom: 20px;
+    }
+
+    footer .span-1-of-2 {
+        float: none;
+        margin: 0;
+    }
+    
+    .tab button {
+        font-size: 100%;
     }
 
 

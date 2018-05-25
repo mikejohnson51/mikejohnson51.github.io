@@ -232,7 +232,7 @@ a:active {
 /* ----------------------------------------------- */
 
 header {
-    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url(./img/mCherry-min.jpg);
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url(./img/world_etr.gif);
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(./img/world_etr.gif);
     background-size: cover;
     background-position: center;
@@ -317,12 +317,14 @@ header h3 {
     margin-top: 30px;
     cursor: pointer;
     display: none;
+    border: 0 !important;
 }
 
 .mobile-nav-icon i {
     font-size: 200%;
     color: #fff;
 }
+
 
 /* Sticky navi */
 .sticky {
@@ -360,20 +362,30 @@ html body.mfp-zoom-out-cur header nav.sticky {
 }
 
 .profile-photo {
-  max-width: 250px;
-  border: 5px solid #280d37;
-  border-radius: 100%;
-  margin-right: 60px;
-  float:left;
+  width: 70%;
+  /*   border: 5px solid #280d37;  */
+  border-radius: 50%;
+  margin-left: 15%;
+  margin-bottom: 10px;
 
 }
-
-.description {
-    float: left;
+.profile-info,
+.profile-links {
+  text-align: center;
 }
 
-#profile h3 {
-  margin-bottom: 0;
+.profile-name {
+  font-size: 250%;
+  line-height: 1.2em;
+}
+
+.profile-job-name {
+  color: #8b8888;
+  line-height: 2.5em;
+}
+
+.profile-job-loc {
+  color: var(--main-accent-1);
 }
 
 .social-link {
@@ -382,50 +394,48 @@ html body.mfp-zoom-out-cur header nav.sticky {
 }
 
 .section-profile i {
-  color: black;
+  color: #555;
 }
 
 .fa-arrow-alt-circle-down {
     font-size: 1.3em !important;
     color: white !important;
     margin-right: 3px;
+    vertical-align: -8%;
 }
-
 .fa-2x {
-    vertical-align: -22%;
+  vertical-align: middle;
 }
 
-.section-profile .ai {
-  vertical-align: 13%;
+.section-profile .span-2-of-3 {
+  padding-left: 20px;
 }
+
 
 .about-me {
-    margin-top: 30px;
-}
-
-.section-profile .social-links,
-.download-links {
-    float: left !important;
+    font-size: 250%;
 }
 
 .btn-download {
-    border: 1px solid #bbbbbb !important;
     border-bottom-color: #a2a2a2;
     background-repeat: repeat-x;
-    border-radius: 4px;
+    border-radius: 3px;
     color: white !important;
     padding: 4px 6px !important;
     font-size: 75%;
-    background-color: black;
+    background-color: #555;
     display: inline-block;
     vertical-align: middle;
+    height: 27px;
+}
+
+.fa-envelope-square:hover {
+  color: var(--main-accent-1);
 }
 
 .btn-download:hover {
-    background-color: var(--main-accent-1);
+  background-color: var(--main-accent-1);
 }
-
-
 
 
 /* ----------------------------------------------- */
@@ -551,8 +561,33 @@ span.location  {
 
 
 #projects h3 {
-  font-size: 130%;
+  font-size: 120%;
 }
+
+#projects .tab {
+  margin-bottom: 20px;
+}
+
+.project-tab .row {
+  display: flex;
+}
+
+.project-tab .row * {
+  margin-top:auto;
+  margin-bottom:auto;
+  flex: 50%
+}
+
+.project-tab .row img,
+.hydrodata {
+  margin-right: 30px;
+}
+
+
+
+
+
+
 /* ----------------------------------------------- */
 /* FOOTER */
 /* ----------------------------------------------- */
@@ -604,16 +639,14 @@ footer p {
     color: #888;
     text-align: center;
     margin-top: 20px;
+    font-size: 130%
 }
 
-.social-links li a:link,
-.social-links li a:visited {
-    font-size: 160%;
-}
 
-.ion-social-reddit,
-.fa-github,
-.ion-pound {
+.fa-github-square,
+.fa-researchgate,
+.ai-google-scholar-square,
+.a-envelope-square {
     -webkit-transition: color 0.2s;
     transition: color 0.2s;
 }
