@@ -268,7 +268,7 @@ header h3 {
 }
 
 .logo {
-    width: 200px;
+    width: 160px;
     height: auto;
     float: left;
     margin-top: 45px;
@@ -276,7 +276,7 @@ header h3 {
 
 .logo-black {
     display: none;
-    width: 150px;
+    width: 130px;
     height: auto;
     float: left;
     margin: 10px 0;
