@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,500, 600,700" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
     <link rel="stylesheet" href="vendors/css/ionicons.min.css">
@@ -102,6 +102,21 @@
               <i class="ion-location icon-small"></i><span class="location">Santa Barbara, California</span>
             </div>
           </div>
+            
+            
+          <div class="row education">
+            <div class="col span-1-of-3">
+              <h4>Visiting Researcher</h4>
+              <p class="experience-period"></p>
+            </div>
+            <div class="col span-2-of-3 description-container">
+              <strong>NCAR Research Applications Laboratory </strong>
+              <br>Aug-Sep 2018<i class="ion-location icon-small one-line"></i><span class="location">Boulder, CO</span><br /> 
+              <strong>VU Amsterdam IVM </strong>
+              <br>Jan-Mar 2018<i class="ion-location icon-small one-line"></i><span class="location">Amsterdam, The Netherlands</span><br /> 
+            </div>
+          </div>
+          
           <div class="row education">
             <div class="col span-1-of-3">
               <h4>California Polytechnic State University</h4>
@@ -295,6 +310,25 @@
       </div>
       <div class="row">
         <div id="Presentations" class="tabcontent publications-tab">
+        <div class="row education">
+          <div class="col span-1-of-3">
+            <h4>International Congress on Environmental Modelling and Software</h4>
+          <p class="experience-period">June 2018</p>
+          </div>
+          <div class="col span-2-of-3 description-container">
+            <strong>An agent-based approach to evaluating sustainable drought adaptation policy</strong> - <em>presentation</em>
+          </div>
+          </div> 
+            
+        <div class="row education">
+            <div class="col span-1-of-3">
+            <h4>International Congress on Environmental Modelling and Software</h4>
+            <p class="experience-period">June 2018</p>
+          </div>
+          <div class="col span-2-of-3 description-container">
+            <strong>Simulating dynamic drought adaptation behavior of agricultural stakeholders using Agent-Based Models</strong> - <em>presentation</em>
+          </div>
+          </div>           
           <div class="row education">
             <div class="col span-1-of-3">
               <h4>EGU</h4>
@@ -421,9 +455,9 @@
         </div>
         <div id="hydrodata" class="tabcontent project-tab">
           <div class="row">
-            <img src="./resources/img/hydrodata.jpg" href="https://mikejohnson51.github.io/HydroData/" target="_blank" />
+            <img src="./resources/img/hydrodata.jpg" href="./resources/img/hydrodata.jpg" target="_blank" class="clickable mp-image"/>
             <p>
-              <span class="title">Aggregation and Visualization of Earth Systems Data</span><br />
+                <a class="title" href="https://mikejohnson51.github.io/HydroData/" target="_blank">Aggregation and Visualization of Earth Systems Data<i class="fas fa-link icon-small"></i></a><br />
               Almost all environmental research begins with data; the question of what data is available; and the challenge of gathering it. HydroData is an R package designed to help users find, get, visualize and use a range of Earth Systems data for a defined Area of Interest. The package provides functions to automatically download data from 19 sources; interactively visualize and share data within R and/or a browser; and to export data for external use in GIS.
             </p>
           </div>
