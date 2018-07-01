@@ -168,7 +168,7 @@ $(document).ready(function() {
       image: {
           tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
           titleSrc: function(item) {
-              return item.el.attr('title') + '<small>&copy; Pat Johnson</small>';
+              return item.el.attr('title') + '<small>&copy; Mike Johnson</small>';
           }
       }
   });
@@ -203,7 +203,8 @@ $(document).ready(function() {
   for (i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function() {
       this.classList.toggle("active");
-      var content = this.nextElementSibling;
+      var next = this.nextElementSibling;
+      var content = next.nextElementSibling;
       if (content.style.maxHeight){
         content.style.maxHeight = null;
       } else {

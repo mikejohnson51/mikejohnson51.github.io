@@ -166,7 +166,7 @@ a:visited {
 
 a:hover,
 a:active {
-    border-bottom: 1px solid var(--main-accent-1);
+    color: var(--main-gold);
 }
 
 .clickable:hover {
@@ -519,6 +519,28 @@ span.location  {
   font-size: 300%;
 }
 
+.pub-button {
+    margin-top: 5px;
+    font-size: 80% !important;
+    border: 1px solid var(--main-accent-1) !important;
+    border-radius: 6px;
+    color: var(--main-accent-1);
+    padding: 2px 6px;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 20px;
+}
+
+.pub-button:hover,
+.pub-button.active{
+    background: var(--main-accent-1) !important;
+    color: white;
+}
+
+.pub-button.active { margin-bottom: 10px;}
+
+.fa-file-alt {margin-right: 10px;}
+
 .thumbnail {
   width: 100%;
 }
@@ -536,20 +558,23 @@ span.location  {
     background-color: transparent;
     color: var(--main-accent-1);
     cursor: pointer;
-    width: 100%;
+/*    width: 100%;*/
     border: none;
     text-align: left;
     outline: none;
     font-size: 100%;
+    float: none;
 }
 
 .content {
     padding: 0px 25px;
+    font-size: 90%;
     max-height: 0;
     margin-top: -2px;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
+    text-align: justify;
 }
 
 .active {
@@ -570,34 +595,46 @@ span.location  {
 /* ----------------------------------------------- */
 
 
-#projects h3 {
+#projects h3,
+#software h3{
   font-size: 120%;
 }
 
-#projects .tab {
+#projects .tab,
+#software .tab{
   margin-bottom: 20px;
 }
 
-.project-tab .row {
+.project-tab .row,
+.software-tab .row{
   display:flex;
 }
 
-.project-tab .row * {
+.project-tab .row *,
+.software-tab .row:not(.title) *{
   margin-top:auto;
   margin-bottom:auto;
   flex: 50%;
 }
 
-.project-tab .row img {
+.project-tab .row img,
+.software-tab .row img{
   width: 100%;
   height: 100%;
   min-width: 0;
 }
 
 .project-tab .row img,
+.software-tab .row img,
 .hydrodata {
   margin-right: 30px;
 }
+
+.row.title {margin-bottom: 20px;}
+.title.buttons {float:left;}
+
+
+
 
 
 
