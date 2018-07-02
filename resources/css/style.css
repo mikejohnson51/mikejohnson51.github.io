@@ -186,6 +186,8 @@ a:active {
   font-weight: 700;
 }
 
+.row.navigation {max-width: 98% !important;}
+
 /* Tabs */
 
 /* Style the tab */
@@ -276,7 +278,7 @@ header h3 {
 }
 
 .logo {
-    width: 160px;
+    width: 100px;
     height: auto;
     float: left;
     margin-top: 45px;
@@ -284,7 +286,7 @@ header h3 {
 
 .logo-black {
     display: none;
-    width: 130px;
+    width: 100px;
     height: auto;
     float: left;
     margin: 10px 0;
@@ -308,7 +310,7 @@ header h3 {
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 90%;
+    font-size: 16px !important;
     border-bottom: 2px solid transparent;
     -webkit-transition: border-bottom 0.2s;
     transition: border-bottom 0.2s;
