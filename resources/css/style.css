@@ -526,7 +526,7 @@ span.location  {
     border-radius: 6px;
     color: var(--main-accent-1);
     padding: 2px 6px;
-    float: left;
+    float: left !important;
     margin-right: 5px;
     margin-bottom: 20px;
 }
@@ -575,6 +575,7 @@ span.location  {
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
     text-align: justify;
+    float: right !important;
 }
 
 .active {
