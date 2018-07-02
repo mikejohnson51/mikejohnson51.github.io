@@ -700,24 +700,37 @@ footer p {
 
 
 .fa-github-square,
+.fa-github,
 .fa-researchgate,
+.ai-researchgate,
 .ai-google-scholar-square,
-.a-envelope-square {
+.ai-google-scholar,
+.a-envelope-square,
+.profile-links .fa-file-alt {
     -webkit-transition: color 0.2s;
     transition: color 0.2s;
 }
 
-.fa-github-square:hover {
+.fa-github-square:hover,
+.fa-github:hover {
     color: #4078c0;
 }
 
-.fa-researchgate:hover {
+.fa-researchgate:hover,
+.ai-researchgate:hover {
     color: #00d0af;
 }
 
-.ai-google-scholar-square:hover {
+.ai-google-scholar-square:hover,
+.ai-google-scholar:hover {
     color: #4285f4;
 }
+
+.profile-links .fa-file-alt {margin-right: 0px;}
+
+.profile-links .fa-file-alt:hover {color: var(--main-gold)}
+
+.fa-envelope:hover {color:#d62d20;}
 
 
 .cm-box {
@@ -730,4 +743,19 @@ footer p {
 
 .fa-lg {
   margin-right: 5px;
+}
+.grow {
+  -webkit-transition:all 0.5s ease-out;
+  -moz-transition:all 0.5s ease-out;
+  -ms-transition:all 0.5s ease-out;
+  -o-transition:all 0.5s ease-out;
+  transition:all 0.5s ease-out;
+}
+
+.grow:hover {
+  -webkit-transform:scale(1.3);
+  -moz-transform:scale(1.3);
+  -ms-transform:scale(1.3);
+  -o-transform:scale(1.3);
+  transform:scale(1.3);
 }
