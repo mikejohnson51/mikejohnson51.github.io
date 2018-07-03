@@ -26,7 +26,7 @@
   <body>
     <header id="header">
       <nav>
-        <div class="row">
+        <div class="row navigation">
           <img src="./resources/img/logo-white.png" alt="logo" class="logo">
           <a href="#header">
                 <img src="./resources/img/logo.png" alt="logo" class="logo-black">
@@ -35,8 +35,8 @@
               <li><a href="#profile">Profile</a></li>
               <li><a href="#experience">Experience & Affiliations</a></li>
               <li><a href="#publications">Publications</a></li>
-              <li><a href="#projects">Current Research</a></li>
               <li><a href="#software">Software</a></li>
+              <li><a href="#projects">Current Research</a></li>
           </ul>
           <a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
         </div>
@@ -61,11 +61,17 @@
             </p>
           </div>
           <div class="row profile-links">
-            <a href="https://github.com/mikejohnson51" target="_blank" class="social-link"><i class="fab fa-github-square fa-2x"></i></a>
+            <!-- <a href="https://github.com/mikejohnson51" target="_blank" class="social-link"><i class="fab fa-github-square fa-2x"></i></a>
             <a href="https://www.researchgate.net/profile/Mike_Johnson29" target="_blank" class="social-link"><i class="fab fa-researchgate fa-2x"></i></a>
             <a href="https://scholar.google.com/citations?hl=en&user=MrXM9cgAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" class="social-link fa-2x"><i class="ai ai-google-scholar-square"></i></i></a>
             <a href="mailto:mike.johnson@geog.ucsb.edu" target="_blank" class="social-link fa-2x"><i class="fas fa-envelope-square"></i></i></a>
-            <a class="btn-download" href="resources/pdfs/mike_johnson_cv.pdf" download><i class="fas fa-arrow-alt-circle-down"></i>  Download CV</a>
+            <a class="btn-download" href="resources/pdfs/mike_johnson_cv.pdf" download><i class="fas fa-arrow-alt-circle-down"></i>  Download CV</a> -->
+            <a href="https://github.com/mikejohnson51" target="_blank" class="social-link"><i class="fab fa-github fa-2x grow"></i></a>
+            <a class="social-link" href="resources/pdfs/mike_johnson_cv.pdf" download><i class="far fa-file-alt grow fa-2x"></i></a>
+            <a href="https://scholar.google.com/citations?hl=en&user=MrXM9cgAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" class="social-link fa-2x"><i class="ai ai-google-scholar grow"></i></i></a>
+            <a href="https://www.researchgate.net/profile/Mike_Johnson29" target="_blank" class="social-link fa-2x"><i class="ai ai-researchgate grow"></i></a>
+            <a href="mailto:mike.johnson@geog.ucsb.edu" target="_blank" class="social-link fa-2x"><i class="far fa-envelope grow"></i></i></a>
+            
           </div>
         </div>
         <div class="col span-2-of-3">
@@ -254,21 +260,23 @@
               <i class="far fa-file-alt"></i>H.A. Loaiciga, J.M Johnson.
               <a href="https://www.sciencedirect.com/science/article/pii/S0022169418302762" target="_blank">Infiltration on sloping terrain and its role on runoff generation and slope stability</a>
               In Journal of Hydrology, 2018.<br>
-              <a class="pub-button" href="https://github.com/mikejohnson51/RainSlope" target="_blank">Code</a>
+              
               <button class="collapsible pub-button">Abstract</button>
               <a class="pub-button" href="resources/pdfs/joh-2018.pdf" download>PDF</a>
+              <a class="pub-button" href="https://github.com/mikejohnson51/RainSlope" target="_blank">Code</a>  
               <div class="content">
                   <p>A modified Green-and-Ampt model is formulated to quantify infiltration on sloping terrain underlain by homogeneous soil wetted by surficial water application. This paper's theory for quantifying infiltration relies on the mathematical statement of the coupled partial differential equations (pdes) governing infiltration and runoff. These pdes are solved by employing an explicit finite-difference numerical method that yields the infiltration, the infiltration rate, the depth to the wetting front, the rate of runoff, and the depth of runoff everywhere on the slope during external wetting. Data inputs consist of a water application rate or the rainfall hyetograph of a storm of arbitrary duration, soil hydraulic characteristics and antecedent moisture, and the slope's hydraulic and geometric characteristics. The presented theory predicts the effect an advancing wetting front has on slope stability with respect to translational sliding. This paper's theory also develops the 1D pde governing suspended sediment transport and slope degradation caused by runoff influenced by infiltration. Three examples illustrate the application of the developed theory to calculate infiltration and runoff on a slope and their role on the stability of cohesive and cohesionless soils forming sloping terrain.</p>
               </div>
+
           </div>
             
           <div class="row">
               <i class="far fa-file-alt"></i>Johnson J.M, H.A. Loaiciga.
               <a href="http://www.mdpi.com/2073-4441/9/5/327" target="_blank">Coupled Infiltration and Kinematic-Wave Runoff Simulation in Slopes: Implications for Slope Stability.</a>
               In Water, 2017.<br>
-              <a class="pub-button" href="https://github.com/mikejohnson51/RainSlope" target="_blank">Code</a>
               <button class="collapsible pub-button">Abstract</button>
               <a class="pub-button" href="resources/pdfs/water-09-00327.pdf" download>PDF</a>
+              <a class="pub-button" href="https://github.com/mikejohnson51/RainSlope" target="_blank">Code</a>
               <div class="content">
                   <p>Shallow translational slides are common in slopes during heavy rainfall. The classic model for the occurrence of translational slides in long slopes assumes rising saturation above a slip surface that reduces the frictional strength by decreasing the effective stress along soil discontinuities. The classic model for translational slope failure does not conform well to the nature of homogenous soils that do not exhibit discontinuities propitious to create perched groundwater over the soil discontinuity or slip surface. This paper develops an alternative methodology for the coupled numerical simulation of runoff and infiltration caused by variable rainfall falling on a slope. The advancing depth of infiltration is shown to affect the translational stability of long slopes subjected to rainfall, without assuming the perching of soil water over the slip surface. This new model offers an alternative mechanism for the translational stability of slopes that are saturated from the slope surface downwards. A computational example illustrates this paper’s methodology.</p>
               </div>

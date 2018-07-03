@@ -81,7 +81,7 @@ $(document).ready(function() {
        return;
 
     //Opens and closes the menu
-    if ($(window).width() < 768){
+    if ($(window).width() < 995){
        nav.slideToggle(200);
     }
 
@@ -100,7 +100,7 @@ $(document).ready(function() {
     var nav = $('.js--main-nav');
     var icon = $('.js--nav-icon i');
 
-    if ($(window).width() > 767){
+    if ($(window).width() > 994){
        nav.css("display", "block");
        icon.addClass('ion-close-round');
        icon.removeClass('ion-navicon-round');
@@ -203,8 +203,10 @@ $(document).ready(function() {
   for (i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function() {
       this.classList.toggle("active");
-      var next = this.nextElementSibling;
-      var content = next.nextElementSibling;
+      var content = this.nextElementSibling;
+      while (content.className != 'content') {
+        content = content.nextElementSibling;
+      }
       if (content.style.maxHeight){
         content.style.maxHeight = null;
       } else {
