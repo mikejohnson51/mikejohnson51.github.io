@@ -166,14 +166,19 @@
     margin-bottom: 20px;
   }
 
-  footer .span-1-of-2 {
+  footer .span-1-of-2,
+  footer .span-1-of-2 .row,
+  .social-links {
       float: none;
       margin: 0;
+      text-align: center;
   }
 
   .tab button {
       font-size: 100%;
   }
+
+
 
 
 }

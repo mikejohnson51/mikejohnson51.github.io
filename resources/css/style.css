@@ -440,7 +440,7 @@ html body.mfp-zoom-out-cur header nav.sticky {
 }
 
 .fa-envelope-square:hover {
-  color: var(--main-accent-1);
+  color: rgb(214, 45, 32);
 }
 
 .btn-download:hover {
@@ -649,8 +649,8 @@ span.location  {
 /* ----------------------------------------------- */
 
 footer {
-    background-color: #3e3e3e;
-    padding: 50px;
+    background-color: var(--main-navy);
+    padding: 20px;
     font-size: 80%;
 }
 
@@ -693,10 +693,11 @@ footer {
 
 footer p {
     color: #888;
-    text-align: center;
     margin-top: 20px;
-    font-size: 130%
+    font-size: 100%
 }
+
+.address {float:left;}
 
 
 .fa-github-square,
@@ -706,7 +707,8 @@ footer p {
 .ai-google-scholar-square,
 .ai-google-scholar,
 .a-envelope-square,
-.profile-links .fa-file-alt {
+.profile-links .fa-file-alt,
+.fa-envelope-square {
     -webkit-transition: color 0.2s;
     transition: color 0.2s;
 }
@@ -731,7 +733,6 @@ footer p {
 .profile-links .fa-file-alt:hover {color: var(--main-gold)}
 
 .fa-envelope:hover {color:#d62d20;}
-
 
 .cm-box {
     font-size: 70%;
@@ -759,3 +760,5 @@ footer p {
   -o-transform:scale(1.3);
   transform:scale(1.3);
 }
+
+.last_updated {float:right;}
