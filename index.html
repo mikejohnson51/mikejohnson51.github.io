@@ -2,610 +2,454 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,500, 600,700" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
-    <link rel="stylesheet" href="vendors/css/ionicons.min.css">
-    <link rel="stylesheet" href="vendors/css/fontawesome.min.css">
-    <link rel="stylesheet" type="text/css" href="vendors/css/animate.css">
-    <link rel="stylesheet" href="vendors/css/magnific-popup.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/queries.css">
-    <link rel="stylesheet" href="vendors/css/academicons.min.css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="Vizualizing U.S. Waterways" content="">
+    <meta name="Pat Johnson" content="">
+    <link rel="icon" href="favicon.ico">
+
     <title>Mike Johnson</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="resources/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="resources/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/favicons/favicon-16x16.png">
-    <link rel="manifest" href="resources/favicons/site.webmanifest">
-    <link rel="mask-icon" href="resources/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="resources/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#2b5797">
-    <meta name="msapplication-config" content="resources/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <script src="js/ie-emulation-modes-warning.js"></script>
+    <script src="js/jquery.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedPresentations").load("presentations.html");
+      $("#includedAwards").load("awards.html");
+      $("#includedTeaching").load("teaching.html");
+    });
+    </script>
+
+    <!-- Custom Styles -->
+    <link href="css/global.css" rel="stylesheet">
+
+    <!-- Lightbox - Popup Images -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+
   </head>
+<!-- NAVBAR
+================================================== -->
   <body>
-    <header id="header">
-      <nav>
-        <div class="row navigation">
-          <img src="./resources/img/logo-white.png" alt="logo" class="logo">
-          <a href="#header">
-                <img src="./resources/img/logo.png" alt="logo" class="logo-black">
-          </a>
-          <ul class="main-nav js--main-nav">
-              <li><a href="#profile">Profile</a></li>
-              <li><a href="#experience">Experience & Affiliations</a></li>
-              <li><a href="#publications">Publications</a></li>
-              <li><a href="#software">Software</a></li>
-              <li><a href="#projects">Current Research</a></li>
-          </ul>
-          <a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
-        </div>
-      </nav>
-      <div class="hero-text-box">
-          <h1>Mike Johnson</h1>
-          <h3>PhD Student, Geography (Water Resources)</h3>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-default navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a href="#" class="navbar-left"><img src="images/logo.png" height="47px"></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="software.html">Software</a></li> 
+                <li><a href="current_work.html">Current Work</a></li> 
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/mikejohnson51/"><i class="fab fa-github fa-lg"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
       </div>
-      <p class="scroll-down"><em>Monthly mean Evapotranspiration Dataset (in preparation)</em></p>
-    </header>
-    <section class="section-profile js--section-profile" id="profile">
-      <div class="row">
-        <div class="col span-1-of-3">
-          <div class="row">
-            <img src="./resources/css/img/profile-square.jpg" alt="profile photo" class="profile-photo js--wp-2">
+    </div>
+
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="container">
+            <div class="carousel-caption">
+              <h1>Mike Johnson</h1> 
+              <p>PhD Candidate, Geography (Water Resources)</p><br>
+            </div>
           </div>
-          <div class="row profile-info">
-            <p>
-              <span class="profile-name">Mike Johnson</span><br />
-              <span class="profile-job-name">Graduate Student</span><br />
-              <span class="profile-job-loc">UCSB Geography Department</span>
-            </p>
-          </div>
-          <div class="row profile-links">
-            <!-- <a href="https://github.com/mikejohnson51" target="_blank" class="social-link"><i class="fab fa-github-square fa-2x"></i></a>
-            <a href="https://www.researchgate.net/profile/Mike_Johnson29" target="_blank" class="social-link"><i class="fab fa-researchgate fa-2x"></i></a>
-            <a href="https://scholar.google.com/citations?hl=en&user=MrXM9cgAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" class="social-link fa-2x"><i class="ai ai-google-scholar-square"></i></i></a>
-            <a href="mailto:mike.johnson@geog.ucsb.edu" target="_blank" class="social-link fa-2x"><i class="fas fa-envelope-square"></i></i></a>
-            <a class="btn-download" href="resources/pdfs/mike_johnson_cv.pdf" download><i class="fas fa-arrow-alt-circle-down"></i>  Download CV</a> -->
-            <a href="https://github.com/mikejohnson51" target="_blank" class="social-link"><i class="fab fa-github fa-2x grow"></i></a>
-            <a class="social-link" href="resources/pdfs/mike_johnson_cv.pdf" download><i class="far fa-file-alt grow fa-2x" title="Download CV"></i></a>
-            <a href="https://scholar.google.com/citations?hl=en&user=MrXM9cgAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" class="social-link fa-2x"><i class="ai ai-google-scholar grow"></i></i></a>
-            <a href="https://www.researchgate.net/profile/Mike_Johnson29" target="_blank" class="social-link fa-2x"><i class="ai ai-researchgate grow"></i></a>
-            <a href="mailto:mike.johnson@geog.ucsb.edu" target="_blank" class="social-link fa-2x"><i class="far fa-envelope grow"></i></i></a>
-            
-          </div>
+        <div class="item active">
+          <img class="first-slide" src="images/carousel/lake.jpg" alt="First slide">
         </div>
-        <div class="col span-2-of-3">
-          <span class="about-me">About Me</span>
-          <p>
+        <div class="item">
+          <img class="second-slide" src="images/carousel/rayshade_uo.png" alt="Second slide">
+        </div>
+        <div class="item">
+          <img class="second-slide" src="images/carousel/lake_mead.jpg" alt="Third slide">
+        </div>
+        <div class="item">
+          <img class="second-slide" src="images/carousel/rayshade_lp.png" alt="Fourth slide">
+        </div>
+      
+        
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
+
+    <div class="container about">
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <img class="img-circle" src="images/profile-square.jpg" alt="Profile photo image" width="200px"><br>
+          <h3>Mike Johnson</h3>
+          <h5 class="text-primary">UCSB Geography Department</h5>
+          <a href="https://github.com/mikejohnson51" target="_blank" class="social-link"><i class="fab fa-github fa-2x grow"></i></a>
+          <a class="social-link" href="pdfs/mike_johnson_cv.pdf" download><i class="far fa-file-alt grow fa-2x" title="Download CV"></i></a>
+          <a href="https://scholar.google.com/citations?hl=en&user=MrXM9cgAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" class="social-link fa-2x"><i class="ai ai-google-scholar grow"></i></i></a>
+          <a href="https://www.researchgate.net/profile/Mike_Johnson29" target="_blank" class="social-link fa-2x"><i class="ai ai-researchgate grow"></i></a>
+          <a href="mailto:mike.johnson@geog.ucsb.edu" target="_blank" class="social-link fa-2x"><i class="far fa-envelope grow"></i></i></a>
+        </div>
+        <div class="col-md-8">
+          <h2>About</h2><br>
+          <h4>
             My name is J. Michael Johnson, but everyone calls me Mike. I am a graduate student in <a href="https://geog.ucsb.edu" >Geography</a> at the <a href="https://www.ucsb.edu" >University of California, Santa Barbara</a> working with <a href="http://www.geog.ucsb.edu/~kclarke/" >Keith C. Clarke</a>.<br style="margin-bottom:10px" />
             My current research is focused on developing the HydroData Package, mapping California land use change, modeling evapotranspiration, and developing agent based models for drought risk analysis.<br style="margin-bottom:10px" />
             Before coming to UCSB, I spent two years studying architecture before earning my Bachelor of Science in Geography and Anthropology from <a href="https://www.calpoly.edu" >Cal Poly</a> in 2015, where I also received minors in GIS for Agriculture, Water Science, Statistics, Economics, and Environmental Studies.
-          </p>
+          </h4>
         </div>
       </div>
-    </section>
-    <section class="section-experience off-color" id="experience">
-      <div class="row">
-        <h2>Experience and Affiliations</h2>
-      </div>
-      <div class="row">
-        <div class="tab">
-         <button class="tablinks-experience span-1-of-4 default_tab" onclick="openTab(event, 'Education', 'experience-tab', 'tablinks-experience')" id="defaultOpen_1"><h3>Education</h3></button>
-         <button class="tablinks-experience span-1-of-4" onclick="openTab(event, 'Awards', 'experience-tab', 'tablinks-experience')"><h3>Awards</h3></button>
-         <button class="tablinks-experience span-1-of-4" onclick="openTab(event, 'Teaching', 'experience-tab', 'tablinks-experience')"><h3>Teaching</h3></button>
-         <button class="tablinks-experience span-1-of-4" onclick="openTab(event, 'Affiliations', 'experience-tab', 'tablinks-experience')"><h3>Affiliations</h3></button>
-        </div>
-        <div id="Education" class="tabcontent experience-tab">
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>University of California Santa Barbara</h4>
-              <p class="experience-period">2015 - Present</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>PhD Candidate </strong>Geography<br />
-              <p>
-                Passed written exams
-              </p>
-              <i class="ion-location icon-small"></i><span class="location">Santa Barbara, California</span>
-            </div>
-          </div>
-            
-            
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>Visiting Researcher</h4>
-              <p class="experience-period"></p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>NCAR Research Applications Laboratory </strong>
-              <br>Aug-Sep 2018<i class="ion-location icon-small one-line"></i><span class="location">Boulder, CO</span><br /> 
-              <strong>VU Amsterdam IVM </strong>
-              <br>Jan-Mar 2018<i class="ion-location icon-small one-line"></i><span class="location">Amsterdam, The Netherlands</span><br /> 
-            </div>
-          </div>
-          
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>California Polytechnic State University</h4>
-              <p class="experience-period">2010-2015</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>Bachelor of Science </strong>Anthropology &amp; Geography<br />
-              <div class="minors">
-                <strong>Minor </strong>Water Science (Watershed Management Emphasis)<br />
-                <strong>Minor </strong>Geographic Information Systems for Agriculture<br />
-                <strong>Minor </strong>Statistics<br />
-                <strong>Minor </strong>Environmental Studies<br />
-                <strong>Minor </strong>Economics<br />
-              </div>
-              <p>
-              Cum laude
-              </p>
-              <i class="ion-location icon-small"></i><span class="location">San Luis Obispo, CA</span>
-            </div>
-          </div>
-          </div>
-        </div>
-        <div id="Awards" class="tabcontent experience-tab">
-          <div class="row">
-            <div class="col date"><p>2018</p></div><div class="col details"><strong>COMET Partners Grant</strong> NOAA National Water Center ($15,000)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>2017</p></div><div class="col details"><strong>UCGHI Planetary Health Center of Expertise</strong> Seed Grant ($10,000)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>2017</p></div><div class="col details"><strong>Dangermond Travel Scholarship</strong> AGU ($800)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>2017</p></div><div class="col details"><strong>National Water Center Course Coordinator</strong> CUASHI ($15,000)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>2017</p></div><div class="col details"><strong>CUASHI Travel Grant</strong> WRF-hydro Training ($500)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>2016</p></div><div class="col details"><strong>Dangermond Travel Scholarship</strong> HAZUS Conference ($700)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>2015-<br />2016</p></div><div class="col details"><strong>University of California Regents</strong> Disciplines Fellowship ($30,000)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>2015</p></div><div class="col details"><strong>Cal Poly Department of Geography</strong> Outstanding Senior</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>2015</p></div><div class="col details"><strong>California Geographical Society</strong> Top undergraduate paper</div>
-          </div>
-        </div>
-        <div id="Teaching" class="tabcontent experience-tab">
-          <div class="row">
-            <div class="col date"><p>Summer 2018</p></div><div class="col details"><strong>Living with Global Warming</strong> (Dr. Catherine Gautier)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>Spring 2018</p></div><div class="col details"><strong>Cartographic Design and Geovisualization</strong> (Dr. Keith Clarke)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>Fall 2017</p></div><div class="col details"><strong>Maps and Spatial Reasoning</strong> (Dr. Keith Clarke)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>Spring 2017</p></div><div class="col details"><strong>Water Quality</strong> (Dr. Hugo Loaiciga)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>Winter 2017</p></div><div class="col details"><strong>Conceptual Modeling and Programming for the Geo-Sciences</strong> (Dr. Krzysztof Janowicz)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>Fall 2016</p></div><div class="col details"><strong>Oceans and Atmosphere</strong> (Dr. Tim DeVries)</div>
-          </div>
-          <div class="row">
-            <div class="col date"><p>Summer 2016</p></div><div class="col details"><strong>Living with Global Warming</strong> (Dr. Catherine Gautier)</div>
-          </div>
-        </div>
-        <div id="Affiliations" class="tabcontent experience-tab">
-          <div class="row">
-            <div class="col span-2-of-3 center">
-              <iframe src="./resources/img/affiliations_1.html" class="aoi_map"> </iframe>
-            </div>
-            <div class="col span-1-of-3">
-              <p>
-                <a class="title" href="https://geog.ucsb.edu/" target="_blank">UCSB Geography<i class="fas fa-link icon-small"></i></a><br />
-                <a class="title" href="http://water.noaa.gov/" target="_blank">NOAA National Water Center<i class="fas fa-link icon-small"></i></a><br />
-                <a class="title" href="https://www.ivm.vu.nl/en/index.aspx" target="_blank">The VU Amsterdam<i class="fas fa-link icon-small"></i></a><br />
-                <a class="title" href="http://www.comet.ucar.edu/" target="_blank">COMET<i class="fas fa-link icon-small"></i></a><br />
-                <a class="title" href="https://www.ucghi.universityofcalifornia.edu/" target="_blank">UCGHI<i class="fas fa-link icon-small"></i></a><br />
-                <a class="title" href="https://ral.ucar.edu/" target="_blank">NCAR RAL<i class="fas fa-link icon-small"></i></a><br />
-                <a class="title" href="https://www.guerrillacartography.org/" target="_blank">Guerrilla Cartography<i class="fas fa-link icon-small"></i></a><br />
-                <a class="title" href="https://www.calpoly.edu" target="_blank">Cal Poly<i class="fas fa-link icon-small"></i></a><br />
-                <a class="title" href="https://www.irrigation.org/" target="_blank">Irrigation Association<i class="fas fa-link icon-small"></i></a><br />
-                <a class="title" href="https://www.cuahsi.org/" target="_blank">CUAHSI<i class="fas fa-link icon-small"></i></a><br />
-              </p>
-            </div>
-          </div>
-    </section>
-    <section id="publications">
-      <div class="row">
-        <h2>Publications and Presentations</h2>
-      </div>
-      <div class="row tab">
-        <button class="tablinks-publications span-1-of-2 default_tab" onclick="openTab(event, 'Publication', 'publications-tab', 'tablinks-publications')" id="defaultOpen_3"><h3>Publications</h3></button>
-        <button class="tablinks-publications span-1-of-2" onclick="openTab(event, 'Presentations', 'publications-tab', 'tablinks-publications')"><h3>Presentations</h3></button>
-      </div>
-      <div class="row">
-        <div id="Publication" class="tabcontent publications-tab">
-            
-        <div class="row">
-              <i class="far fa-file-alt"></i> Marthe Wens, J.M Johnson, Cecilia Zagaria, T.I.E Veldkamp.
-              <a  href="javascript:;" target="_blank">Improving Drought Risk Modeling: An Agent-based Approach .</a>
-              In WIREs Water, (in review).<br>
-              <button class="collapsible pub-button">Abstract</button>
-              <button class="pub-button">PDF</button>
-              <div class="content">
-                  <p>Droughts are a persistent and costly hazard impacting human and environmental systems. As climate variability continues to increase and socio-economic development continues to change the distribution of exposed assets, drought risk is expected to increase in many parts of the world. The unique characteristics of droughts - namely their fuzzy edges, large spatial extent, prolonged temporal bounds, human-influenced propagation, and teleconnection potential – challenge the correct assessment of drought risk. Further complicating such assessment is the ability of humans to make adaptive decisions before, during, and after a drought event, altering the expected impact.<br><br>
-                  
-                  Current drought risk models often neglect how adaptation decisions can change drought hazard, exposure, and vulnerability, and how past and current experiences may influence behavior through time. Therefore, they provide a limited illustration of the actual drought risk dynamics. In this overview, we offer a framework for extending the traditional risk modeling approach by including the two-way feedback between heterogeneous adaptive behavior of different water users and drought exposure, vulnerability and hazard. We discuss how an agent-based, socio-hydrologic, modeling setup can facilitate such simulations. We suggest such a modeling approach can provide a test-bed for understanding optimal adaptive behaviors in an increasingly drought-prone world, allowing better prioritization of adaptation strategies in the face of an uncertain future.</p>
-              </div>
-          </div>
 
-            
-        
-          <div class="row">
-              <i class="far fa-file-alt"></i>J.M Johnson, Jim M. Coll, Paul J. Ruess, Jordan T. Hastings.
-              <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1752-1688.12645" target="_blank">Challenges and Opportunities for Creating Intelligent Hazard Alerts: The “FloodHippo” Prototype</a>
-              In Journal of the American Water Resources Association (JAWRA), 2018.<br>
-              <button class="collapsible pub-button">Abstract</button>
-              <a class="pub-button" href="resources/pdfs/Johnson_et_al-2017-JAWRA.pdf" download>PDF</a>
-              <div class="content">
-                  <p>Disasters evolving from hazards are a persistent and deadly occurrence in the United States. Despite this, hazard alerts have remained spatially vague, temporally imprecise, and lack actionable information. These deficiencies indicate a divide between the status quo and what is possible given modern environmental models, geographic information systems (GIS), and smartphone capabilities. This work describes an alternative, prototype system, “FloodHippo,” which integrates operational model outputs, cloud‐based GIS, and expanded communication channels to provide personal and interactive disaster alerts for floods. The precepts and methods underpinning FloodHippo apply equally to other disasters that evolve over space and time, presenting the opportunity for a more intelligent disaster response system. The development of such a system would not only minimize current shortcomings in disaster alerts but also improve resilience through individual action, along with community, academic, and federal cooperation.</p>
-              </div>
-          </div>
-            
-            <div class="row">
-              <i class="far fa-file-alt"></i>H.A. Loaiciga, J.M Johnson.
-              <a href="https://www.sciencedirect.com/science/article/pii/S0022169418302762" target="_blank">Infiltration on sloping terrain and its role on runoff generation and slope stability</a>
-              In Journal of Hydrology, 2018.<br>
-              
-              <button class="collapsible pub-button">Abstract</button>
-              <a class="pub-button" href="resources/pdfs/joh-2018.pdf" download>PDF</a>
-              <a class="pub-button" href="https://github.com/mikejohnson51/RainSlope" target="_blank">Code</a>  
-              <div class="content">
-                  <p>A modified Green-and-Ampt model is formulated to quantify infiltration on sloping terrain underlain by homogeneous soil wetted by surficial water application. This paper's theory for quantifying infiltration relies on the mathematical statement of the coupled partial differential equations (pdes) governing infiltration and runoff. These pdes are solved by employing an explicit finite-difference numerical method that yields the infiltration, the infiltration rate, the depth to the wetting front, the rate of runoff, and the depth of runoff everywhere on the slope during external wetting. Data inputs consist of a water application rate or the rainfall hyetograph of a storm of arbitrary duration, soil hydraulic characteristics and antecedent moisture, and the slope's hydraulic and geometric characteristics. The presented theory predicts the effect an advancing wetting front has on slope stability with respect to translational sliding. This paper's theory also develops the 1D pde governing suspended sediment transport and slope degradation caused by runoff influenced by infiltration. Three examples illustrate the application of the developed theory to calculate infiltration and runoff on a slope and their role on the stability of cohesive and cohesionless soils forming sloping terrain.</p>
-              </div>
+    <hr class="featurette-divider">
 
-          </div>
-            
+    <!-- Experience and Education -->
+    <div class="row">
+      <h1 class="text-center header">Experience and Affiliations</h1>
+      <!-- Add Tabs Here -->
+      <ul class="nav nav-pills nav-justified bottom_space">
+        <li class="active"><a data-toggle="pill" href="#home">Education</a></li>
+        <li><a data-toggle="pill" href="#menu1" onclick="var c = document.getElementById('includedAwards').childNodes[0]; c.classList.add('table'); c.classList.add('table-hover');">Awards</a></li>
+        <li><a data-toggle="pill" href="#menu2" onclick="var c = document.getElementById('includedTeaching').childNodes[0]; c.classList.add('table'); c.classList.add('table-hover');">Teaching</a></li>
+        <li><a data-toggle="pill" href="#menu3">Affiliations</a></li>
+      </ul>
+      <!-- TAB CONTENT -->
+      <div class="tab-content">
+        <!-- Tab 1: Education -->
+        <div id="home" class="tab-pane fade in active">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td><strong>University of California Santa Barbara</strong><br>2015 - Present</td>
+                <td><strong>PhD Candidate</strong> Geography Passed written exams<br><i class="fas fa-map-marker-alt"></i> Santa Barbara, California </td>
+              </tr>
+              <tr>
+                <td><strong>Visiting Researcher</strong></td>
+                <td>
+                  <strong>NCAR Research Applications Laboratory</strong><br>Aug-Sep 2018 <i class="fas fa-map-marker-alt"></i> Boulder, CO<br>
+                  <strong>The VU Amsterdam</strong><br> Jan-Mar 2018 <i class="fas fa-map-marker-alt"></i> Amsterdam, The Netherlands<br>
+                  <strong>NOAA National Water Center</strong><br> Summer 2016 and 2017 <i class="fas fa-map-marker-alt"></i> Tuscaloosa, Alabama
+                </td>
+              </tr>
+              <tr>
+                <td><strong>California Polytechnic State University</strong><br>2010-2015<br></td>
+                <td><strong>Bachelor of Science </strong>Anthropology & Geography<br>
+                <strong class="indent">Minor </strong>Water Science (Watershed Management Emphasis)<br>
+                <strong class="indent">Minor </strong>Geographic Information Systems for Agriculture<br>
+                <strong class="indent">Minor </strong>Statistics<br>
+                <strong class="indent">Minor </strong>Environmental Studies<br>
+                <strong class="indent">Minor </strong>Economics</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Tab 2: Awards -->
+        <div id="menu1" class="tab-pane fade" >
+            <div id="includedAwards"></div>
+        </div>
+        <!-- Tab 3: Teaching -->
+        <div id="menu2" class="tab-pane fade" >
+          <div id="includedTeaching"></div>
+        </div>
+        <!-- Tab 4: Affiliations -->
+        <div id="menu3" class="tab-pane fade">
           <div class="row">
-              <i class="far fa-file-alt"></i>Johnson J.M, H.A. Loaiciga.
-              <a href="http://www.mdpi.com/2073-4441/9/5/327" target="_blank">Coupled Infiltration and Kinematic-Wave Runoff Simulation in Slopes: Implications for Slope Stability.</a>
-              In Water, 2017.<br>
-              <button class="collapsible pub-button">Abstract</button>
-              <a class="pub-button" href="resources/pdfs/water-09-00327.pdf" download>PDF</a>
-              <a class="pub-button" href="https://github.com/mikejohnson51/RainSlope" target="_blank">Code</a>
-              <div class="content">
-                  <p>Shallow translational slides are common in slopes during heavy rainfall. The classic model for the occurrence of translational slides in long slopes assumes rising saturation above a slip surface that reduces the frictional strength by decreasing the effective stress along soil discontinuities. The classic model for translational slope failure does not conform well to the nature of homogenous soils that do not exhibit discontinuities propitious to create perched groundwater over the soil discontinuity or slip surface. This paper develops an alternative methodology for the coupled numerical simulation of runoff and infiltration caused by variable rainfall falling on a slope. The advancing depth of infiltration is shown to affect the translational stability of long slopes subjected to rainfall, without assuming the perching of soil water over the slip surface. This new model offers an alternative mechanism for the translational stability of slopes that are saturated from the slope surface downwards. A computational example illustrates this paper’s methodology.</p>
-              </div>
-          </div>
-         
-            
-            <div class="row">
-              <i class="far fa-file-alt"></i>Johnson J.M, Coll J.M, et al..
-              <a href="https://www.cuahsi.org/uploads/library/CUAHSI_2017SI_TR14V102_DOI.pdf" target="_blank">National Water Centers Innovators Program Summer Institute Report.</a>
-              In Consortium of Universities for the Advancement of Hydrologic Science, Inc. Technical Report 14, 2017.<br>
-              <button class="collapsible pub-button">Abstract</button>
-              <a class="pub-button" href="resources/pdfs/Johnson_et_al-2017-JAWRA.pdf" download>PDF</a>
-              <div class="content">
-                  <p>In August of 2016, the National Water Model became operational marking an unprecedented effort that rightfully challenges the way research can be done and the way hydro-intelligence can benefit society. This modeling framework has also introduced ways in which interdisciplinary research surrounding water resources can be done. By providing river forecasts for 2.7 million reaches within CONUS, the NWM provides a nerve center in which two previously distinct groups - ‘data generators’ and ‘data users’ - can unite to answer new questions in a time where population pressures and a changing climate make water management more paramount.<br><br>
-                  The reports published here represent the culmination of seven weeks of research, and present a platform not only for these students to continue pushing forward with their advisors, each other and the NWC, but for the rest of the community, whether ‘data-generators’ or ‘data-users’, to become more engaged in the development of the NWM.</p>
-              </div>
-          </div>
-            
-            <div class="row">
-              <i class="far fa-file-alt"></i>Johnson J.M, Coll J.M, Ruess P.J.
-              <a href="https://www.cuahsi.org/uploads/library/cuahsi_tr13_8.20.16.pdf" target="_blank">OPERA–Operational Platform for Emergency Response and Awareness: Reimagining Disaster Alerts.</a>
-              In National Water Center Innovators Program Summer Institute Report. Consortium of Universities for the Advancement of Hydrologic Science, Inc. Technical Report 13, Ch 11., 2016.<br>
-              <button class="collapsible pub-button">Abstract</button>
-              <a class="pub-button" href="resources/pdfs/cuahsi_tr13_8.20.16.pdf" download>PDF</a>
-              <div class="content">
-                  <p>Present‐day disaster alert systems are underdeveloped in relation to modern forecasting capabilities,
-                    geospatial technologies, and telecommunications. Consequently, alerts are often spatially vague, temporally imprecise, and fail to provide actionable information, resulting in confusing warnings that are easily ignored.<br><br>
-                    This research describes the integration of predictive models into an Operational Platform for Emergency
-                    Response Awareness (OPERA), colloquially known as the “Disaster Zoo”. The Disaster Zoo operates across the initial phases of a disaster event, including preparedness, warning, and response, by capitalizing on social media to promote awareness, leveraging Geographic Information System (GIS) techniques to improve
-                    spatiotemporal accuracy, and cellular Global Position Systems (GPS) technology to deliver individualized
-                    actionable alerts. Currently, the Disaster Zoo showcases alerts for floods, wildfires, and chemical spills; other disaster types may be considered in the future. This research is not intended to be a new approach to emergency response per se, but rather to reimagine emergency alert systems, demonstrate their improvements, and argue for their viability, and indeed, necessity.</p>
-              </div>
-          </div>
-            
-            <div class="row">
-              <i class="far fa-file-alt"></i>Coll J.M, Johnson J.M, Ruess P.J.
-              <a href="https://www.cuahsi.org/uploads/library/cuahsi_tr13_8.20.16.pdf" target="_blank">Radar Measurement and Flow Modeling: Methods.</a>
-              In National Water Center Innovators Program Summer Institute Report. Consortium of Universities for the Advancement of Hydrologic Science, Inc. Technical Report 13, Ch 1., 2016.<br>
-              <button class="collapsible pub-button">Abstract</button>
-              <a class="pub-button" href="resources/pdfs/cuahsi_tr13_8.20.16.pdf" download>PDF</a>
-              <div class="content">
-                  <p>Traditional river forecasting and hydraulic modeling is limited by the type, quantity and density of measurements available. Currently, the hydrologic community is reliant on a combination of USGS gages, remotely sensed data, and field work to model the hydrologic properties of a reach. However, if hyper resolution or continent‐scale modeling is undertaken, more data is necessary than the current network can provide. The most obvious way to improve upon this shortcoming is to implement a more densified measurement network; while USGS stations are the industry standard, they are too sparsely located and often not representative of the waterways they are being used to describe. An alternative sensor, the Sommer GmbH RQ‐30 radar, is more cost‐effective, measures both stage and velocity, and operates autonomously. This paper outlines the rationale and objectives behind the installation of these systems, describes two study sites where these instruments have been installed, lays out different methods to gather bathymetry data, and ultimately uses these data, combined with the sensors, to model the reaches.</p>
-              </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div id="Presentations" class="tabcontent publications-tab">
-        <div class="row education">
-          <div class="col span-1-of-3">
-            <h4>International Congress on Environmental Modelling and Software</h4>
-          <p class="experience-period">June 2018</p>
-          </div>
-          <div class="col span-2-of-3 description-container">
-            <strong>An agent-based approach to evaluating sustainable drought adaptation policy</strong> - <em>presentation</em>
-          </div>
-          </div> 
-            
-        <div class="row education">
-            <div class="col span-1-of-3">
-            <h4>International Congress on Environmental Modelling and Software</h4>
-            <p class="experience-period">June 2018</p>
-          </div>
-          <div class="col span-2-of-3 description-container">
-            <strong>Simulating dynamic drought adaptation behavior of agricultural stakeholders using Agent-Based Models</strong> - <em>presentation</em>
-          </div>
-          </div>           
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>EGU</h4>
-              <p class="experience-period">April 2018</p>
+            <div class="col-md-8">
+              <iframe src="affiliations.html" class="aoi_map" width="100%" height="400px"> </iframe>
             </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>Integrating Adaption behavior in drought risk analysis</strong> - <em>poster</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>AGU Fall Meeting</h4>
-              <p class="experience-period">Dec 2017</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>HydroData: Discover Earth Systems Data with R</strong> - <em>lightning talk/poster</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>CUASHI Hydroinformatics Conference</h4>
-              <p class="experience-period">July 2017</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>Real-time Discharge-to-Damage Flood Mapping “Anywhere, USA” </strong> - <em>presentation</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>@Spatial Tech Talk UCSB Spatial Center</h4>
-              <p class="experience-period">May 2017</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>Accessing National Water Model Output </strong> - <em>presentation</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>UCGIS Webinar </h4>
-              <p class="experience-period">Nov 2016</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>2017 CUAHSI SI: Collaborative Problem Solving at the National Water Center </strong> - <em>presentation</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>HAZUS Users Conference</h4>
-              <p class="experience-period">Nov 2106</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>Reimagining Disaster Alert Systems: OPERA </strong> - <em>presentation</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>UCSB SDSU Retreat</h4>
-              <p class="experience-period">Oct 2016</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>The Five Meanings of Water Security </strong> - <em>presentation</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>NCAR</h4>
-              <p class="experience-period">Aug 2016</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>FloodHippo and the National Water Model </strong> - <em>presentation</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>CUASHI Biennial Conference</h4>
-              <p class="experience-period">July 2016</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>Densified Radar Measurement and Flow Modeling </strong> - <em>poster</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>California Geography Society 2016 Annual Conference</h4>
-              <p class="experience-period">My 2016</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>Rising Temperatures and Water Supply: Tools for Water Security </strong> - <em>presentation</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>UC Student Lobby Conference </h4>
-              <p class="experience-period">April 2016</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>Water Research: Problems with Scale in Data-driven </strong> - <em>presentation</em>
-            </div>
-          </div>
-          <div class="row education">
-            <div class="col span-1-of-3">
-              <h4>California Geography Society 2015 Annual Conference</h4>
-              <p class="experience-period">May 2015</p>
-            </div>
-            <div class="col span-2-of-3 description-container">
-              <strong>Developing a Decision Support System for California Surface Water </strong> - <em>presentation</em>
+            <div class="col-md-4">
+              <table class="table table-hover">
+                <tbody>
+                  <tr><td><a href="https://geog.ucsb.edu/" target="_blank">UCSB Geography </a></td></tr>
+                  <tr><td><a href="http://water.noaa.gov/" target="_blank">NOAA National Water Center </a></td></tr>
+                  <tr><td><a href="https://www.ivm.vu.nl/en/index.aspx" target="_blank">The VU Amsterdam </a></td></tr>
+                  <tr><td><a href="http://www.comet.ucar.edu/" target="_blank">COMET </a><br /></td></tr>
+                  <tr><td><a href="https://www.ucghi.universityofcalifornia.edu/" target="_blank">UCGHI </a></td></tr>
+                  <tr><td><a href="https://ral.ucar.edu/" target="_blank">NCAR RAL </a></td></tr>
+                  <tr><td><a href="https://www.guerrillacartography.org/" target="_blank">Guerrilla Cartography</a></td></tr>
+                  <tr><td><a href="https://www.calpoly.edu" target="_blank">Cal Poly </a></td></tr>
+                  <tr><td><a href="https://www.irrigation.org/" target="_blank">Irrigation Association </a></td></tr>
+                  <tr><td><a href="https://www.cuahsi.org/" target="_blank">CUAHSI </a></td></tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    
-    <section class="section-software off-color" id="software">
-      <div class="row">
-        <h2>Software</h2>
-      </div>
-      <div class="row">
-        <div class="tab">
-          <button class="tablinks-software span-1-of-4 default_tab" onclick="openTab(event, 'aoi', 'software-tab', 'tablinks-software')"><h3>AOI</h3></button>
-          <button class="tablinks-software span-1-of-4" onclick="openTab(event, 'hydrodata', 'software-tab', 'tablinks-software')"><h3>HydroData</h3></button>
-          <button class="tablinks-software span-1-of-4" onclick="openTab(event, 'nwm', 'software-tab', 'tablinks-software')" id="defaultOpen_2"><h3>nwmClient</h3></button>
-          <button class="tablinks-software span-1-of-4" onclick="openTab(event, 'flowlinefinder', 'software-tab', 'tablinks-software')"><h3>FlowlineFinder</h3></button>
-        </div>
-        <div id="hydrodata" class="tabcontent software-tab">
-          <div class="row title">
-            <span class="title buttons">Aggregate and Visualize Earth Systems Data</span> 
-          </div>
-          <div class="row">
-            <img src="./resources/img/hydrodata.jpg" href="./resources/img/hydrodata.jpg" target="_blank" class="clickable mp-image"/>
-            <p>
-                <a class="pub-button" href="https://github.com/mikejohnson51/HydroData" target="_blank">Code</a>
-              <a class="pub-button" href="https://mikejohnson51.github.io/HydroData/" target="_blank">Homepage</a><br>
-              Almost all environmental research begins with data; the question of what data is available; and the challenge of gathering it. HydroData is an R package designed to help users find, get, visualize and use a range of Earth Systems data for a defined Area of Interest. The package provides functions to automatically download data from 19 sources; interactively visualize and share data within R and/or a browser; and to export data for external use in GIS.
-              
-            </p>    
-          </div>
-        </div>
-    </section>    
+      </div> <!-- /education row -->
+
         
+
+
+      <!-- FOOTER -->
+      <footer>
         
-    <section class="section-projects" id="projects">
-      <div class="row">
-        <h2>Current Work</h2>
-      </div>
-      <div class="row">
-        <div class="tab">
-          <button class="tablinks-project span-1-of-5 default_tab" onclick="openTab(event, 'et', 'project-tab', 'tablinks-project')" id="defaultOpen_2"><h3>ET</h3></button>
-          <button class="tablinks-project span-1-of-5" onclick="openTab(event, 'floodmapping', 'project-tab', 'tablinks-project')"><h3>Flood Mapping</h3></button>
-          <button class="tablinks-project span-1-of-5" onclick="openTab(event, 'wsp', 'project-tab', 'tablinks-project')"><h3>Water Security</h3></button>
-          <button class="tablinks-project span-1-of-5" onclick="openTab(event, 'urban-growth', 'project-tab', 'tablinks-project')"><h3>Urban Growth</h3></button>
-          <button class="tablinks-project span-1-of-5" onclick="openTab(event, 'abdm', 'project-tab', 'tablinks-project')"><h3>Drought Models</h3></button>
+      </footer> <!-- /FOOTER -->
+
+    <hr class="featurette-divider">
+
+    <!-- Publications and Presentations -->
+    <div class="row">
+      <h1 class="text-center header">Publications and Presentations</h1>
+      <!-- Add Tabs Here -->
+      <ul class="nav nav-pills nav-justified">
+        <li class="active"><a data-toggle="pill" href="#publications">Publications</a></li>
+        <li><a data-toggle="pill" href="#presentations" onclick="var c = document.getElementById('includedPresentations').childNodes[0]; c.classList.add('table'); c.classList.add('table-hover');">Presentations</a></li>
+      </ul>
+      <!-- Tab 1: Publications -->
+      <div class="tab-content">
+        <div id="publications" class="tab-pane fade in active">
+          <table class="table table-hover">
+            <tbody>
+              <!-- Publication 8 -->
+              <tr>
+                <td>
+                  <i class="far fa-file-alt"></i> J.M Johnson, Pat Johnson, Keith C. Clarke. <a  href="mikjohns51.github.io/FlowFinder/" target="_blank"> FlowFinder: Hydrology as a service via the National Water Model</a> In preparation.
+                  <p>
+                    <a class="btn btn-default btn-xs" data-toggle="collapse" href="#abstract_8" role="button">Absract</a>
+                    <a class="btn btn-default btn-xs disabled" href="" download>PDF</a>
+                  </p>
+                  <div class="collapse" id="abstract_8">
+                    <div class="card card-body">
+                      <p>Each day the National Water Model generates over 400 GB of data relating to the surface hydrology of the continental United States (CONUS). Managing this data and making it accessible is at the core of maximizing such a modeling system, and NOAA’s aim of providing hydrology as a service. In this paper we introduce an R Shiny web application that allows users to subset, interact, visualize, and download the National Hydrography Dataset (NHD) along with current to five day-out streamflow conditions for anywhere in the CONUS. Additionally, the application allows users to compare flow conditions to a modeled monthly average, and identifies regions within the CONUS showing significantly high flow peaks. The last of these represents a first step towards national-scale flood detection.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Publication 7 -->
+              <tr>
+                <td>
+                  <i class="far fa-file-alt"></i> Marthe Wens, J.M Johnson, Cecilia Zagaria, T.I.E Veldkamp. <a  href="javascript:;" target="_blank"> Improving Drought Risk Modeling: An Agent-based Approach.</a> In WIREs Water, (in review).
+                  <p>
+                    <a class="btn btn-default btn-xs" data-toggle="collapse" href="#abstract_7" role="button">Absract</a>
+                    <a class="btn btn-default btn-xs disabled" href="" download>PDF</a>
+                  </p>
+                  <div class="collapse" id="abstract_7">
+                    <div class="card card-body">
+                      <p>Droughts are a persistent and costly hazard impacting human and environmental systems. As climate variability continues to increase and socio-economic development continues to change the distribution of exposed assets, drought risk is expected to increase in many parts of the world. The unique characteristics of droughts - namely their fuzzy edges, large spatial extent, prolonged temporal bounds, human-influenced propagation, and teleconnection potential – challenge the correct assessment of drought risk. Further complicating such assessment is the ability of humans to make adaptive decisions before, during, and after a drought event, altering the expected impact.<br><br>
+                      Current drought risk models often neglect how adaptation decisions can change drought hazard, exposure, and vulnerability, and how past and current experiences may influence behavior through time. Therefore, they provide a limited illustration of the actual drought risk dynamics. In this overview, we offer a framework for extending the traditional risk modeling approach by including the two-way feedback between heterogeneous adaptive behavior of different water users and drought exposure, vulnerability and hazard. We discuss how an agent-based, socio-hydrologic, modeling setup can facilitate such simulations. We suggest such a modeling approach can provide a test-bed for understanding optimal adaptive behaviors in an increasingly drought-prone world, allowing better prioritization of adaptation strategies in the face of an uncertain future.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Publication 6 -->
+              <tr>
+                <td>
+                  <i class="far fa-file-alt"></i> J.M Johnson, Jim M. Coll, Paul J. Ruess, Jordan T. Hastings. <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/1752-1688.12645" target="_blank">Challenges and Opportunities for Creating Intelligent Hazard Alerts: The “FloodHippo” Prototype</a>  In Journal of the American Water Resources Association (JAWRA), 2018.
+                  <p>
+                    <a class="btn btn-default btn-xs" data-toggle="collapse" href="#abstract_6" role="button">Absract</a>
+                    <a class="btn btn-default btn-xs" href="pdfs/Johnson_et_al-2017-JAWRA.pdf" download>PDF</a>
+                  </p>
+                  <div class="collapse" id="abstract_6">
+                    <div class="card card-body">
+                      <p>Disasters evolving from hazards are a persistent and deadly occurrence in the United States. Despite this, hazard alerts have remained spatially vague, temporally imprecise, and lack actionable information. These deficiencies indicate a divide between the status quo and what is possible given modern environmental models, geographic information systems (GIS), and smartphone capabilities. This work describes an alternative, prototype system, “FloodHippo,” which integrates operational model outputs, cloud‐based GIS, and expanded communication channels to provide personal and interactive disaster alerts for floods. The precepts and methods underpinning FloodHippo apply equally to other disasters that evolve over space and time, presenting the opportunity for a more intelligent disaster response system. The development of such a system would not only minimize current shortcomings in disaster alerts but also improve resilience through individual action, along with community, academic, and federal cooperation.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Publication 5 -->
+              <tr>
+                <td>
+                  <i class="far fa-file-alt"></i> J.M Johnson, Jim M. Coll, Paul J. Ruess, Jordan T. Hastings. <a href="https://www.sciencedirect.com/science/article/pii/S0022169418302762" target="_blank">Infiltration on sloping terrain and its role on runoff generation and slope stability.</a>  In Journal of Hydrology, 2018.
+                  <p>
+                    <a class="btn btn-default btn-xs" data-toggle="collapse" href="#abstract_5" role="button">Absract</a>
+                    <a class="btn btn-default btn-xs" href="pdfs/joh-2018.pdf" download>PDF</a>
+                    <a class="btn btn-default btn-xs" href="https://github.com/mikejohnson51/RainSlope" target="_blank">Code</a>
+                  </p>
+                  <div class="collapse" id="abstract_5">
+                    <div class="card card-body">
+                       <p>A modified Green-and-Ampt model is formulated to quantify infiltration on sloping terrain underlain by homogeneous soil wetted by surficial water application. This paper's theory for quantifying infiltration relies on the mathematical statement of the coupled partial differential equations (pdes) governing infiltration and runoff. These pdes are solved by employing an explicit finite-difference numerical method that yields the infiltration, the infiltration rate, the depth to the wetting front, the rate of runoff, and the depth of runoff everywhere on the slope during external wetting. Data inputs consist of a water application rate or the rainfall hyetograph of a storm of arbitrary duration, soil hydraulic characteristics and antecedent moisture, and the slope's hydraulic and geometric characteristics. The presented theory predicts the effect an advancing wetting front has on slope stability with respect to translational sliding. This paper's theory also develops the 1D pde governing suspended sediment transport and slope degradation caused by runoff influenced by infiltration. Three examples illustrate the application of the developed theory to calculate infiltration and runoff on a slope and their role on the stability of cohesive and cohesionless soils forming sloping terrain.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Publication 4 -->
+              <tr>
+                <td>
+                  <i class="far fa-file-alt"></i> Johnson J.M, H.A. Loaiciga. <a href="http://www.mdpi.com/2073-4441/9/5/327" target="_blank">Coupled Infiltration and Kinematic-Wave Runoff Simulation in Slopes: Implications for Slope Stability.</a>  In Water, 2017.
+                  <p>
+                    <a class="btn btn-default btn-xs" data-toggle="collapse" href="#abstract_4" role="button">Absract</a>
+                    <a class="btn btn-default btn-xs" href="pdfs/water-09-00327.pdf" download>PDF</a>
+                    <a class="btn btn-default btn-xs" href="https://github.com/mikejohnson51/RainSlope" target="_blank">Code</a>
+                  </p>
+                  <div class="collapse" id="abstract_4">
+                    <div class="card card-body">
+                        <p>Shallow translational slides are common in slopes during heavy rainfall. The classic model for the occurrence of translational slides in long slopes assumes rising saturation above a slip surface that reduces the frictional strength by decreasing the effective stress along soil discontinuities. The classic model for translational slope failure does not conform well to the nature of homogenous soils that do not exhibit discontinuities propitious to create perched groundwater over the soil discontinuity or slip surface. This paper develops an alternative methodology for the coupled numerical simulation of runoff and infiltration caused by variable rainfall falling on a slope. The advancing depth of infiltration is shown to affect the translational stability of long slopes subjected to rainfall, without assuming the perching of soil water over the slip surface. This new model offers an alternative mechanism for the translational stability of slopes that are saturated from the slope surface downwards. A computational example illustrates this paper’s methodology.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Publication 3 -->
+              <tr>
+                <td>
+                  <i class="far fa-file-alt"></i> Johnson J.M, Coll J.M, et al.. <a href="https://www.cuahsi.org/uploads/library/CUAHSI_2017SI_TR14V102_DOI.pdf" target="_blank">National Water Centers Innovators Program Summer Institute Report.</a>  In Consortium of Universities for the Advancement of Hydrologic Science, Inc. Technical Report 14, 2017.
+                  <p>
+                    <a class="btn btn-default btn-xs" data-toggle="collapse" href="#abstract_3" role="button">Absract</a>
+                    <a class="btn btn-default btn-xs" href="pdfs/Johnson_et_al-2017-JAWRA.pdf" download>PDF</a>
+                  </p>
+                  <div class="collapse" id="abstract_3">
+                    <div class="card card-body">
+                      <p>In August of 2016, the National Water Model became operational marking an unprecedented effort that rightfully challenges the way research can be done and the way hydro-intelligence can benefit society. This modeling framework has also introduced ways in which interdisciplinary research surrounding water resources can be done. By providing river forecasts for 2.7 million reaches within CONUS, the NWM provides a nerve center in which two previously distinct groups - ‘data generators’ and ‘data users’ - can unite to answer new questions in a time where population pressures and a changing climate make water management more paramount.<br><br>
+                      The reports published here represent the culmination of seven weeks of research, and present a platform not only for these students to continue pushing forward with their advisors, each other and the NWC, but for the rest of the community, whether ‘data-generators’ or ‘data-users’, to become more engaged in the development of the NWM.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Map 1 -->
+              <tr>
+                <td>
+                  <i class="far fa-file-alt"></i> Johnson J.M. <strong> Peoples and Regions of Africa</strong> [map]. Scale not given. In Cole, Herbert M. <u>Maternity Mothers and Children in the Arts of Africa</u>, CT: Yale UNiversity Press 2017.
+                  <p>
+                    <a class="btn btn-default btn-xs" data-toggle="collapse" href="#map_1" role="button">Cartography</a>
+                  </p>
+                  <div class="collapse" id="map_1">
+                    <div class="card card-body">
+                      <a href="images/combined.jpg" data-toggle="lightbox">
+                        <img src="images/combined-small.jpg" class="img-fluid">
+                      </a>
+                       <!-- <img src="images/combined.jpg" alt="Cole Map"> -->
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Map 2 -->
+              <tr>
+                <td>
+                  <i class="far fa-file-alt"></i> Johnson J.M. <strong> Rising Sea Levels: Hawaii</strong> [map]. Scale not given. In Water: An Atlas. Oakland, CA: Guerilla Cartography, 2017. page 174.
+                  <p>
+                    <a class="btn btn-default btn-xs" data-toggle="collapse" href="#map_2" role="button">Cartography</a>
+                  </p>
+                  <div class="collapse" id="map_2">
+                    <div class="card card-body">
+                      <a href="images/hi_map.jpg" data-toggle="lightbox">
+                        <img src="images/hi_map-small.jpg" class="img-fluid">
+                      </a>
+                       <!-- <img src="images/combined.jpg" alt="Cole Map"> -->
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Publication 2 -->
+              <tr>
+                <td>
+                  <i class="far fa-file-alt"></i> Johnson J.M, Coll J.M, Ruess P.J. <a href="https://www.cuahsi.org/uploads/library/cuahsi_tr13_8.20.16.pdf" target="_blank">OPERA–Operational Platform for Emergency Response and Awareness: Reimagining Disaster Alerts.</a>  In National Water Center Innovators Program Summer Institute Report. Consortium of Universities for the Advancement of Hydrologic Science, Inc. Technical Report 13, Ch 11., 2016.
+                  <p>
+                    <a class="btn btn-default btn-xs" data-toggle="collapse" href="#abstract_2" role="button">Absract</a>
+                    <a class="btn btn-default btn-xs" href="pdfs/cuahsi_tr13_8.20.16.pdf" download>PDF</a>
+                  </p>
+                  <div class="collapse" id="abstract_2">
+                    <div class="card card-body">
+                      <p>Present‐day disaster alert systems are underdeveloped in relation to modern forecasting capabilities, geospatial technologies, and telecommunications. Consequently, alerts are often spatially vague, temporally imprecise, and fail to provide actionable information, resulting in confusing warnings that are easily ignored.<br><br>
+                    
+                      This research describes the integration of predictive models into an Operational Platform for Emergency
+                      Response Awareness (OPERA), colloquially known as the “Disaster Zoo”. The Disaster Zoo operates across the initial phases of a disaster event, including preparedness, warning, and response, by capitalizing on social media to promote awareness, leveraging Geographic Information System (GIS) techniques to improve spatiotemporal accuracy, and cellular Global Position Systems (GPS) technology to deliver individualized actionable alerts. Currently, the Disaster Zoo showcases alerts for floods, wildfires, and chemical spills; other disaster types may be considered in the future. This research is not intended to be a new approach to emergency response per se, but rather to reimagine emergency alert systems, demonstrate their improvements, and argue for their viability, and indeed, necessity.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- Publication 1 -->
+              <tr>
+                <td>
+                  <i class="far fa-file-alt"></i> Coll J.M, Johnson J.M, Ruess P.J. <a href="https://www.cuahsi.org/uploads/library/cuahsi_tr13_8.20.16.pdf" target="_blank">Radar Measurement and Flow Modeling: Methods.</a>   In National Water Center Innovators Program Summer Institute Report. Consortium of Universities for the Advancement of Hydrologic 
+                  <p>
+                    <a class="btn btn-default btn-xs" data-toggle="collapse" href="#abstract_1" role="button">Absract</a>
+                    <a class="btn btn-default btn-xs" href="pdfs/cuahsi_tr13_8.20.16.pdf" download>PDF</a>
+                  </p>
+                  <div class="collapse" id="abstract_1">
+                    <div class="card card-body">
+                       <p>Traditional river forecasting and hydraulic modeling is limited by the type, quantity and density of measurements available. Currently, the hydrologic community is reliant on a combination of USGS gages, remotely sensed data, and field work to model the hydrologic properties of a reach. However, if hyper resolution or continent‐scale modeling is undertaken, more data is necessary than the current network can provide. The most obvious way to improve upon this shortcoming is to implement a more densified measurement network; while USGS stations are the industry standard, they are too sparsely located and often not representative of the waterways they are being used to describe. An alternative sensor, the Sommer GmbH RQ‐30 radar, is more cost‐effective, measures both stage and velocity, and operates autonomously. This paper outlines the rationale and objectives behind the installation of these systems, describes two study sites where these instruments have been installed, lays out different methods to gather bathymetry data, and ultimately uses these data, combined with the sensors, to model the reaches.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div id="hydrodata" class="tabcontent project-tab">
-          <div class="row">
-            <img src="./resources/img/hydrodata.jpg" href="./resources/img/hydrodata.jpg" target="_blank" class="clickable mp-image"/>
-            <p>
-                <a class="title" href="https://mikejohnson51.github.io/HydroData/" target="_blank">Aggregation and Visualization of Earth Systems Data<i class="fas fa-link icon-small"></i></a><br />
-              Almost all environmental research begins with data; the question of what data is available; and the challenge of gathering it. HydroData is an R package designed to help users find, get, visualize and use a range of Earth Systems data for a defined Area of Interest. The package provides functions to automatically download data from 19 sources; interactively visualize and share data within R and/or a browser; and to export data for external use in GIS.
-            </p>
-          </div>
+        <div id="presentations" class="tab-pane fade">
+          <div id="includedPresentations"></div>
         </div>
-        <div id="et" class="tabcontent project-tab">
-          <div class="row">
-            <img src="./resources/img/et.png" href="./resources/img/et.png" class="clickable mp-image"/>
-            <p>
-              <span class="title">Evapotranspiration Data Analysis</span><br />
-              Four projects look into modeling evapotranspiration across a continuous spatial surface within the contexts of the HydroData package. Specifically (1) how DAYMET and Weather Underground data can be used to calculate PET at a daily timesteps for North America; (2) how the same process can be applied globally; (4) how values – analogous to the FAO crop coefficients – can be developed for all vegetated Anderson level 2 land covers and (4) how to decouple the effect of temperature on ET rates using observed streamflow records.<br /><br />
-              <strong>Working with:</strong> Dami Eyelade, Jeremy Neill, Dino Korac
-            </p>
-          </div>
-        </div>
-        <div id="floodmapping" class="tabcontent project-tab">
-          <div class="row">
-            <img src="./resources/img/floodmapping.gif" href="./resources/img/floodmapping.gif"  class="clickable mp-image thumbnail"/>
-            <p>
-              <span class="title">Flood Mapping</span><br />
-              Three projects look at the feasibility of real-time flood mapping using R and the National Water Model. The first (1) is to develop a system that allows GIS agencies throughout the country to install and run an hourly flood impacts models using the HAND methodology, the second (2) is to evaluate the accuracy of the HAND method against a repository of satellite derived flood extents and the third (3) is develop a filtering scheme to identify abnormally low and high flows in a NWM forecast allowing decision-makers and modelers to focus on areas that need attention.<br /><br />
-              <strong>Working with:</strong> Jim Coll, Dinuke Munasinghe
-            </p>
-          </div>
-        </div>
-      <div id="wsp" class="tabcontent project-tab">
-        <div class="row">
-          <img src="./resources/img/watersecurity.jpg" href="./resources/img/watersecurity.jpg"  class="clickable mp-image thumbnail"/>
-          <p>
-            <span class="title">Using Text-based Analysis to Simplify the Water Security Paradigm</span><br />
-            Over the last 25 years the concept of water security has gained in popularity, but its meaning remains ambiguous despite several attempts to articulate a unified definition. This project seeks to better understand water security through a quantitative, text-based analysis of the literature to remove linguistic redundancies and overlap to identify core, timeless agreements.<br /><br />
-            <strong>Working with:</strong> Keith Clarke
-          </p>
-        </div>
-      </div>
-      <div id="urban-growth" class="tabcontent project-tab">
-        <div class="row">
-          <img src="./resources/img/urbangrowth.jpg" href="./resources/img/urbangrowth.jpg"  class="clickable mp-image thumbnail"/>
-          <p>
-            <span class="title">Urban Growth Modeling</span><br />
-            This study looks to apply the SLEUTH land use/land cover model to the state of California to derive high resolution, probabilistic, long-range, Anderson level 2 land use products. Such products will be used for scenario-based hydroclimate studies with the NCAR Research Application Laboratory.<br /><br />
-            <strong>Working with:</strong> Keith Clarke
-          </p>
-        </div>
-      </div>
-      <div id="abdm" class="tabcontent project-tab">
-        <div class="row">
-          <img src="./resources/img/droughtmodels.jpg" href="./resources/img/droughtmodels.jpg"  class="clickable mp-image thumbnail"/>
-          <p>
-            <span class="title">Agent-based Drought Risk Models</span><br />
-            This work is part of a larger study being carried out at the Institute for Environmental Studies at VU Amsterdam looking to couple distributed hydrologic models and multi-actor, agent-based behavioral models within a drought risk context. One case study looks at applying this modeling strategy to a region in California’s Central Valley to better understand impacts on ground water withdrawals and aquifer levels.<br /><br />
-            <strong>Working with:</strong> Marthe Wens, Jeroen Aerts, Ted Veldkamp
-          </p>
-        </div>
-      </div>
-    </section>
+      </div> <!-- /.tab-content -->
+
+</div>
+</div>
+    </div><!-- /.container -->
+
+    <!-- FOOTER -->
     <footer>
+      <div class=" container">
         <div class="row">
-            <div class="col span-1-of-2 address">
-              <p>
-                Ellision Hall 1715<br />
-                University of California, Santa Barbara<br />
-                Santa Barbara, CA 93106<br /> 
-              </p>
-            </div>
-            <div class="col span-1-of-2">
-              <div class="row">
-                <ul class="social-links">
-                    <li><a href="mailto:mike.johnson@geog.ucsb.edu"><i class="fas fa-envelope-square fa-3x"></i></a></li>
-                    <li><a href="https://github.com/mikejohnson51"><i class="fab fa-github-square fa-3x"></i></a></li>
-                    <li><a href="https://www.researchgate.net/profile/Mike_Johnson29"><i class="fab fa-researchgate fa-3x"></i></a></li>
-                    <li><a href="https://scholar.google.com/citations?hl=en&user=MrXM9cgAAAAJ&view_op=list_works&sortby=pubdate"><i class="ai ai-google-scholar-square ai-3x"></i></i></a></li>
-                </ul>
-              </div>
-              <div class="row social-links">
-                <p>Last Updated: July 5, 2018</p>
-              </div>
-            </div>
+        <div class="col-md-6">
+          <p>
+            Ellision Hall 1715<br />
+            University of California, Santa Barbara<br />
+            Santa Barbara, CA 93106<br /> 
+          </p>
         </div>
-        <div class="row last_updated">
-            <p>
-              
-            </p>
+        <div class="col-md-6 text-right">
+          <a href="https://github.com/mikejohnson51" target="_blank" class="social-link"><i class="fab fa-github fa-2x grow"></i></a>
+          <a href="https://scholar.google.com/citations?hl=en&user=MrXM9cgAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" class="social-link fa-2x"><i class="ai ai-google-scholar grow"></i></i></a>
+          <a href="https://www.researchgate.net/profile/Mike_Johnson29" target="_blank" class="social-link fa-2x"><i class="ai ai-researchgate grow"></i></a>
+          <a href="mailto:mike.johnson@geog.ucsb.edu" target="_blank" class="social-link fa-2x"><i class="far fa-envelope grow"></i></i></a>
+          <p>Last Updated: August 12, 2018</p>
         </div>
+      </div>
+      </div>
     </footer>
-    <script src="vendors/js/jquery.min.js"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="vendors/js/jquery.waypoints.min.js"></script>
-    <script src="vendors/js/jquery.magnific-popup.min.js"></script>
-    <script src="resources/js/script.js"></script>
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
-      var elems = document.getElementsByClassName("default_tab");
-      for (var i=0, len=elems.length; i < len; i++) elems[i].click();
-      function openTab(evt, tabName, tabcontent, tablinks) {
-          var i, tabcontent, tablinks;
-          tabcontent = document.getElementsByClassName(tabcontent);
-          for (i = 0; i < tabcontent.length; i++) {
-              tabcontent[i].style.display = "none";
-          }
-          tablinks = document.getElementsByClassName(tablinks);
-          for (i = 0; i < tablinks.length; i++) {
-              tablinks[i].className = tablinks[i].className.replace(" active", "");
-          }
-          document.getElementById(tabName).style.display = "block";
-          evt.currentTarget.className += " active";
-      }
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
     </script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
