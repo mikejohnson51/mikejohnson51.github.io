@@ -1,0 +1,236 @@
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,letterpaper,sans]{moderncv}
+\moderncvstyle[norules]{banking}
+\moderncvcolor{blue}
+\usepackage[margin=.87in]{geometry}
+\usepackage{enumitem}
+\setlist{noitemsep}
+\usepackage{lastpage}
+\usepackage{verbatim}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{csvsimple}
+%\rfoot{\addressfont\itshape\textcolor{gray}{Page \thepage\ of \pageref{LastPage}}}
+\rfoot{\addressfont\itshape\textcolor{gray}{Page \thepage\ of 2}}
+% Mention additonal documents here
+%\lfoot{\addressfont\itshape\textcolor{gray}{Attached: Cover Letter}}
+\newcommand{\code}{\texttt}
+%\usepackage{etoolbox}
+%\patchcmd{\makecvtitle}{{minipage}[b]}{{minipage}[t]}{}{}
+%\patchcmd{\makecvtitle}{{tabular}[b]}{{tabular}}{}{}
+
+\renewcommand*{\titlefont}{\fontsize{12}{0}\mdseries\upshape}
+
+% Remove periods at the end of cventy's
+% https://tex.stackexchange.com/questions/241093/moderncv-cventry-remove-dots-at-the-end-of-line
+\usepackage{xpatch}
+
+\usepackage{tabularx}
+\usepackage{etoolbox}
+
+
+\xpatchcmd{\cventry}{.\strut}{\strut}{}{}
+
+
+%----------------------------------------------------------------------------------------
+%   NAME AND CONTACT INFORMATION SECTION
+%----------------------------------------------------------------------------------------
+
+\firstname{Patrick}
+\familyname{Johnson}
+\title{Online Resume \& Portfolio: \url{https://pjohns.github.io}}
+%\address{3410 Ashwood Circle}{Colorado Springs, CO 80906}
+\email{patjohns1216@gmail.com}
+\mobile{(719) 306-5746}
+\social[github]{overdodactyl}
+%\homepage{pjohns.github.io}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\makecvtitle % Print the CV title
+\vspace*{-10mm}
+
+
+%----------------------------------------------------------------------------------------
+%   Presentations SECTION
+%----------------------------------------------------------------------------------------
+
+
+\preto\tabular{\setcounter{magicrownumbers}{0}}
+\newcounter{magicrownumbers}`
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+
+
+\begin{tabularx}{15cm}{@{\makebox[3em][r]{\rownumber.\space}} @{}p{3cm}   @{}X <{\dotfill} @{}l } 
+\csvreader[head to column names]{Basket_ball.csv}{}% use head of csv as column names
+{\\\bfseries{\csvcoli}&\bfseries{\csvcolii}&\csvcoliii}% specify your coloumns here
+\end{tabularx}
+
+
+
+\renewcommand*{\arraystretch}{2}
+\input{../presentations.tex}
+
+
+
+%----------------------------------------------------------------------------------------
+%   EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Education: University of Oregon}
+\cventry{2012--2016}{Bachelor of Science}{}{}{Biology with Departmental Honors}{}
+\cventry{}{Bachelor of Science}{}{}{Applied Mathematics}{}  
+\cvitem{}{\textbf{Minors:} (1) Biochemistry (2)  Computer \& Information Science}
+\cvitem{}{\textbf{GPA:} 3.59}
+
+
+
+\section{Postgraduate Education: Online Courses}
+\cventry{2017--2018}{MIT OpenCourseWare, Udemy, and DataCamp}{}{}{}{}  
+\cvitem{}{
+HTML,
+Javascript,
+Matlab,
+R Shiny,
+Biological Algorithims
+}
+%----------------------------------------------------------------------------------------
+%   Publications and Presentations
+%----------------------------------------------------------------------------------------
+
+\section{Publications and Presentations}
+
+\cvitem{2018}{Johnson PW, Doe CQ, \& Lai SL,``Drosophila Nucleostemin 3 is required to maintain larval neuroblast proliferation." {\em Developmental Biology} {440.1 (Aug 2018)  1-12.}}
+\vspace*{-1mm}
+\cvitem{}{\url{https://doi.org/10.1016/j.ydbio.2018.04.014}}
+%\vspace*{-6mm}
+%\cventry{}{}{}{}{}{\url{https://www.sciencedirect.com/science/article/pii/S0012160617308242}}
+
+\cventry{2016}{Thesis Defense}{Presentation}{}{}{}{}
+
+\cventry{2016}{Undergraduate Research Symposium}{Presentation}{}{}{}  
+
+\cventry{2014}{Summer Program for Undergraduate Research}{Presentation and Poster}{}{}{}  
+
+%\cventry{2014}{Summer Program for Undergraduate Research}{Poster}{}{}{}  
+
+%----------------------------------------------------------------------------------------
+%  Honors/Awards
+%----------------------------------------------------------------------------------------
+
+\section{Honors/Awards}
+
+\cventry{2012-2016}{Non-Resident Dean's Scholarship}{}{}{}{}
+
+\cventry{2012-2016}{Western Undergraduate Exchange Scholarship}{}{}{}{}
+
+\cventry{Winter 2015}{Dean's List}{}{}{}{}
+
+\cventry{Fall 2015}{Dean's List}{}{}{}{}
+
+%\cventry{Winter \& Fall '15}{\hfill \newline Dean's List}{}{}{}{}
+
+\cventry{2014}{SMART Scholar Award}{Department of Biology}{}{}{}  
+
+\cventry{2012-2013}{General University Scholarship}{}{}{}{}
+
+
+%----------------------------------------------------------------------------------------
+%   COMPUTER SKILLS SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Computer Skills}
+
+\cvitem{Advanced}{Python, R, Adobe Creative Suite, ImageJ }
+\cvitem{Intermediate}{CSS, HTML, Java, \LaTeX, git, GitHub, Bash}
+\cvitem{Basic}{JavaScript, SQL, C/C++, Amazon Web Services (AWS), Matlab}
+
+
+%----------------------------------------------------------------------------------------
+%   WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\clearpage
+
+\section{Relevant Experience}
+
+\cventry{2013-2018}{Research Associate}{Doe Laboratory, Howard Hughes Medical Institute, University of Oregon}{}{Mentors: Dr. Chris Q. Doe and Dr. Sen-Lin Lai }{
+\begin{itemize}
+  \item 20 hrs/week during the school year (2013-2016), 40 hrs/week during the summers (2013 and 2016) and September 2016 - January 2017 
+  \item Bench research techniques: \textit{Fly genetics, genotyping, dissections, immunohistochemistry, proliferation assays, PCR, molecular cloning, confocal microscopy, and gel electrophoresis.}  
+  \item Research dissemination: Writing manuscript, designing figures, posters and presentations
+\end{itemize}
+}
+
+\cventry{2016}{Pipeline for Analysis of ChiP-seq Data}{}{}{}{
+\begin{itemize}
+  \item   Collaborated with a team to automate, optimize and speed-up the analysis of ChiP-seq data on external servers using Python
+  \item   Constructed a graphic user interface for researchers with no experience using the command line
+  \item   Project is hosted on the University of Oregon super computer and on GitHub: \newline \url{https://github.com/aowen87/VincePipeline} 
+\end{itemize}   
+}
+
+\cventry{2015}{Summer Term at the Oregon Institute of Marine Biology}{}{}{Coos Bay, OR}{\input{/Users/patjohnson/Documents/Job_Applications/Resume/Descriptions/OIMB2.txt} }
+
+\cventry{2014}{Summer Program for Undergraduate Research (SPUR)}{University of Oregon}{}{}{
+\begin{itemize}
+  \item 40 hrs/week of research
+  \item   Attended professional development workshops, faculty seminars, and research group discussions
+  \item   Wrote weekly reports on the status of research
+  \item Served as the Residential Advisor for non-University of Oregon students 
+\end{itemize}
+}
+
+\cventry{2013-2017}{Assistant to Lab Manager}{University of Oregon}{}{}{
+\begin{itemize}
+    \item   Maintained fly stocks and ordered materials/reagents as necessary
+    \item   Created data bases for available fly stocks
+    \item   Performed genetic crosses
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%   COMPUTER SKILLS SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Open Source Software Projects and Contributions}
+
+\cventry{2018}{FlowlineFinder}{Data Vizualization}{in collab. with UC Santa Barbara PhD candidate}{}{
+	\begin{itemize}
+		\item Application driven by R Shiny
+		\item Helps users find, view and download the National Hydrograph Dataset (NHD) and NOAA National Water Model Data
+		\item Web Application: \url{https://mikejohnson51.github.io/FlowlineFinder/}
+		\item GitHub: \url{https://github.com/mikejohnson51/FlowlineFinder} 
+	 \end{itemize}	
+		}
+\cventry{2017-2018}{ShadowFox}{A Universal Dark Theme for Firefox}{developer}{}{
+	\begin{itemize}
+		\item Independent project, based in CSS, with a user base of several hundred people
+		\item Experience with git, GitHub, issue tracking, troubleshooting, and customer support
+		\item Homepage: \url{https://overdodactyl.github.io/ShadowFox/} 
+		\item GitHub: \url{https://github.com/overdodactyl/ShadowFox/}
+	 \end{itemize}	
+		}
+\cventry{2017-2018}{ghacksuserjs}{Firefox Configuration}{contributor}{}{
+	\begin{itemize}
+		\item Developed bash scripts to automate the process of installing, updating, and backing up the gHacks \code{user.js}
+		\item Commentary on the contribution was published by ghacks.net:
+		\url{https://www.ghacks.net/2017/12/29/automation-comes-to-the-ghacks-user-js-configuration-for-firefox/} (username: \code{overdodactyl})
+	 \end{itemize}	
+		}
+\cventry{2017-2018}{RES}{Browser Extension}{contributor}{}{
+	\begin{itemize}
+		\item Small feature additions including keyboard shortcuts and display settings
+	\end{itemize}
+}
+\cventry{2018}{CodeMirror}{Text Editor}{contributor}{}{
+	\begin{itemize}
+		\item Addition of a new CodeMirror theme that mirrors Firefox's developer tool's dark theme
+	\end{itemize}
+}
+
+\end{document}
