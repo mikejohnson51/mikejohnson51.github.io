@@ -56,7 +56,7 @@ create_table <- function(table = NULL, file_name = NULL, removeHeaders = TRUE) {
   if (removeHeaders) {
     table <- gsub("<thead>.*</thead>", "", table)
   }
-  fileConn<-file(paste0('docs/generated_html_files/',file_name))
+  fileConn<-file(paste0('generated_html_files/',file_name))
   writeLines(table, fileConn)
   close(fileConn)
 }
@@ -400,7 +400,7 @@ affiliation_map = leaflet(affiliations) %>% addTiles() %>%
         width = 170)
   
 # Create HTML file
-htmlwidgets::saveWidget(affiliation_map, file =  paste0(getwd(),"/docs/generated_html_files/affiliations_map.html"))
+htmlwidgets::saveWidget(affiliation_map, file =  paste0(getwd(),"/generated_html_files/affiliations_map.html"))
 
 @
 
@@ -427,7 +427,7 @@ footer = paste0('<div class=" container">
           </div>
         </div>')
 
-fileConn<-file('docs/generated_html_files/footer.html')
+fileConn<-file('generated_html_files/footer.html')
 writeLines(footer, fileConn)
 close(fileConn)
 @
@@ -474,7 +474,7 @@ for (i in 1:nrow(current_work)) {
   
 }
 
-fileConn<-file('docs/generated_html_files/current_work.html')
+fileConn<-file('generated_html_files/current_work.html')
 writeLines(html, fileConn)
 close(fileConn)
 @
@@ -532,7 +532,7 @@ for (i in 1:nrow(software)) {
   
 }
 
-fileConn<-file('docs/generated_html_files/software.html')
+fileConn<-file('generated_html_files/software.html')
 writeLines(html, fileConn)
 close(fileConn)
 @
