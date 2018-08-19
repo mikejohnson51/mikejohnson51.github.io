@@ -1,0 +1,443 @@
+\documentclass{article}
+
+%----------------------------------------------------------------------------------------
+%   Load Packages
+%----------------------------------------------------------------------------------------
+
+\usepackage{geometry} %used to define page attributes
+\usepackage{xcolor} %used to customize text colors
+\usepackage[hidelinks]{hyperref} %used for links
+\usepackage{longtable} %used to span tables across pages
+\usepackage{fancyhdr} %used for footer
+\pagestyle{fancy} %used for footer
+\usepackage{lastpage} %used for footer page numberings
+\usepackage{fontawesome} %used for icons
+\usepackage{array} %used to wrap at words instead of hyphenate
+
+%----------------------------------------------------------------------------------------
+%   Page Layout
+%----------------------------------------------------------------------------------------
+
+\geometry{a4paper, margin=.75in} %define paper type/dimensions
+\fancyhf{} %remove fancy header
+\renewcommand{\headrulewidth}{0pt} %remove fancy header
+\rfoot{J.M. Johnson \thepage\ of \pageref{LastPage}} %create footer: J.M. Johnson, p. x of xx
+\renewcommand*{\arraystretch}{1.5} %make tables 1.5 space
+
+
+
+%----------------------------------------------------------------------------------------
+%   Custom Commands
+%----------------------------------------------------------------------------------------
+
+\definecolor{header_blue}{HTML}{001d31} %define color for section headers
+\newcommand\tab[1][1cm]{\hspace*{#1}} %define \tab command
+\newcommand{\header}[1]{\hspace{-5mm}\textcolor{header_blue}{\underline{\textbf{#1}}\\}} %define \header style
+\newcommand{\me}{\textbf{J.M Johnson}} % define \me - used to bold name in publications
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}} % New xtable column type that prevents hyphenation on wrap
+\newcommand{\blueUrl}[1]{\textcolor{header_blue}{\url{#1}}}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+<< echo=FALSE, eval=TRUE>>=
+library(magrittr)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+library(readxl)
+library(xtable)
+
+create_table <- function(table = NULL, file_name = NULL, removeHeaders = TRUE) {
+  table <- table %>% 
+    kable(escape = FALSE) %>% 
+    kable_styling(bootstrap_options = c("hover"))
+  
+  if (removeHeaders) {
+    table <- gsub("<thead>.*</thead>", "", table)
+  }
+  fileConn<-file(paste0('docs/generated_html_files/',file_name))
+  writeLines(table, fileConn)
+  close(fileConn)
+}
+
+bold <- function(x) { paste0('BOLD', x) }
+italic <- function(x) { paste0('ITALIC', x) }
+url <- function(x) { paste0('URL', sanitize(x, type = "latex")) }
+
+bold.somerows <- function(x) {
+  x = gsub('BOLD(.*)',paste('\\\\textbf{\\1','}'),x)
+}
+
+#italic <- function(x) { paste0('ITALIC', x) }
+
+italic.somerows <- 
+        function(x) gsub('ITALIC(.*)',paste('\\\\textit{\\1','}'),x)
+
+newline.somerows <-
+    function(x) gsub('NEWLINE',paste('\\\\newline'),x)
+
+san_url <-
+    function(x) gsub('URL(.*)', paste('\\\\blueUrl{\\1','}'),x)
+
+san_all <- function(x){
+  x = bold.somerows(x)
+  x = italic.somerows(x)
+  x = newline.somerows(x)
+  x = san_url(x)
+  return(x)
+}
+@
+
+%----------------------------------------------------------------------------------------
+%   HEADER Section
+%----------------------------------------------------------------------------------------
+\sffamily
+\centerline{{\Huge \textcolor[RGB]{6,60,97}{J. Michael 'Mike' Johnson}}}
+\vspace{2mm}
+\centerline{\textcolor{header_blue}{\textcolor{gray}{\faGithub} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $|$ \textcolor{gray}{\faEnvelope} \hspace{0.2mm} \href{mailto:jmj00@ucsb.edu }{jmj00@ucsb.edu}}
+\textcolor[RGB]{6,60,97}{\rule{\linewidth}{3pt}}
+\vspace{3mm}
+\rmfamily
+
+%----------------------------------------------------------------------------------------
+%   EDUCATION Section
+%----------------------------------------------------------------------------------------
+\header{EDUCTAION:}
+\newline
+\hspace*{0mm}
+\begin{tabular}{p{2.5cm}p{25cm}}
+\textbf{2015 - Present} & \textbf{University of California Santa Barbara (UCSB)} \newline \tab $>$PhD Candidate in Geography (passed written exams) \\
+\textbf{2015} & \textbf{California Polytechnic State University, San Luis Obispo, CA} \newline \tab $>$BS Anthropology \& Geography Cum laude \\
+\ & \textbf{Minors} \textbf{(1)} Water Science (Watershed Management Emphasis) \textbf{(2)} Geographic Information \newline \tab \tab Systems for Agriculture \textbf{(3)} Statistics \textbf{(4)} Environmental Studies \textbf{(5)} Economics
+\end{tabular}
+\vspace{5mm}
+
+%----------------------------------------------------------------------------------------
+%   AWARDS Section
+%----------------------------------------------------------------------------------------
+
+\header{AWARDS, FELLOWSHIPS, AND GRANTS:}
+\newline
+\vspace{5mm}
+<<echo=false,results=tex>>=
+awards = read_excel("data.xlsx", sheet = "awards")
+
+awards_html <- awards %>% 
+  mutate(
+    col2 = paste(text_spec(name, bold = TRUE), details, sep = " - ")
+  ) %>% 
+  select(year, col2)
+
+create_table(table = awards_html, file_name = 'awards.html')
+
+df = data.frame(date = bold(awards$year), 
+                name = bold(awards$name), 
+                details = sanitize(awards$details, type = "latex"))
+
+print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
+      floating = FALSE, include.rownames = FALSE,
+      include.colnames = FALSE, 
+      hline.after = c(), 
+      sanitize.text.function = san_all)
+@
+
+
+%----------------------------------------------------------------------------------------
+%   	EXPERIENCE Section
+%----------------------------------------------------------------------------------------
+
+\header{EXPERIENCE:}
+\newline
+\vspace{5mm}
+<<echo=false,results=tex>>=
+experience = read_excel("data.xlsx", sheet = "experience")
+
+df = data.frame(date = bold(experience$data), 
+                title = bold(experience$title), 
+                location = experience$location)
+
+print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
+      floating = FALSE, 
+      include.rownames = FALSE,
+      include.colnames = FALSE, 
+      hline.after = c(), 
+      sanitize.text.function = bold.somerows)
+@
+\clearpage
+
+
+
+%----------------------------------------------------------------------------------------
+%   	PUBLICATIONS Section
+%----------------------------------------------------------------------------------------
+\header{Published Work:}
+\newline
+\vspace{5mm}
+<<echo=false,results=tex>>=
+publications = read_excel("data.xlsx", sheet = "publications")
+
+buttons <- function(abstract, pdf, num, code, cartography_small, cartography_large) {
+
+  html = '<p> '
+  
+  if (!is.na(abstract)) {
+    html = paste0(html, '<a class="btn btn-default btn-xs" data-toggle="collapse" href="#abstract_',num,'" role="button">Absract</a>')
+  }
+
+  if (!is.na(pdf)) {
+    html = paste0(html,'<a class="btn btn-default btn-xs" href="',pdf,'" download>PDF</a>')
+  }
+  
+  if (!is.na(code)) {
+    html = paste0(html, '<a class="btn btn-default btn-xs" href="',code,'" target="_blank">Code</a>')
+  }
+  
+  if (!is.na(cartography_small)) {
+    html = paste0(html, '<a class="btn btn-default btn-xs" data-toggle="collapse" href="#map_',num,'" role="button">Cartography</a>')
+  }
+  
+  html = paste0(html, '<p>')
+  
+  # Collapsable Sections
+  
+  # Text Abstracts
+  if (!is.na(abstract)) {
+    html = paste0(html, '<div class="collapse" id="abstract_',num,'"><div class="card card-body"><p>',abstract,'</p></div></div>')
+  }
+  
+  # Cartography Maps
+  if (!is.na(cartography_small)) {
+    html = paste0(html, '<div class="collapse" id="map_',num,'"> <div class="card card-body"><a href="',cartography_large,'" data-toggle="lightbox"><img src="',cartography_small,'" class="img-fluid"></a></div></div>')
+  }
+  
+  return(html)
+}
+
+
+publications_html <- publications %>%
+  mutate(number = 1:n()) %>% 
+  rowwise() %>% 
+  do(data.frame(.,new_buttons = buttons(pdf = .$pdf, 
+                                         abstract = .$abstract, 
+                                         num = .$number, 
+                                         code = .$code, 
+                                         cartography_small = .$cartography_small, 
+                                         cartography_large = .$cartography_large))) %>% 
+  do(data.frame(., formated_authors = gsub("\\{\\\\me\\}", '<b>J.M Johnson</b>', .$authors)))
+
+publications_html  <- publications_html %>% 
+  mutate( 
+    citation = paste0('<i class="far fa-file-alt"></i>',
+                      formated_authors, '. ', 
+                      ifelse(is.na(link), title, text_spec(title, link = link)), 
+                      ifelse(journal == "In review" || journal == "In preparation", '. ',  '. In '), 
+                      journal, ', ',
+                      year, '.',
+                      new_buttons)
+  ) %>% 
+  select(citation)
+
+create_table(table = publications_html, file_name = 'publications.html')
+
+
+
+
+df <- data.frame(citation = paste0(publications$authors, '.',
+                                   ' (', publications$year, '). ',
+                                   '{',  italic(publications$title), '}', '. ',
+                                   publications$journal, '. ', 
+                                   ifelse(is.na(publications$link), '',paste0('{',url(publications$link), '}', '.'))
+                                   )
+                 )
+
+print(xtable(df, align = c("l","p{15.5cm}")),
+      floating = FALSE,
+      include.colnames = FALSE, 
+      hline.after = c(), 
+      sanitize.text.function = san_all)
+@
+
+
+
+%----------------------------------------------------------------------------------------
+%   PRESENTATIONS Section
+%----------------------------------------------------------------------------------------
+
+
+\header{Presentations:}
+\vspace{-4mm}
+<<echo=false,results=tex>>=
+presentations = read_excel("data.xlsx", sheet = "presentations")
+presentations$blank = ""
+
+presentations_html <- presentations %>% 
+  mutate(
+    col1 = paste(text_spec(location, bold = TRUE), data, sep = "</br>"),
+    col2 = paste(text_spec(title, bold = TRUE), type, sep = " - ")
+  ) %>% 
+  select(col1, col2)
+  
+create_table(table = presentations_html, file_name = 'presentations.html')
+
+col2 <- paste0('{',bold(presentations$location), '}', ' NEWLINE ', italic(presentations$title))
+
+df = data.frame(date = bold(presentations$data), 
+                title = col2, 
+                blank = presentations$blank,  
+                type = presentations$type)
+
+print(xtable(df, align = c("l","p{2.5cm}", "P{8.5cm}", "p{1cm}", "l")),
+      floating = FALSE,
+      include.colnames = FALSE, 
+      hline.after = NULL, 
+      sanitize.text.function = san_all,
+      tabular.environment='longtable',
+      booktabs = TRUE
+     )
+@
+
+
+%----------------------------------------------------------------------------------------
+%   	TEACHING Section
+%----------------------------------------------------------------------------------------
+
+\header{TEACHING ASSISTANT, DEPARTMENT OF GEOGRAPHY, UCSB:}
+\newline
+\vspace{5mm}
+<<echo=false,results=tex>>=
+teaching = read_excel("data.xlsx", sheet = "teaching")
+
+teaching_html <-teaching %>%
+  mutate(
+    ' ' = paste(text_spec(class, bold = TRUE), " (", professor,")")
+  ) %>%
+  select(data, ' ') %>%
+  rename('Teaching Assistant' = data)
+
+create_table(table = teaching_html, file_name = 'teaching.html', removeHeaders = FALSE)
+
+df = data.frame(date = bold(teaching$data), 
+                class = teaching$class, 
+                professor = italic(teaching$professor))
+
+print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
+      floating = FALSE,
+      include.colnames = FALSE, 
+      hline.after = c(), 
+      sanitize.text.function = san_all)
+@
+
+%----------------------------------------------------------------------------------------
+%   	MENTORSHIP Section
+%----------------------------------------------------------------------------------------
+
+\header{UNDERGRADUATE RESEARCH MENTORSHIP, UCSB:}
+\newline
+\vspace{5mm}
+<<echo=false,results=tex>>=
+mentorship = read_excel("data.xlsx", sheet = "mentorship")
+
+df = data.frame(date = bold(mentorship$date), student = mentorship$name)
+
+print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}")),
+      floating = FALSE,
+      include.colnames = FALSE, 
+      hline.after = c(), 
+      sanitize.text.function = san_all)
+@
+
+%----------------------------------------------------------------------------------------
+%   	OTHER Section
+%----------------------------------------------------------------------------------------
+
+
+<< echo=FALSE, eval=TRUE>>=
+# Extra Code Used For Website But Not CV
+
+# Affiliations Table
+
+affiliations = read_xlsx("data.xlsx", sheet = "affiliations")
+write.csv(affiliations, file = "affiliations.csv", row.names=FALSE, quote = FALSE)
+
+affiliations_html <- affiliations %>% 
+  mutate(
+    link = text_spec(Name, link = link)
+  ) %>% 
+  select(link)
+
+create_table(table = affiliations_html, file_name = 'affiliations.html')
+
+# Affiliations Map
+library(leaflet)
+library(mapview)
+library(htmltools)
+
+# Get data set
+affiliations = read.csv('affiliations.csv')
+
+# Generate Map
+affiliation_map = leaflet(affiliations) %>% addTiles() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addCircleMarkers(lng = ~Long, lat = ~Lat, 
+                   radius = 6,
+                   color = ~ifelse(affiliations$Name == "UCSB Geography", "red", "navy"), 
+                   stroke = FALSE, 
+                   fillOpacity = 0.7,
+                   label = mapply(function(w, x, y, z) {
+                      HTML(sprintf("<img style='float:left; margin-right:10px;' 
+                                   src = %s width = %spx><p style='line-height:1;'>%s<br/>
+                                   <span style='font-weight:400;'>%s</span></p>", 
+                                   htmlEscape(w), htmlEscape(x), htmlEscape(y), htmlEscape(z)))},
+                      affiliations$Src, affiliations$Width, affiliations$Name, affiliations$Loc, SIMPLIFY = F),
+                  labelOptions = labelOptions(direction = "auto",
+                                         style = list(
+                                           "box-shadow" = "9px 9px rgba(0,0,0,0.25)",
+                                           "border-color" = "navy",
+                                           "padding-right" = "100px",
+                                           "background-color" = "white")))%>%
+  addLogo("../resources/images/affiliations/logo.png", alpha = 0.45, position = "bottomleft", offset.x = 5,
+        width = 170)
+  
+# Create HTML file
+htmlwidgets::saveWidget(affiliation_map, file =  paste0(getwd(),"/docs/generated_html_files/affiliations_map.html"))
+
+@
+
+<< echo=FALSE, eval=TRUE>>=
+
+# Generate Footer
+
+footer = paste0('<div class=" container">
+            <div class="row">
+              <div class="col-md-6">
+              <p>
+                Ellision Hall 1715<br />
+                University of California, Santa Barbara<br />
+                Santa Barbara, CA 93106<br /> 
+              </p>
+            </div>
+            <div class="col-md-6 text-right">
+              <a href="https://github.com/mikejohnson51" target="_blank" class="social-link"><i class="fab fa-github fa-2x grow"></i></a>
+              <a href="https://scholar.google.com/citations?hl=en&user=MrXM9cgAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" class="social-link fa-2x"><i class="ai ai-google-scholar grow"></i></i></a>
+              <a href="https://www.researchgate.net/profile/Mike_Johnson29" target="_blank" class="social-link fa-2x"><i class="ai ai-researchgate grow"></i></a>
+              <a href="mailto:mike.johnson@geog.ucsb.edu" target="_blank" class="social-link fa-2x"><i class="far fa-envelope grow"></i></i></a>
+              <p>Last Updated: ', format(Sys.time(), "%B %e, %Y"), '</p>
+            </div>
+          </div>
+        </div>')
+
+fileConn<-file('docs/generated_html_files/footer.html')
+writeLines(footer, fileConn)
+close(fileConn)
+
+@
+
+
+
+
+
+
+
+
+\end{document}

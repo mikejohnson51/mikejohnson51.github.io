@@ -1,7 +1,20 @@
-tables:
-	pandoc presentations.docx -o presentations.html
-	pandoc awards.docx -o awards.html
-	pandoc teaching.docx -o teaching.html
+publish:
+	git pull
+	git add *
+	git commit -m "update cv"
+	git push
 
 cv:
-	pandoc johnson_cv.docx -o johnson_cv.pdf
+	R CMD Sweave --pdf cv.Rnw
+	R CMD Sweave --pdf cv.Rnw
+	cp cv.pdf docs/pdfs/mike_johnson_cv.pdf
+	make clean	
+
+update:
+	make cv
+	make publish
+
+clean:
+	rm -f *.{log,aux,out,tex}
+	rm -R docs/generated_html_files/affiliations_map_files
+	rm affiliations.csv

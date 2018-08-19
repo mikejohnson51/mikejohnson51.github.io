@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="Vizualizing U.S. Waterways" content="">
+    <meta name="Pat Johnson" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Mike Johnson</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="resources/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <script src="resources/js/ie-emulation-modes-warning.js"></script>
+    <script src="resources/js/jquery.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedPresentations").load("generated_html_files/presentations.html");
+      $("#includedAwards").load("generated_html_files/awards.html");
+      $("#includedTeaching").load("generated_html_files/teaching.html");
+      $("#includedPublications").load("generated_html_files/publications.html");
+      $("#includedAffiliations").load("generated_html_files/affiliations.html");
+      $("#includedFooter").load("generated_html_files/footer.html");
+    });
+    </script>
+
+    <!-- Custom Styles -->
+    <link href="resources/css/global.css" rel="stylesheet">
+
+    <!-- Lightbox - Popup Images -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-default navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a href="#" class="navbar-left"><img src="resources/images/logo.png" height="47px"></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="software.html">Software</a></li> 
+                <li><a href="current_work.html">Current Work</a></li> 
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/mikejohnson51/"><i class="fab fa-github fa-lg"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="container">
+            <div class="carousel-caption">
+              <h1>Mike Johnson</h1> 
+              <p>PhD Candidate, Geography (Water Resources)</p><br>
+            </div>
+          </div>
+        <div class="item active">
+          <img class="first-slide" src="resources/images/carousel/lake.jpg" alt="First slide">
+        </div>
+        <div class="item">
+          <img class="second-slide" src="resources/images/carousel/rayshade_uo.png" alt="Second slide">
+        </div>
+        <div class="item">
+          <img class="second-slide" src="resources/images/carousel/lake_mead.jpg" alt="Third slide">
+        </div>
+        <div class="item">
+          <img class="second-slide" src="resources/images/carousel/rayshade_lp.png" alt="Fourth slide">
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
+
+    <div class="container about">
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <img class="img-circle" src="resources/images/profile-square.jpg" alt="Profile photo image" width="200px"><br>
+          <h3>Mike Johnson</h3>
+          <h5 class="text-primary">UCSB Geography Department</h5>
+          <a href="https://github.com/mikejohnson51" target="_blank" class="social-link"><i class="fab fa-github fa-2x grow"></i></a>
+          <a class="social-link" href="resources/pdfs//mike_johnson_cv.pdf" download><i class="far fa-file-alt grow fa-2x" title="Download CV"></i></a>
+          <a href="https://scholar.google.com/citations?hl=en&user=MrXM9cgAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" class="social-link fa-2x"><i class="ai ai-google-scholar grow"></i></i></a>
+          <a href="https://www.researchgate.net/profile/Mike_Johnson29" target="_blank" class="social-link fa-2x"><i class="ai ai-researchgate grow"></i></a>
+          <a href="mailto:mike.johnson@geog.ucsb.edu" target="_blank" class="social-link fa-2x"><i class="far fa-envelope grow"></i></i></a>
+        </div>
+        <div class="col-md-8">
+          <h2>About</h2><br>
+          <h4>
+            My name is J. Michael Johnson, but everyone calls me Mike. I am a graduate student in <a href="https://geog.ucsb.edu" >Geography</a> at the <a href="https://www.ucsb.edu" >University of California, Santa Barbara</a> working with <a href="http://www.geog.ucsb.edu/~kclarke/" >Keith C. Clarke</a>.<br style="margin-bottom:10px" /><br>
+            My current research is focused on developing the HydroData Package, mapping California land use change, modeling evapotranspiration, and developing agent based models for drought risk analysis.<br style="margin-bottom:10px" />
+            <br>Before coming to UCSB, I spent two years studying architecture before earning my Bachelor of Science in Geography and Anthropology from <a href="https://www.calpoly.edu" >Cal Poly</a> in 2015, where I also received minors in GIS for Agriculture, Water Science, Statistics, Economics, and Environmental Studies.
+          </h4>
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- Experience and Education -->
+      <div class="row">
+        <h1 class="text-center header">Experience and Affiliations</h1>
+        <!-- Add Tabs Here -->
+        <ul class="nav nav-pills nav-justified bottom_space">
+          <li class="active"><a data-toggle="pill" href="#home">Education</a></li>
+          <li><a data-toggle="pill" href="#menu1">Awards</a></li>
+          <li><a data-toggle="pill" href="#menu2">Teaching</a></li>
+          <li><a data-toggle="pill" href="#menu3">Affiliations</a></li>
+        </ul>
+        <!-- TAB CONTENT -->
+        <div class="tab-content">
+          <!-- Tab 1: Education -->
+          <div id="home" class="tab-pane fade in active">
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <td><strong>University of California Santa Barbara</strong><br>2015 - Present</td>
+                  <td><strong>PhD Candidate</strong> Geography Passed written exams<br><i class="fas fa-map-marker-alt"></i> Santa Barbara, California </td>
+                </tr>
+                <tr>
+                  <td><strong>Visiting Researcher</strong></td>
+                  <td>
+                    <strong>NCAR Research Applications Laboratory</strong><br>Aug-Sep 2018 <i class="fas fa-map-marker-alt"></i> Boulder, CO<br>
+                    <strong>The VU Amsterdam</strong><br> Jan-Mar 2018 <i class="fas fa-map-marker-alt"></i> Amsterdam, The Netherlands<br>
+                    <strong>NOAA National Water Center</strong><br> 
+                      Summer 2016 and 2017> <i class="fas fa-map-marker-alt"></i> Tuscaloosa, Alabama
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>California Polytechnic State University</strong><br>2010-2015<br></td>
+                  <td><strong>Bachelor of Science </strong>Anthropology & Geography<br>
+                  <strong class="indent">Minor </strong>Water Science (Watershed Management Emphasis)<br>
+                  <strong class="indent">Minor </strong>Geographic Information Systems for Agriculture<br>
+                  <strong class="indent">Minor </strong>Statistics<br>
+                  <strong class="indent">Minor </strong>Environmental Studies<br>
+                  <strong class="indent">Minor </strong>Economics</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Tab 2: Awards -->
+          <div id="menu1" class="tab-pane fade" >
+              <div id="includedAwards"></div>
+          </div>
+          <!-- Tab 3: Teaching -->
+          <div id="menu2" class="tab-pane fade" >
+            <div id="includedTeaching"></div>
+          </div>
+          <!-- Tab 4: Affiliations -->
+          <div id="menu3" class="tab-pane fade">
+            <div class="row">
+              <div class="col-md-8">
+                <iframe src="generated_html_files/affiliations_map.html" class="aoi_map" width="100%" height="400px"> </iframe>
+              </div>
+              <div class="col-md-4">
+                <div id="includedAffiliations"></div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- /.tab-content -->
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- Publications and Presentations -->
+      <div class="row">
+      <h1 class="text-center header">Publications and Presentations</h1>
+      <!-- Add Tabs Here -->
+      <ul class="nav nav-pills nav-justified">
+        <li class="active"><a data-toggle="pill" href="#publications">Publications</a></li>
+        <li><a data-toggle="pill" href="#presentations">Presentations</a></li>
+      </ul>
+      <!-- Tab 1: Publications -->
+      <div class="tab-content">
+        <div id="publications" class="tab-pane fade in active">
+          <div id="includedPublications"></div>
+        </div>
+        <div id="presentations" class="tab-pane fade">
+          <div id="includedPresentations"></div>
+        </div>
+      </div> <!-- /.tab-content -->
+
+      </div>
+
+    </div><!-- /.container -->
+    
+
+    <!-- FOOTER -->
+    <footer>
+      <div id="includedFooter"></div>
+    </footer>
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script>
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+    </script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="resources/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
