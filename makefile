@@ -7,7 +7,7 @@ publish:
 cv:
 	R CMD Sweave --pdf cv.Rnw
 	R CMD Sweave --pdf cv.Rnw
-	cp cv.pdf docs/pdfs/mike_johnson_cv.pdf
+	cp cv.pdf pdfs/mike_johnson_cv.pdf
 	make clean	
 
 update:
@@ -16,5 +16,5 @@ update:
 
 clean:
 	rm -f *.{log,aux,out,tex}
-	rm -R docs/generated_html_files/affiliations_map_files
+	rm -R generated_html_files/affiliations_map_files
 	rm affiliations.csv
