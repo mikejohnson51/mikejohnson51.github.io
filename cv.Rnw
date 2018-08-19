@@ -430,9 +430,112 @@ footer = paste0('<div class=" container">
 fileConn<-file('docs/generated_html_files/footer.html')
 writeLines(footer, fileConn)
 close(fileConn)
-
 @
 
+<< echo=FALSE, eval=TRUE>>=
+current_work = read_excel("data.xlsx", sheet = "current_work")
+
+is.even <- function(x) x %% 2 == 0
+
+html = ''
+for (i in 1:nrow(current_work)) {
+  data = current_work[i,]
+  if(!is.even(i)) {
+    html = paste0(html,
+    '<div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
+        <p class="lead">', data$text, 
+        '<p><strong>Working with: </strong>', data$working_with, '</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block shadow-right" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
+     </div>'
+    )
+  } else {
+    html = paste0(html,
+                  '<div class="row featurette">
+                    <div class="col-md-7 col-md-push-5">
+                      <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
+                      <p class="lead">', data$text, '</p>
+                      <p><strong>Working with: </strong>', data$working_with, '</p>
+                    </div>
+                  <div class="col-md-5 col-md-pull-7">
+                    <img class="featurette-image img-responsive center-block shadow-left" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+                  </div>
+                </div>'
+        )
+  }
+  
+  if (i < nrow(current_work)) {
+    html = paste0(html, '<hr class="featurette-divider">')
+  }
+  
+}
+
+fileConn<-file('docs/generated_html_files/current_work.html')
+writeLines(html, fileConn)
+close(fileConn)
+@
+
+
+<< echo=FALSE, eval=TRUE>>=
+software = read_excel("data.xlsx", sheet = "software")
+
+is.even <- function(x) x %% 2 == 0
+
+html = ''
+for (i in 1:nrow(software)) {
+  data = software[i,]
+  if(!is.even(i)) {
+    html = paste0(html,
+    '<div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
+        <p class="lead">', data$text, '</p>',
+        ifelse(is.na(data$working_with), '', paste0('<p><strong>Working with: </strong>',data$working_with, '</p>')),
+        '<p>',
+            ifelse(is.na(data$app),'',paste0('<a class="btn btn-primary" href="', data$app ,'" role="button">Launch App</a>')),
+            ifelse(is.na(data$homepage),'',paste0('<a class="btn btn-primary" href="', data$homepage ,'" role="button">Homepage</a>')),
+            ifelse(is.na(data$code),'',paste0('<a class="btn btn-primary" href="', data$code ,'" role="button">Code</a>')),
+        '</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block shadow-right" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
+     </div>'
+    )
+  } else {
+    html = paste0(html,
+                  '<div class="row featurette">
+                    <div class="col-md-7 col-md-push-5">
+                      <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
+                      <p class="lead">', data$text, '</p>',
+                      ifelse(is.na(data$working_with), '', paste0('<p><strong>Working with: </strong>',data$working_with, '</p>')), 
+                    '<p>',
+                      ifelse(is.na(data$app),'',paste0('<a class="btn btn-primary" href="', data$app ,'" role="button">Launch App</a>')),
+                      ifelse(is.na(data$homepage),'',paste0('<a class="btn btn-primary" href="', data$homepage ,'" role="button">Homepage</a>')),
+                      ifelse(is.na(data$code),'',paste0('<a class="btn btn-primary" href="', data$code ,'" role="button">Code</a>')),
+                  '</p>
+                    </div>
+                  <div class="col-md-5 col-md-pull-7">
+                    <img class="featurette-image img-responsive center-block shadow-left" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+                  </div>
+                </div>'
+        )
+  }
+  
+  if (i < nrow(software)) {
+    html = paste0(html, '<hr class="featurette-divider">')
+  }
+  
+}
+
+fileConn<-file('docs/generated_html_files/software.html')
+writeLines(html, fileConn)
+close(fileConn)
+@
 
 
 

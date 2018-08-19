@@ -194,7 +194,9 @@ a.btn-primary,
 }
 
 
-.first_on_page {margin-top: 180px;}
+.featurette:first-of-type { margin-top: 180px; }
+
+.featurette .btn-primary { margin-right: 5px; }
 
 
 /* Featurettes
