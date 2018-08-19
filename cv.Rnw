@@ -49,10 +49,10 @@ library(readxl)
 library(xtable)
 
 create_table <- function(table = NULL, file_name = NULL, removeHeaders = TRUE) {
-  table <- table %>% 
-    kable(escape = FALSE) %>% 
+  table <- table %>%
+    kable(escape = FALSE) %>%
     kable_styling(bootstrap_options = c("hover"))
-  
+
   if (removeHeaders) {
     table <- gsub("<thead>.*</thead>", "", table)
   }
@@ -71,7 +71,7 @@ bold.somerows <- function(x) {
 
 #italic <- function(x) { paste0('ITALIC', x) }
 
-italic.somerows <- 
+italic.somerows <-
         function(x) gsub('ITALIC(.*)',paste('\\\\textit{\\1','}'),x)
 
 newline.somerows <-
@@ -123,22 +123,22 @@ san_all <- function(x){
 <<echo=false,results=tex>>=
 awards = read_excel("data.xlsx", sheet = "awards")
 
-awards_html <- awards %>% 
+awards_html <- awards %>%
   mutate(
     col2 = paste(text_spec(name, bold = TRUE), details, sep = " - ")
-  ) %>% 
+  ) %>%
   select(year, col2)
 
 create_table(table = awards_html, file_name = 'awards.html')
 
-df = data.frame(date = bold(awards$year), 
-                name = bold(awards$name), 
+df = data.frame(date = bold(awards$year),
+                name = bold(awards$name),
                 details = sanitize(awards$details, type = "latex"))
 
 print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
       floating = FALSE, include.rownames = FALSE,
-      include.colnames = FALSE, 
-      hline.after = c(), 
+      include.colnames = FALSE,
+      hline.after = c(),
       sanitize.text.function = san_all)
 @
 
@@ -153,15 +153,15 @@ print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
 <<echo=false,results=tex>>=
 experience = read_excel("data.xlsx", sheet = "experience")
 
-df = data.frame(date = bold(experience$data), 
-                title = bold(experience$title), 
+df = data.frame(date = bold(experience$data),
+                title = bold(experience$title),
                 location = experience$location)
 
 print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
-      floating = FALSE, 
+      floating = FALSE,
       include.rownames = FALSE,
-      include.colnames = FALSE, 
-      hline.after = c(), 
+      include.colnames = FALSE,
+      hline.after = c(),
       sanitize.text.function = bold.somerows)
 @
 \clearpage
@@ -180,7 +180,7 @@ publications = read_excel("data.xlsx", sheet = "publications")
 buttons <- function(abstract, pdf, num, code, cartography_small, cartography_large) {
 
   html = '<p> '
-  
+
   if (!is.na(abstract)) {
     html = paste0(html, '<a class="btn btn-default btn-xs" data-toggle="collapse" href="#abstract_',num,'" role="button">Absract</a>')
   }
@@ -188,54 +188,54 @@ buttons <- function(abstract, pdf, num, code, cartography_small, cartography_lar
   if (!is.na(pdf)) {
     html = paste0(html,'<a class="btn btn-default btn-xs" href="',pdf,'" download>PDF</a>')
   }
-  
+
   if (!is.na(code)) {
     html = paste0(html, '<a class="btn btn-default btn-xs" href="',code,'" target="_blank">Code</a>')
   }
-  
+
   if (!is.na(cartography_small)) {
     html = paste0(html, '<a class="btn btn-default btn-xs" data-toggle="collapse" href="#map_',num,'" role="button">Cartography</a>')
   }
-  
+
   html = paste0(html, '<p>')
-  
+
   # Collapsable Sections
-  
+
   # Text Abstracts
   if (!is.na(abstract)) {
     html = paste0(html, '<div class="collapse" id="abstract_',num,'"><div class="card card-body"><p>',abstract,'</p></div></div>')
   }
-  
+
   # Cartography Maps
   if (!is.na(cartography_small)) {
     html = paste0(html, '<div class="collapse" id="map_',num,'"> <div class="card card-body"><a href="',cartography_large,'" data-toggle="lightbox"><img src="',cartography_small,'" class="img-fluid"></a></div></div>')
   }
-  
+
   return(html)
 }
 
 
 publications_html <- publications %>%
-  mutate(number = 1:n()) %>% 
-  rowwise() %>% 
-  do(data.frame(.,new_buttons = buttons(pdf = .$pdf, 
-                                         abstract = .$abstract, 
-                                         num = .$number, 
-                                         code = .$code, 
-                                         cartography_small = .$cartography_small, 
-                                         cartography_large = .$cartography_large))) %>% 
+  mutate(number = 1:n()) %>%
+  rowwise() %>%
+  do(data.frame(.,new_buttons = buttons(pdf = .$pdf,
+                                         abstract = .$abstract,
+                                         num = .$number,
+                                         code = .$code,
+                                         cartography_small = .$cartography_small,
+                                         cartography_large = .$cartography_large))) %>%
   do(data.frame(., formated_authors = gsub("\\{\\\\me\\}", '<b>J.M Johnson</b>', .$authors)))
 
-publications_html  <- publications_html %>% 
-  mutate( 
+publications_html  <- publications_html %>%
+  mutate(
     citation = paste0('<i class="far fa-file-alt"></i>',
-                      formated_authors, '. ', 
-                      ifelse(is.na(link), title, text_spec(title, link = link)), 
-                      ifelse(journal == "In review" || journal == "In preparation", '. ',  '. In '), 
+                      formated_authors, '. ',
+                      ifelse(is.na(link), title, text_spec(title, link = link)),
+                      ifelse(journal == "In review" || journal == "In preparation", '. ',  '. In '),
                       journal, ', ',
                       year, '.',
                       new_buttons)
-  ) %>% 
+  ) %>%
   select(citation)
 
 create_table(table = publications_html, file_name = 'publications.html')
@@ -246,15 +246,15 @@ create_table(table = publications_html, file_name = 'publications.html')
 df <- data.frame(citation = paste0(publications$authors, '.',
                                    ' (', publications$year, '). ',
                                    '{',  italic(publications$title), '}', '. ',
-                                   publications$journal, '. ', 
+                                   publications$journal, '. ',
                                    ifelse(is.na(publications$link), '',paste0('{',url(publications$link), '}', '.'))
                                    )
                  )
 
 print(xtable(df, align = c("l","p{15.5cm}")),
       floating = FALSE,
-      include.colnames = FALSE, 
-      hline.after = c(), 
+      include.colnames = FALSE,
+      hline.after = c(),
       sanitize.text.function = san_all)
 @
 
@@ -271,26 +271,26 @@ print(xtable(df, align = c("l","p{15.5cm}")),
 presentations = read_excel("data.xlsx", sheet = "presentations")
 presentations$blank = ""
 
-presentations_html <- presentations %>% 
+presentations_html <- presentations %>%
   mutate(
     col1 = paste(text_spec(location, bold = TRUE), data, sep = "</br>"),
     col2 = paste(text_spec(title, bold = TRUE), type, sep = " - ")
-  ) %>% 
+  ) %>%
   select(col1, col2)
-  
+
 create_table(table = presentations_html, file_name = 'presentations.html')
 
 col2 <- paste0('{',bold(presentations$location), '}', ' NEWLINE ', italic(presentations$title))
 
-df = data.frame(date = bold(presentations$data), 
-                title = col2, 
-                blank = presentations$blank,  
+df = data.frame(date = bold(presentations$data),
+                title = col2,
+                blank = presentations$blank,
                 type = presentations$type)
 
 print(xtable(df, align = c("l","p{2.5cm}", "P{8.5cm}", "p{1cm}", "l")),
       floating = FALSE,
-      include.colnames = FALSE, 
-      hline.after = NULL, 
+      include.colnames = FALSE,
+      hline.after = NULL,
       sanitize.text.function = san_all,
       tabular.environment='longtable',
       booktabs = TRUE
@@ -317,14 +317,14 @@ teaching_html <-teaching %>%
 
 create_table(table = teaching_html, file_name = 'teaching.html', removeHeaders = FALSE)
 
-df = data.frame(date = bold(teaching$data), 
-                class = teaching$class, 
+df = data.frame(date = bold(teaching$data),
+                class = teaching$class,
                 professor = italic(teaching$professor))
 
 print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
       floating = FALSE,
-      include.colnames = FALSE, 
-      hline.after = c(), 
+      include.colnames = FALSE,
+      hline.after = c(),
       sanitize.text.function = san_all)
 @
 
@@ -342,8 +342,8 @@ df = data.frame(date = bold(mentorship$date), student = mentorship$name)
 
 print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}")),
       floating = FALSE,
-      include.colnames = FALSE, 
-      hline.after = c(), 
+      include.colnames = FALSE,
+      hline.after = c(),
       sanitize.text.function = san_all)
 @
 
@@ -360,10 +360,10 @@ print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}")),
 affiliations = read_xlsx("data.xlsx", sheet = "affiliations")
 write.csv(affiliations, file = "affiliations.csv", row.names=FALSE, quote = FALSE)
 
-affiliations_html <- affiliations %>% 
+affiliations_html <- affiliations %>%
   mutate(
     link = text_spec(Name, link = link)
-  ) %>% 
+  ) %>%
   select(link)
 
 create_table(table = affiliations_html, file_name = 'affiliations.html')
@@ -379,15 +379,15 @@ affiliations = read.csv('affiliations.csv')
 # Generate Map
 affiliation_map = leaflet(affiliations) %>% addTiles() %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
-  addCircleMarkers(lng = ~Long, lat = ~Lat, 
+  addCircleMarkers(lng = ~Long, lat = ~Lat,
                    radius = 6,
-                   color = ~ifelse(affiliations$Name == "UCSB Geography", "red", "navy"), 
-                   stroke = FALSE, 
+                   color = ~ifelse(affiliations$Name == "UCSB Geography", "red", "navy"),
+                   stroke = FALSE,
                    fillOpacity = 0.7,
                    label = mapply(function(w, x, y, z) {
-                      HTML(sprintf("<img style='float:left; margin-right:10px;' 
+                      HTML(sprintf("<img style='float:left; margin-right:10px;'
                                    src = %s width = %spx><p style='line-height:1;'>%s<br/>
-                                   <span style='font-weight:400;'>%s</span></p>", 
+                                   <span style='font-weight:400;'>%s</span></p>",
                                    htmlEscape(w), htmlEscape(x), htmlEscape(y), htmlEscape(z)))},
                       affiliations$Src, affiliations$Width, affiliations$Name, affiliations$Loc, SIMPLIFY = F),
                   labelOptions = labelOptions(direction = "auto",
@@ -398,7 +398,7 @@ affiliation_map = leaflet(affiliations) %>% addTiles() %>%
                                            "background-color" = "white")))%>%
   addLogo("../resources/images/affiliations/logo.png", alpha = 0.45, position = "bottomleft", offset.x = 5,
         width = 170)
-  
+
 # Create HTML file
 htmlwidgets::saveWidget(affiliation_map, file =  paste0(getwd(),"/generated_html_files/affiliations_map.html"))
 
@@ -414,7 +414,7 @@ footer = paste0('<div class=" container">
               <p>
                 Ellision Hall 1715<br />
                 University of California, Santa Barbara<br />
-                Santa Barbara, CA 93106<br /> 
+                Santa Barbara, CA 93106<br />
               </p>
             </div>
             <div class="col-md-6 text-right">
@@ -445,7 +445,7 @@ for (i in 1:nrow(current_work)) {
     '<div class="row featurette">
       <div class="col-md-7">
         <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
-        <p class="lead">', data$text, 
+        <p class="lead">', data$text,
         '<p><strong>Working with: </strong>', data$working_with, '</p>
       </div>
       <div class="col-md-5">
@@ -467,11 +467,11 @@ for (i in 1:nrow(current_work)) {
                 </div>'
         )
   }
-  
+
   if (i < nrow(current_work)) {
     html = paste0(html, '<hr class="featurette-divider">')
   }
-  
+
 }
 
 fileConn<-file('generated_html_files/current_work.html')
@@ -512,7 +512,7 @@ for (i in 1:nrow(software)) {
                     <div class="col-md-7 col-md-push-5">
                       <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
                       <p class="lead">', data$text, '</p>',
-                      ifelse(is.na(data$working_with), '', paste0('<p><strong>Working with: </strong>',data$working_with, '</p>')), 
+                      ifelse(is.na(data$working_with), '', paste0('<p><strong>Working with: </strong>',data$working_with, '</p>')),
                     '<p>',
                       ifelse(is.na(data$app),'',paste0('<a class="btn btn-primary" href="', data$app ,'" role="button">Launch App</a>')),
                       ifelse(is.na(data$homepage),'',paste0('<a class="btn btn-primary" href="', data$homepage ,'" role="button">Homepage</a>')),
@@ -525,11 +525,11 @@ for (i in 1:nrow(software)) {
                 </div>'
         )
   }
-  
+
   if (i < nrow(software)) {
     html = paste0(html, '<hr class="featurette-divider">')
   }
-  
+
 }
 
 fileConn<-file('generated_html_files/software.html')
