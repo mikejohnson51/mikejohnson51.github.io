@@ -95,7 +95,7 @@ san_all <- function(x){
 \sffamily
 \centerline{{\Huge \textcolor[RGB]{6,60,97}{J. Michael 'Mike' Johnson}}}
 \vspace{2mm}
-\centerline{\textcolor{header_blue}{\textcolor{gray}{\faGithub} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $|$ \textcolor{gray}{\faEnvelope} \hspace{0.2mm} \href{mailto:jmj00@ucsb.edu }{jmj00@ucsb.edu}}
+\centerline{\textcolor{header_blue}{\textcolor{gray}{\faHome} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $|$ \textcolor{gray}{\faEnvelope} \hspace{0.2mm} \href{mailto:jmj00@ucsb.edu }{jmj00@ucsb.edu}}
 \textcolor[RGB]{6,60,97}{\rule{\linewidth}{3pt}}
 \vspace{3mm}
 \rmfamily
@@ -103,7 +103,7 @@ san_all <- function(x){
 %----------------------------------------------------------------------------------------
 %   EDUCATION Section
 %----------------------------------------------------------------------------------------
-\header{EDUCTAION:}
+\header{EDUCATION:}
 \newline
 \hspace*{0mm}
 \begin{tabular}{p{2.5cm}p{25cm}}
