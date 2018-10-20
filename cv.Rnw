@@ -5,6 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \usepackage{geometry} %used to define page attributes
+\geometry{a4paper, margin=.75in} %define paper type/dimensions
 \usepackage{xcolor} %used to customize text colors
 \usepackage[hidelinks]{hyperref} %used for links
 \usepackage{longtable} %used to span tables across pages
@@ -18,7 +19,7 @@
 %   Page Layout
 %----------------------------------------------------------------------------------------
 
-\geometry{a4paper, margin=.75in} %define paper type/dimensions
+
 \fancyhf{} %remove fancy header
 \renewcommand{\headrulewidth}{0pt} %remove fancy header
 \rfoot{J.M. Johnson \thepage\ of \pageref{LastPage}} %create footer: J.M. Johnson, p. x of xx
@@ -33,7 +34,7 @@
 \definecolor{header_blue}{HTML}{001d31} %define color for section headers
 \newcommand\tab[1][1cm]{\hspace*{#1}} %define \tab command
 \newcommand{\header}[1]{\hspace{-5mm}\textcolor{header_blue}{\underline{\textbf{#1}}\\}} %define \header style
-\newcommand{\me}{\textbf{J.M Johnson}} % define \me - used to bold name in publications
+\newcommand{\me}{\textbf{J.M. Johnson}} % define \me - used to bold name in publications
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}} % New xtable column type that prevents hyphenation on wrap
 \newcommand{\blueUrl}[1]{\textcolor{header_blue}{\url{#1}}}
 
@@ -42,7 +43,7 @@
 
 << echo=FALSE, eval=TRUE>>=
 library(magrittr)
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 library(knitr)
 library(kableExtra)
 library(readxl)
@@ -78,7 +79,7 @@ newline.somerows <-
     function(x) gsub('NEWLINE',paste('\\\\newline'),x)
 
 san_url <-
-    function(x) gsub('URL(.*)', paste('\\\\blueUrl{\\1','}'),x)
+    function(x) gsub('URL(.*)', paste0('\\\\blueUrl{\\1','}'),x)
 
 san_all <- function(x){
   x = bold.somerows(x)
@@ -95,8 +96,8 @@ san_all <- function(x){
 \sffamily
 \centerline{{\Huge \textcolor[RGB]{6,60,97}{J. Michael 'Mike' Johnson}}}
 \vspace{2mm}
-\centerline{\textcolor{header_blue}{\textcolor{gray}{\faHome} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $|$ \textcolor{gray}{\faEnvelope} \hspace{0.2mm} \href{mailto:jmj00@ucsb.edu }{jmj00@ucsb.edu}}
-\textcolor[RGB]{6,60,97}{\rule{\linewidth}{3pt}}
+\centerline{\textcolor{header_blue}{\textcolor{gray}{\faGlobe} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $|$ \textcolor{gray}{\faEnvelope} \hspace{0.2mm} \href{mailto:jmj00@ucsb.edu }{jmj00@ucsb.edu}}
+\hspace{-.5cm}\textcolor[RGB]{6,60,97}{\rule{17cm}{3pt}}
 \vspace{3mm}
 \rmfamily
 
@@ -106,10 +107,10 @@ san_all <- function(x){
 \header{EDUCATION:}
 \newline
 \hspace*{0mm}
-\begin{tabular}{p{2.5cm}p{25cm}}
+\begin{tabular}{p{2.5cm}P{13.5cm}}
 \textbf{2015 - Present} & \textbf{University of California Santa Barbara (UCSB)} \newline \tab $>$PhD Candidate in Geography (passed written exams) \\
-\textbf{2015} & \textbf{California Polytechnic State University, San Luis Obispo, CA} \newline \tab $>$BS Anthropology \& Geography Cum laude \\
-\ & \textbf{Minors} \textbf{(1)} Water Science (Watershed Management Emphasis) \textbf{(2)} Geographic Information \newline \tab \tab Systems for Agriculture \textbf{(3)} Statistics \textbf{(4)} Environmental Studies \textbf{(5)} Economics
+\textbf{2010 - 2015} & \textbf{California Polytechnic State University, San Luis Obispo, CA} \newline \tab $>$BS Anthropology \& Geography Cum Laude \\
+\ & \textbf{Minors} \textbf{(1)} Water Science (Watershed Management Emphasis) \textbf{(2)} Geographic \tab Information Systems for Agriculture \textbf{(3)} Statistics \textbf{(4)} Environmental Studies \tab \textbf{(5)} Economics
 \end{tabular}
 \vspace{5mm}
 
@@ -135,7 +136,7 @@ df = data.frame(date = bold(awards$year),
                 name = bold(awards$name),
                 details = sanitize(awards$details, type = "latex"))
 
-print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
+print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "P{5cm}")),
       floating = FALSE, include.rownames = FALSE,
       include.colnames = FALSE,
       hline.after = c(),
@@ -157,7 +158,7 @@ df = data.frame(date = bold(experience$data),
                 title = bold(experience$title),
                 location = experience$location)
 
-print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
+print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "P{5.0cm}")),
       floating = FALSE,
       include.rownames = FALSE,
       include.colnames = FALSE,
@@ -223,8 +224,9 @@ publications_html <- publications %>%
                                          num = .$number,
                                          code = .$code,
                                          cartography_small = .$cartography_small,
-                                         cartography_large = .$cartography_large))) %>%
-  do(data.frame(., formated_authors = gsub("\\{\\\\me\\}", '<b>J.M Johnson</b>', .$authors)))
+                                         cartography_large = .$cartography_large),stringsAsFactors=FALSE)) %>%
+  do(data.frame(., formated_authors = gsub("\\{\\\\me\\}", '<b>J.M Johnson</b>', .$authors),stringsAsFactors=FALSE))
+
 
 publications_html  <- publications_html %>%
   mutate(
@@ -247,11 +249,11 @@ df <- data.frame(citation = paste0(publications$authors, '.',
                                    ' (', publications$year, '). ',
                                    '{',  italic(publications$title), '}', '. ',
                                    publications$journal, '. ',
-                                   ifelse(is.na(publications$link), '',paste0('{',url(publications$link), '}', '.'))
+                                   ifelse(is.na(publications$link2), '',paste0('{',url(publications$link), '}', '.'))
                                    )
                  )
 
-print(xtable(df, align = c("l","p{15.5cm}")),
+print(xtable(df, align = c("l","P{15.5cm}")),
       floating = FALSE,
       include.colnames = FALSE,
       hline.after = c(),
@@ -267,6 +269,7 @@ print(xtable(df, align = c("l","p{15.5cm}")),
 
 \header{Presentations:}
 \vspace{-4mm}
+\setlength\LTleft{1.1mm}
 <<echo=false,results=tex>>=
 presentations = read_excel("data.xlsx", sheet = "presentations")
 presentations$blank = ""
@@ -287,7 +290,7 @@ df = data.frame(date = bold(presentations$data),
                 blank = presentations$blank,
                 type = presentations$type)
 
-print(xtable(df, align = c("l","p{2.5cm}", "P{8.5cm}", "p{1cm}", "l")),
+print(xtable(df, align = c("l","p{2.5cm}", "P{8.5cm}", "p{1cm}", "P{2cm}")),
       floating = FALSE,
       include.colnames = FALSE,
       hline.after = NULL,
@@ -295,6 +298,33 @@ print(xtable(df, align = c("l","p{2.5cm}", "P{8.5cm}", "p{1cm}", "l")),
       tabular.environment='longtable',
       booktabs = TRUE
      )
+@
+
+%----------------------------------------------------------------------------------------
+%   	Software Section
+%----------------------------------------------------------------------------------------
+
+\vspace{-2mm}
+\header{Scientific Software:}
+\newline
+\vspace{5mm}
+<<echo=false,results=tex>>=
+software = read_excel("data.xlsx", sheet = "software")
+
+software <- software %>% 
+  filter(!is.na(short_desc)) %>% 
+  select(main, short_desc, homepage)
+
+col2 <- paste0('{',bold(software$short_desc), '}', ' NEWLINE ', 'URL', software$homepage)
+
+df = data.frame(title = bold(software$main),
+                desc = col2)
+
+print(xtable(df, align = c("l","p{2.5cm}", "p{12.0cm}")),
+      floating = FALSE,
+      include.colnames = FALSE,
+      hline.after = c(),
+      sanitize.text.function = san_all)
 @
 
 
@@ -321,7 +351,7 @@ df = data.frame(date = bold(teaching$data),
                 class = teaching$class,
                 professor = italic(teaching$professor))
 
-print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
+print(xtable(df, align = c("l","p{2.5cm}", "P{8.0cm}", "l")),
       floating = FALSE,
       include.colnames = FALSE,
       hline.after = c(),
@@ -331,6 +361,7 @@ print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "l")),
 %----------------------------------------------------------------------------------------
 %   	MENTORSHIP Section
 %----------------------------------------------------------------------------------------
+
 
 \header{UNDERGRADUATE RESEARCH MENTORSHIP, UCSB:}
 \newline
@@ -482,6 +513,8 @@ close(fileConn)
 
 << echo=FALSE, eval=TRUE>>=
 software = read_excel("data.xlsx", sheet = "software")
+software <- software %>% 
+  filter(!is.na(text))
 
 is.even <- function(x) x %% 2 == 0
 
