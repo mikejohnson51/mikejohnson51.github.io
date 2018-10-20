@@ -326,7 +326,7 @@ print(xtable(df, align = c("l","p{2.5cm}", "p{12.0cm}")),
       hline.after = c(),
       sanitize.text.function = san_all)
 @
-
+\clearpage
 
 %----------------------------------------------------------------------------------------
 %   	TEACHING Section
