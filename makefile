@@ -13,6 +13,7 @@ cv:
 update:
 	make cv
 	make publish
+	make clean
 
 clean:
 	rm -f *.{log,aux,out,tex}
