@@ -236,6 +236,10 @@ a.btn-primary,
     box-shadow: -6px 6px 8px 6px #ccc;
 }
 
+img[src="resources/images/software/R_logo.png"] {
+  box-shadow: none;
+}
+
 /* Footer */
 
 footer { 

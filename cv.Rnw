@@ -514,7 +514,8 @@ close(fileConn)
 << echo=FALSE, eval=TRUE>>=
 software = read_excel("data.xlsx", sheet = "software")
 software <- software %>% 
-  filter(!is.na(text))
+  filter(!is.na(text))  %>% 
+  mutate(pic = replace(pic, is.na(pic), "resources/images/software/R_logo.png"))
 
 is.even <- function(x) x %% 2 == 0
 
