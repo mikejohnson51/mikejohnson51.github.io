@@ -276,7 +276,7 @@ presentations$blank = ""
 
 presentations_html <- presentations %>%
   mutate(
-    col1 = paste(text_spec(location, bold = TRUE), data, sep = "</br>"),
+    col1 = paste(text_spec(location, bold = TRUE), data, sep = "<br>"),
     col2 = paste(text_spec(title, bold = TRUE), type, sep = " - ")
   ) %>%
   select(col1, col2)
