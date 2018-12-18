@@ -313,9 +313,10 @@ software = read_excel("data.xlsx", sheet = "software")
 
 software <- software %>% 
   filter(!is.na(short_desc)) %>% 
-  select(main, short_desc, homepage)
+  select(main, short_desc, homepage, code) %>% 
+  mutate(link = ifelse(is.na(homepage), code, homepage))
 
-col2 <- paste0('{',bold(software$short_desc), '}', ' NEWLINE ', 'URL', software$homepage)
+col2 <- paste0('{',bold(software$short_desc), '}', ' NEWLINE ', 'URL', software$link)
 
 df = data.frame(title = bold(software$main),
                 desc = col2)
