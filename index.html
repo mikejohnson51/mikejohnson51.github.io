@@ -24,7 +24,10 @@
       $("#includedPresentations").load("generated_html_files/presentations.html");
       $("#includedAwards").load("generated_html_files/awards.html");
       $("#includedTeaching").load("generated_html_files/teaching.html");
-      $("#includedPublications").load("generated_html_files/publications.html");
+      $("#includedPeerPublications").load("generated_html_files/peer_publications.html");
+      $("#includedNonPeerPublications").load("generated_html_files/non_peer_publications.html");
+      $("#includedReviewPublications").load("generated_html_files/review_publications.html");
+      $("#includedMapPublications").load("generated_html_files/maps.publications.html");
       $("#includedAffiliations").load("generated_html_files/affiliations.html");
       $("#includedFooter").load("generated_html_files/footer.html");
     });
@@ -216,7 +219,10 @@
       <!-- Tab 1: Publications -->
       <div class="tab-content">
         <div id="publications" class="tab-pane fade in active">
-          <div id="includedPublications"></div>
+          <div id="includedPeerPublications"></div>
+          <div id="includedReviewPublications"></div>
+          <div id="includedNonPeerPublications"></div>
+          <div id="includedMapPublications"></div>
         </div>
         <div id="presentations" class="tab-pane fade">
           <div id="includedPresentations"></div>

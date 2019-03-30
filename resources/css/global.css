@@ -127,6 +127,11 @@ table .btn-xs {
     float: none;
 }
 
+caption { 
+  font-weight: bold;
+  color: #FEBC11; 
+}
+
 
 /* Link colors */
 
