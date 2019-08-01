@@ -479,7 +479,7 @@ print(xtable(df, align = c("r","p{2.5cm}", "p{8.0cm}")),
 
 # Affiliations Table
 
-affiliations = read_xlsx("data.xlsx", sheet = "affiliations")
+affiliations = readxl::read_xlsx("data.xlsx", sheet = "affiliations")
 write.csv(affiliations, file = "affiliations.csv", row.names=FALSE, quote = FALSE)
 
 affiliations_html <- affiliations %>%
@@ -491,9 +491,12 @@ affiliations_html <- affiliations %>%
 create_table(table = affiliations_html, file_name = 'affiliations.html')
 
 # Affiliations Map
-library(leaflet)
-library(mapview)
-library(htmltools)
+require(leaflet)
+require(mapview)
+require(htmltools)
+library(dplyr)
+#library(sf)
+
 
 # Get data set
 affiliations = read.csv('affiliations.csv')
@@ -518,13 +521,14 @@ affiliation_map = leaflet(affiliations) %>% addTiles() %>%
                                            "border-color" = "navy",
                                            "padding-right" = "100px",
                                            "background-color" = "white")))%>%
-  addLogo("../resources/images/affiliations/logo.png", alpha = 0.45, position = "bottomleft", offset.x = 5,
+  mapview::addLogo("../resources/images/affiliations/logo.png", alpha = 0.45, position = "bottomleft", offset.x = 5,
         width = 170)
 
 # Create HTML file
 htmlwidgets::saveWidget(affiliation_map, file =  paste0(getwd(),"/generated_html_files/affiliations_map.html"))
 
 @
+
 
 << echo=FALSE, eval=TRUE>>=
 
