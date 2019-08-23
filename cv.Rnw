@@ -346,7 +346,6 @@ create_subsection(stat = "3")
 %   PRESENTATIONS Section
 %----------------------------------------------------------------------------------------
 
-\newpage
 
 \header{PRESENTATIONS:}
 \vspace{-4mm}
@@ -383,7 +382,7 @@ print(xtable(df, align = c("r","p{2.5cm}", "P{8.5cm}", "p{1cm}", "P{2cm}")),
      )
 @
 
-\newpage
+
 
 %----------------------------------------------------------------------------------------
 %   	Software Section
