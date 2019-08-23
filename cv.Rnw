@@ -133,9 +133,21 @@ awards_html <- awards %>%
 
 create_table(table = awards_html, file_name = 'awards.html')
 
+total <- stringr::str_extract_all(awards$details, "\\([^()]+\\)") %>% 
+  purrr::flatten_chr() %>% 
+  stringr::str_remove_all("[^0-9]") %>% 
+  as.numeric() %>% 
+  sum() %>% 
+  scales::dollar()
+  
+awards <- awards %>% 
+  bind_rows(data.frame(year = "", 
+                       name = "Total", 
+                       details = bold(total)))
+
 df = data.frame(date = bold(awards$year),
                 name = bold(awards$name),
-                details = sanitize(awards$details, type = "latex"))
+                details = sanitize(awards$details, type = "latex")) 
 
 print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "P{5cm}")),
       floating = FALSE, include.rownames = FALSE,
@@ -433,13 +445,23 @@ teaching_html <-teaching %>%
 
 create_table(table = teaching_html, file_name = 'teaching.html', removeHeaders = FALSE)
 
-df = data.frame(date = bold(teaching$data),
-                class = teaching$class,
-                professor = italic(teaching$professor))
+teaching_merged <- teaching %>%
+  tidyr::separate(data, c("Quarter", "Year")) %>% 
+  mutate(Quarter = factor(Quarter, levels = c("Fall", "Winter", "Spring", "Summer"), 
+                          ordered = T)) %>%
+  group_by(class, professor) %>%
+  mutate(points = as.numeric(Year) + as.numeric(Quarter)/10) %>% 
+  tidyr::unite(data, Quarter, Year, sep = " ") %>% 
+  summarise(data=paste(data,collapse=''), points = max(points)) %>% 
+  arrange(desc(points))
+
+df = data.frame(date = bold(teaching_merged$data),
+                class = teaching_merged$class,
+                professor = italic(teaching_merged$professor))
 
 rownames(df) <- nrow(df):1
 
-print(xtable(df, align = c("r","p{2.5cm}", "P{8.0cm}", "l")),
+print(xtable(df, align = c("r","P{2.5cm}", "P{8.0cm}", "l")),
       floating = FALSE,
       include.colnames = FALSE,
       hline.after = c(),
