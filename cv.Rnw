@@ -345,7 +345,7 @@ create_subsection(stat = "2")
 create_subsection(stat = "0")
 @
 
-\vspace{5mm}
+\vspace{100mm}
 \newline
 \subheader{Other}
 
@@ -357,8 +357,7 @@ create_subsection(stat = "3")
 %----------------------------------------------------------------------------------------
 %   PRESENTATIONS Section
 %----------------------------------------------------------------------------------------
-
-
+\vspace{2mm}
 \header{PRESENTATIONS:}
 \vspace{-4mm}
 \setlength\LTleft{1.1mm}
