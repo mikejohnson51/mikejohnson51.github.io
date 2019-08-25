@@ -1,3 +1,5 @@
+filename := $(shell date +%Y_%m_%d)_johnson_cv.pdf
+
 publish:
 	git pull
 	git add *
@@ -8,6 +10,7 @@ cv:
 	R CMD Sweave --pdf cv.Rnw
 	R CMD Sweave --pdf cv.Rnw
 	cp cv.pdf pdfs/mike_johnson_cv.pdf
+	mv cv.pdf ${filename}
 	make clean	
 
 update:
