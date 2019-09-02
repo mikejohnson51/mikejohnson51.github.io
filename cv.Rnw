@@ -435,34 +435,41 @@ print(xtable(df, align = c("l","p{2.5cm}", "p{12.0cm}")),
 <<echo=false,results=tex>>=
 teaching = read_excel("data.xlsx", sheet = "teaching")
 
-teaching_html <-teaching %>%
+teaching <- teaching %>%
+  mutate(quarter = factor(quarter, levels = c("Fall", "Winter", "Spring", "Summer"), 
+                          ordered = T),
+         class_link = ifelse(is.na(link), class, 
+                             paste0('<a href="',link, '">', class, '</a>'))) %>% 
+  group_by(class, class_link, quarter, professor, type) %>%
+  mutate(points = as.numeric(year) + as.numeric(quarter)/10) %>% 
+  summarise(year = paste(year,collapse=', '), 
+            points = max(points)) %>% 
+  tidyr::unite(data, quarter, year, sep = " ") %>% 
+  arrange(desc(points)) 
+  
+
+teaching_html <- teaching %>%
   mutate(
-    ' ' = paste(text_spec(class, bold = TRUE), " (", professor,")")
-  ) %>%
+    ' ' = paste0(text_spec(class_link, bold = TRUE, escape = FALSE), "<br>", 
+                 type, " - ", text_spec(professor, italic = TRUE))) %>%
+  ungroup() %>% 
   select(data, ' ') %>%
   rename('Teaching Assistant' = data)
 
 create_table(table = teaching_html, file_name = 'teaching.html', removeHeaders = FALSE)
 
-teaching_merged <- teaching %>%
-  tidyr::separate(data, c("Quarter", "Year")) %>% 
-  mutate(Quarter = factor(Quarter, levels = c("Fall", "Winter", "Spring", "Summer"), 
-                          ordered = T)) %>%
-  group_by(class, professor) %>%
-  mutate(points = as.numeric(Year) + as.numeric(Quarter)/10) %>% 
-  tidyr::unite(data, Quarter, Year, sep = " ") %>% 
-  summarise(data=paste(data,collapse=''), points = max(points)) %>% 
-  arrange(desc(points))
+col2 <- paste0('{', bold(teaching$class), '}', ' NEWLINE ', 
+               teaching$type, " - ", italic(teaching$professor))
 
-df = data.frame(date = bold(teaching_merged$data),
-                class = teaching_merged$class,
-                professor = italic(teaching_merged$professor))
+df = data.frame(date = bold(teaching$data),
+                class = col2)
 
 rownames(df) <- nrow(df):1
 
-print(xtable(df, align = c("r","P{2.5cm}", "P{8.0cm}", "l")),
+print(xtable(df, align = c("l","P{5cm}", "p{12.0cm}")),
       floating = FALSE,
       include.colnames = FALSE,
+      include.rownames = FALSE,
       hline.after = c(),
       sanitize.text.function = san_all)
 @
