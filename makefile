@@ -7,8 +7,8 @@ publish:
 	git push
 
 cv:
-	R CMD Sweave --pdf cv.Rnw
-	R CMD Sweave --pdf cv.Rnw
+	R -e "rmarkdown::render('website.Rmd', output_file='website.html')"
+	R -e "rmarkdown::render('mike_cv.Rmd', output_file='cv.pdf')"
 	cp cv.pdf pdfs/mike_johnson_cv.pdf
 	mv cv.pdf ${filename}
 	make clean	
@@ -22,3 +22,4 @@ clean:
 	rm -f *.{log,aux,out,tex}
 	rm -R generated_html_files/affiliations_map_files
 	rm affiliations.csv
+	rm website.html

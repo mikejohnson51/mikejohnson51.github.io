@@ -1,59 +1,25 @@
-\documentclass{article}
-
-%----------------------------------------------------------------------------------------
-%   Load Packages
-%----------------------------------------------------------------------------------------
-
-\usepackage{geometry} %used to define page attributes
-\geometry{a4paper, margin=.75in} %define paper type/dimensions
-\usepackage{xcolor} %used to customize text colors
-\usepackage[hidelinks]{hyperref} %used for links
-\usepackage{longtable} %used to span tables across pages
-\usepackage{fancyhdr} %used for footer
-\pagestyle{fancy} %used for footer
-\usepackage{lastpage} %used for footer page numberings
-\usepackage{fontawesome} %used for icons
-\usepackage{array} %used to wrap at words instead of hyphenate
-
-%----------------------------------------------------------------------------------------
-%   Page Layout
-%----------------------------------------------------------------------------------------
+---
+title: "Website Generator"
+output: html_document
+---
 
 
-\fancyhf{} %remove fancy header
-\renewcommand{\headrulewidth}{0pt} %remove fancy header
-\rfoot{J.M. Johnson \thepage\ of \pageref{LastPage}} %create footer: J.M. Johnson, p. x of xx
-\renewcommand*{\arraystretch}{1.5} %make tables 1.5 space
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 
+# file:///Users/patjohnson/Documents/GitHub/mike_johnson/index.html
 
-%----------------------------------------------------------------------------------------
-%   Custom Commands
-%----------------------------------------------------------------------------------------
-
-\definecolor{header_blue}{HTML}{001d31} %define color for section headers
-\newcommand\tab[1][1cm]{\hspace*{#1}} %define \tab command
-\newcommand{\header}[1]{\hspace{-5mm}\textcolor{header_blue}{\underline{\textbf{#1}}\\}} %define \header style
-\newcommand{\subheader}[1]{\hspace{25mm}\textcolor{header_blue}{\textbf{#1}\\}} %define \header style
-\newcommand{\me}{\textbf{J.M. Johnson}} % define \me - used to bold name in publications
-\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}} % New xtable column type that prevents hyphenation on wrap
-\newcommand{\blueUrl}[1]{\textcolor{header_blue}{\url{#1}}}
-
-\begin{document}
-\SweaveOpts{concordance=TRUE}
-
-<< echo=FALSE, eval=TRUE>>=
-library(magrittr)
-library(dplyr, warn.conflicts = FALSE)
+library(dplyr)
 library(knitr)
 library(kableExtra)
 library(readxl)
-library(xtable)
+library(glue)
 
 create_table <- function(table = NULL, file_name = NULL, removeHeaders = TRUE, caption = NULL) {
   table <- table %>%
     kable(escape = FALSE, caption = caption) %>%
     kable_styling(bootstrap_options = c("hover"))
-
+  
   if (removeHeaders) {
     table <- gsub("<thead>.*</thead>", "", table)
   }
@@ -62,68 +28,13 @@ create_table <- function(table = NULL, file_name = NULL, removeHeaders = TRUE, c
   close(fileConn)
 }
 
-bold <- function(x) { paste0('BOLD', x) }
-italic <- function(x) { paste0('ITALIC', x) }
-url <- function(x) { paste0('URL', sanitize(x, type = "latex")) }
+data_file <- "data.xlsx"
+```
 
-bold.somerows <- function(x) {
-  x = gsub('BOLD(.*)',paste('\\\\textbf{\\1','}'),x)
-}
+## Awards, fellowships and grants
 
-#italic <- function(x) { paste0('ITALIC', x) }
-
-italic.somerows <-
-        function(x) gsub('ITALIC(.*)',paste('\\\\textit{\\1','}'),x)
-
-newline.somerows <-
-    function(x) gsub('NEWLINE',paste('\\\\newline'),x)
-
-san_url <-
-    function(x) gsub('URL(.*)', paste0('\\\\blueUrl{\\1','}'),x)
-
-san_all <- function(x){
-  x = bold.somerows(x)
-  x = italic.somerows(x)
-  x = newline.somerows(x)
-  x = san_url(x)
-  return(x)
-}
-@
-
-%----------------------------------------------------------------------------------------
-%   HEADER Section
-%----------------------------------------------------------------------------------------
-\sffamily
-\centerline{{\Huge \textcolor[RGB]{6,60,97}{J. Michael 'Mike' Johnson}}}
-\vspace{3mm}
-\centerline{\textcolor{header_blue}{\textcolor{gray}{\faGlobe} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $|$ \textcolor{gray}{\faEnvelope} \hspace{0.2mm} \href{mailto:jmj00@ucsb.edu }{jmj00@ucsb.edu} $|$ \textcolor{header_blue}{\textcolor{gray}{\faGithub} \hspace{0.2mm} \url{ https://github.com/mikejohnson51}}}
-\vspace{1mm}
-\hspace{-.5cm}\textcolor[RGB]{6,60,97}{\rule{17cm}{3pt}}
-\vspace{3mm}
-\rmfamily
-
-%----------------------------------------------------------------------------------------
-%   EDUCATION Section
-%----------------------------------------------------------------------------------------
-\header{EDUCATION:}
-\newline
-\hspace*{0mm}
-\begin{tabular}{p{2.5cm}P{13.5cm}}
-\textbf{2015 - Present} & \textbf{University of California Santa Barbara (UCSB)} \newline \tab $>$PhD Candidate in Geography (passed written exams) \\
-\textbf{2010 - 2015} & \textbf{California Polytechnic State University, San Luis Obispo, CA} \newline \tab $>$BS Anthropology \& Geography Cum Laude \\
-\ & \textbf{Minors} \textbf{(1)} Water Science (Watershed Management Emphasis) \textbf{(2)} Geographic \tab Information Systems for Agriculture \textbf{(3)} Statistics \textbf{(4)} Environmental Studies \tab \textbf{(5)} Economics
-\end{tabular}
-\vspace{5mm}
-
-%----------------------------------------------------------------------------------------
-%   AWARDS Section
-%----------------------------------------------------------------------------------------
-
-\header{AWARDS, FELLOWSHIPS, AND GRANTS:}
-\newline
-\vspace{5mm}
-<<echo=false,results=tex>>=
-awards = read_excel("data.xlsx", sheet = "awards")
+```{r}
+awards = read_excel(data_file, sheet = "awards")
 
 awards_html <- awards %>%
   mutate(
@@ -132,65 +43,12 @@ awards_html <- awards %>%
   select(year, col2)
 
 create_table(table = awards_html, file_name = 'awards.html')
+```
 
-total <- stringr::str_extract_all(awards$details, "\\([^()]+\\)") %>% 
-  purrr::flatten_chr() %>% 
-  stringr::str_remove_all("[^0-9]") %>% 
-  as.numeric() %>% 
-  sum() %>% 
-  scales::dollar()
-  
-awards <- awards %>% 
-  bind_rows(data.frame(year = "", 
-                       name = "Total", 
-                       details = bold(total)))
+## Publications
 
-df = data.frame(date = bold(awards$year),
-                name = bold(awards$name),
-                details = sanitize(awards$details, type = "latex")) 
-
-print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "P{5cm}")),
-      floating = FALSE, include.rownames = FALSE,
-      include.colnames = FALSE,
-      hline.after = c(),
-      sanitize.text.function = san_all)
-@
-
-
-%----------------------------------------------------------------------------------------
-%   	EXPERIENCE Section
-%----------------------------------------------------------------------------------------
-
-\header{EXPERIENCE:}
-\newline
-% \vspace{5mm}
-\vspace{-8mm}
-% \setlength\LTleft{1.1mm}
-<<echo=false,results=tex>>=
-experience = read_excel("data.xlsx", sheet = "experience")
-
-df = data.frame(date = bold(experience$data),
-                title = bold(experience$title),
-                location = experience$location)
-
-print(xtable(df, align = c("l","p{2.5cm}", "p{8.0cm}", "P{5.0cm}")),
-      floating = FALSE,
-      include.rownames = FALSE,
-      include.colnames = FALSE,
-      hline.after = c(),
-      tabular.environment='longtable',
-      booktabs = TRUE,
-      sanitize.text.function = bold.somerows)
-@
-
-
-
-
-%----------------------------------------------------------------------------------------
-%   	PUBLICATIONS Section
-%----------------------------------------------------------------------------------------
-<<echo=false,results=tex>>=
-publications = read_excel("data.xlsx", sheet = "publications") %>% 
+```{r}
+publications = read_excel(data_file, sheet = "publications") %>% 
   filter(status != "4")
 
 buttons <- function(abstract, pdf, num, code, cartography_small, cartography_large) {
@@ -285,84 +143,28 @@ publication_section <- function(stat, caption, file_n) {
   create_table(table = tbl, caption = caption, file_name = file_n)
 }
 
-publication_section(stat = "0", caption = "Technical Reports", file_n = "non_peer_publications.html")
-publication_section(stat = "1", caption = "Peer Reviewed", file_n = "peer_publications.html")
-publication_section(stat = "2", caption = "In Review", file_n = "review_publications.html")
-publication_section(stat = "3", caption = "Other", file_n = "maps.publications.html")
+publication_section(stat = "Technical Reports", 
+                    caption = "Technical Reports", 
+                    file_n = "non_peer_publications.html")
+
+publication_section(stat = "Peer-Reviewed Journal Papers", 
+                    caption = "Peer-Reviewed Journal Papers", 
+                    file_n = "peer_publications.html")
+
+publication_section(stat = "In Review", 
+                    caption = "In Review", 
+                    file_n = "review_publications.html")
+
+publication_section(stat = "Cartography", 
+                    caption = "Other", 
+                    file_n = "maps.publications.html")
+```
 
 
-create_subsection <- function(stat) {
-  
-  data <- publications %>% 
-    filter(status == stat)
-  
-  df <- data.frame(citation = paste0(data$authors, '.',
-                                   ' (', data$year, '). ',
-                                   '{',  italic(data$title), '}', 
-                                   ifelse(endsWith(data$title, "?"), ' ', '. '),
-                                   data$journal, '. ',
-                                   ifelse(is.na(data$link2), '',paste0('{',url(data$link), '}', '.'))
-                                   )
-                 )
-  
-  rownames(df) <- nrow(df):1
-  
-  print(xtable(df, align = c("r","P{15.5cm}")),
-      floating = FALSE,
-      include.colnames = FALSE,
-      hline.after = c(),
-      sanitize.text.function = san_all)
-  
-}
-# print(xtable(create_subsection(stat = "1"), align = c("l","P{15.5cm}")),
-#       floating = FALSE,
-#       include.colnames = FALSE,
-#       hline.after = c(),
-#       sanitize.text.function = san_all)
-@
+## Presentations
 
-\header{PUBLISHED WORK:}
-\newline
-\subheader{Peer Reviewed}
-
-<<echo=false,results=tex>>=
-create_subsection(stat = "1")
-@
-
-\vspace{5mm}
-\newline
-\subheader{In Review}
-
-<<echo=false,results=tex>>=
-create_subsection(stat = "2")
-@
-
-\vspace{5mm}
-\newline
-\subheader{Technical Reports}
-
-<<echo=false,results=tex>>=
-create_subsection(stat = "0")
-@
-
-\vspace{100mm}
-\newline
-\subheader{Other}
-
-<<echo=false,results=tex>>=
-create_subsection(stat = "3")
-@
-\newline
-
-%----------------------------------------------------------------------------------------
-%   PRESENTATIONS Section
-%----------------------------------------------------------------------------------------
-\vspace{2mm}
-\header{PRESENTATIONS:}
-\vspace{-4mm}
-\setlength\LTleft{1.1mm}
-<<echo=false,results=tex>>=
-presentations = read_excel("data.xlsx", sheet = "presentations")
+```{r}
+presentations = read_excel(data_file, sheet = "presentations")
 presentations$blank = ""
 
 presentations_html <- presentations %>%
@@ -374,66 +176,12 @@ presentations_html <- presentations %>%
 
 create_table(table = presentations_html, file_name = 'presentations.html')
 
-col2 <- paste0('{',bold(presentations$location), '}', ' NEWLINE ', italic(presentations$title))
+```
 
-df = data.frame(date = bold(presentations$data),
-                title = col2,
-                blank = presentations$blank,
-                type = presentations$type)
+## Teaching 
 
-rownames(df) <- nrow(df):1
-
-print(xtable(df, align = c("r","p{2.5cm}", "P{8.5cm}", "p{1cm}", "P{2cm}")),
-      floating = FALSE,
-      include.colnames = FALSE,
-      hline.after = NULL,
-      sanitize.text.function = san_all,
-      tabular.environment='longtable',
-      booktabs = TRUE
-     )
-@
-
-
-
-%----------------------------------------------------------------------------------------
-%   	Software Section
-%----------------------------------------------------------------------------------------
-
-\vspace{-2mm}
-\header{Scientific Software:}
-\newline
-\vspace{5mm}
-<<echo=false,results=tex>>=
-software = read_excel("data.xlsx", sheet = "software")
-
-software <- software %>% 
-  filter(!is.na(short_desc)) %>% 
-  select(main, short_desc, homepage, code) %>% 
-  mutate(link = ifelse(is.na(homepage), code, homepage))
-
-col2 <- paste0('{',bold(software$short_desc), '}', ' NEWLINE ', 'URL', software$link)
-
-df = data.frame(title = bold(software$main),
-                desc = col2)
-
-print(xtable(df, align = c("l","p{2.5cm}", "p{12.0cm}")),
-      floating = FALSE,
-      include.colnames = FALSE,
-      include.rownames = FALSE,
-      hline.after = c(),
-      sanitize.text.function = san_all)
-@
-
-
-%----------------------------------------------------------------------------------------
-%   	TEACHING Section
-%----------------------------------------------------------------------------------------
-
-\header{TEACHING ASSISTANT, DEPARTMENT OF GEOGRAPHY, UCSB:}
-\newline
-\vspace{5mm}
-<<echo=false,results=tex>>=
-teaching = read_excel("data.xlsx", sheet = "teaching")
+```{r}
+teaching = read_excel(data_file, sheet = "teaching")
 
 teaching <- teaching %>%
   mutate(quarter = factor(quarter, levels = c("Fall", "Winter", "Spring", "Summer"), 
@@ -458,55 +206,17 @@ teaching_html <- teaching %>%
 
 create_table(table = teaching_html, file_name = 'teaching.html', removeHeaders = FALSE)
 
-col2 <- paste0('{', bold(teaching$class), '}', ' NEWLINE ', 
-               teaching$type, " - ", italic(teaching$professor))
+```
 
-df = data.frame(date = bold(teaching$data),
-                class = col2)
-
-rownames(df) <- nrow(df):1
-
-print(xtable(df, align = c("l","P{5cm}", "p{12.0cm}")),
-      floating = FALSE,
-      include.colnames = FALSE,
-      include.rownames = FALSE,
-      hline.after = c(),
-      sanitize.text.function = san_all)
-@
-
-%----------------------------------------------------------------------------------------
-%   	MENTORSHIP Section
-%----------------------------------------------------------------------------------------
+## Affiliations
 
 
-\header{UNDERGRADUATE RESEARCH MENTORSHIP, UCSB:}
-\newline
-\vspace{5mm}
-<<echo=false,results=tex>>=
-mentorship = read_excel("data.xlsx", sheet = "mentorship")
+## Affiliations
 
-df = data.frame(date = bold(mentorship$date), student = mentorship$name)
-
-rownames(df) <- nrow(df):1
-
-print(xtable(df, align = c("r","p{2.5cm}", "p{8.0cm}")),
-      floating = FALSE,
-      include.colnames = FALSE,
-      hline.after = c(),
-      sanitize.text.function = san_all)
-@
-
-%----------------------------------------------------------------------------------------
-%   	OTHER Section
-%----------------------------------------------------------------------------------------
-
-
-<< echo=FALSE, eval=TRUE>>=
-# Extra Code Used For Website But Not CV
-
+```{r}
 # Affiliations Table
 
-affiliations = readxl::read_xlsx("data.xlsx", sheet = "affiliations")
+affiliations = readxl::read_xlsx(data_file, sheet = "affiliations")
 write.csv(affiliations, file = "affiliations.csv", row.names=FALSE, quote = FALSE)
 
 affiliations_html <- affiliations %>%
@@ -553,12 +263,12 @@ affiliation_map = leaflet(affiliations) %>% addTiles() %>%
 
 # Create HTML file
 htmlwidgets::saveWidget(affiliation_map, file =  paste0(getwd(),"/generated_html_files/affiliations_map.html"))
+```
 
-@
 
+## Footer
 
-<< echo=FALSE, eval=TRUE>>=
-
+```{r}
 # Generate Footer
 
 footer = paste0('<div class=" container">
@@ -583,10 +293,12 @@ footer = paste0('<div class=" container">
 fileConn<-file('generated_html_files/footer.html')
 writeLines(footer, fileConn)
 close(fileConn)
-@
+```
 
-<< echo=FALSE, eval=TRUE>>=
-current_work = read_excel("data.xlsx", sheet = "current_work")
+## Current Work
+
+```{r}
+current_work = read_excel(data_file, sheet = "current_work")
 
 is.even <- function(x) x %% 2 == 0
 
@@ -630,11 +342,13 @@ for (i in 1:nrow(current_work)) {
 fileConn<-file('generated_html_files/current_work.html')
 writeLines(html, fileConn)
 close(fileConn)
-@
+```
 
+## Software
 
-<< echo=FALSE, eval=TRUE>>=
-software = read_excel("data.xlsx", sheet = "software")
+```{r}
+software = read_excel(data_file, sheet = "software")
+
 software <- software %>% 
   filter(!is.na(text))  %>% 
   mutate(pic = replace(pic, is.na(pic), "resources/images/software/R_logo.png"))
@@ -658,7 +372,7 @@ for (i in 1:nrow(software)) {
         '</p>
       </div>
       <div class="col-md-5">
-        <img class="featurette-image img-responsive center-block shadow-right" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        <img class="featurette-image img-responsive center-block shadow-right" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image"></img>
       </div>
      </div>'
     )
@@ -691,12 +405,7 @@ for (i in 1:nrow(software)) {
 fileConn<-file('generated_html_files/software.html')
 writeLines(html, fileConn)
 close(fileConn)
-@
+```
 
 
 
-
-
-
-
-\end{document}

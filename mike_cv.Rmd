@@ -1,0 +1,226 @@
+---
+output: 
+  pdf_document:
+    includes: 
+      in_header: style.tex
+classoption: 10pt
+sansfont: Garamond
+subparagraph: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	results = 'asis'
+)
+
+source("global.R")
+```
+
+<!-- HEADER Section -->
+
+\centerline{\huge {{\textbf{J. MICHAEL (MIKE) JOHNSON}}}}
+\vspace{7mm}
+\centerline{\LARGE {Curriculum Vitae}}
+\vspace{3mm}
+\centerline{\textsl{`r today`}}
+\vspace{4mm}
+\centerline{\large{Department of Geography $\cdot$ University of California, Santa Barbara, California}}
+\vspace{4mm}
+\centerline{\textcolor{header_blue}{\textcolor{gray}{\faGlobe} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $\cdot$ \textcolor{gray}{\faEnvelope} \hspace{0.2mm} \href{mailto:jmj00@ucsb.edu }{jmj00@ucsb.edu} $\cdot$ \textcolor{header_blue}{\textcolor{gray}{\faGithub} \hspace{0.2mm} \url{ https://github.com/mikejohnson51}}}
+\vspace{1mm}
+<!-- \hspace{-.5cm}{\rule{18cm}{3pt}} -->
+\vspace{2mm}
+
+<!-- EDUCATION Section -->
+
+\header{EDUCATION:}
+\newline
+\hspace*{0mm}
+\begin{tabular}{p{3cm}P{13.5cm}}
+\textbf{2015 - present} & \textbf{PhD Candidate in Geography} 
+\vspace{2mm}
+\newline \tab $>$ University of California, Santa Barbara, California (UCSB) \\
+\textbf{2010 - 2015} & \textbf{B.S. Anthropology \& Geography Cum Laude}
+\vspace{2mm}
+\newline \tab $>$ California Polytechnic State University, San Luis Obispo, CA\\
+\ & \textbf{Minors} 
+\vspace{2mm}
+\newline \tab $>$ Geographic Information Systems (GIS) for Agriculture 
+\vspace{2mm}
+\newline \tab $>$ Water Science (Watershed Management Emphasis) 
+\vspace{2mm}
+\newline \tab $>$ Statistics 
+\vspace{2mm}
+\newline \tab $>$ Environmental Studies
+\vspace{2mm}
+\newline \tab $>$ Economics
+\vspace{2mm}
+\end{tabular}
+\vspace{2mm}
+
+
+\header{AWARDS, FELLOWSHIPS, AND GRANTS:}
+\vspace{3mm}
+```{r}
+awards = read_excel("data.xlsx", sheet = "awards")
+#names(awards) = NULL
+
+award_table <- function(awards) {
+  
+  type <- first(awards$type) %>% stringr::str_to_title()
+
+  # cat(paste0("\\subhead{", type, "}"))
+  cat("\\vspace{-3mm}")
+
+  awards <- select(awards, -type) %>% arrange(desc(year), desc(Funds))
+  awards$Funds <- ifelse(is.na(awards$Funds), "", sanitize(scales::dollar(awards$Funds), type = "latex"))
+  awards$year = bold(awards$year)
+  
+  names(awards) <- c("Year","Project", "Amount", "Funding Source")
+  awards = awards[,c(1,2,4,3)]
+  
+  print(xtable(awards, align = c("l","p{1.25cm}", "p{6.5cm}", "P{7cm}", "p{2.0cm}"),
+               caption = paste0("\\hspace{-5mm}", type)),
+        include.colnames = TRUE,
+        floating = TRUE,
+        tabular.environment = "tabular",
+        sanitize.colnames.function = boldheader)
+  
+  cat("\\vspace{4mm}")
+}
+
+awards %>% split(awards$type) %>% purrr::walk(award_table)
+
+
+```
+
+\header{EXPERIENCE:}
+```{r}
+experience = read_excel("data.xlsx", sheet = "experience")
+
+df = data.frame(date = bold(experience$data),
+                title = experience$title,
+                location = experience$location)
+names(df) = bold(c("Year", "Postition", "Location"))
+
+print(xtable(df, align = c("l","p{3cm}", "p{8.0cm}", "P{5.0cm}")),
+      include.colnames = TRUE,
+      booktabs = TRUE,
+      sanitize.text.function = bold.somerows,
+      latex.environments = "left")
+```
+
+
+\header{PUBLISHED WORK:}
+```{r}
+publications = read_excel("data.xlsx", sheet = "publications") %>% 
+  filter(status != "4")
+
+create_subsection <- function(stat) {
+  
+  cat("\\vspace{-3mm}")
+  
+  data <- publications %>% 
+    filter(status == stat)
+  
+  df <- data.frame(citation = paste0(data$authors, '.',
+                                   ' (', data$year, '). ',
+                                   '{',  italic(data$title), '}', 
+                                   ifelse(endsWith(data$title, "?"), ' ', '. '),
+                                   data$journal, '. ',
+                                   ifelse(is.na(data$link), '',paste0('{',url(data$link), '}', '.'))
+                                   )
+                 )
+  
+  rownames(df) <- nrow(df):1
+  
+  print(xtable(df, align = c("r","P{15.5cm}"), caption = paste0("\\hspace{-5mm}", stat)),
+      include.rownames = TRUE)
+  
+}
+
+c("Peer-Reviewed Journal Papers", "In Review", "Technical Reports", "Cartography") %>% purrr::walk(create_subsection)
+
+```
+
+
+\header{PRESENTATIONS:}
+```{r}
+presentations = read_excel("data.xlsx", sheet = "presentations")
+presentations$blank = ""
+
+col2 <- paste0('{',bold(presentations$location), '}', ' NEWLINE ', italic(presentations$title))
+
+df = data.frame(date = bold(presentations$data),
+                title = col2,
+                blank = presentations$blank,
+                type = presentations$type)
+
+rownames(df) <- nrow(df):1
+
+print(xtable(df, align = c("l","p{2.5cm}", "P{8.5cm}", "p{1cm}", "P{2cm}")),
+      include.rownames = TRUE,
+      booktabs = TRUE)
+
+```
+
+
+\header{SCIENTIFIC SOFTWARE:}
+```{r}
+software = read_excel("data.xlsx", sheet = "software")
+
+software <- software %>% 
+  filter(!is.na(short_desc)) %>% 
+  select(main, short_desc, homepage, code) %>% 
+  mutate(link = ifelse(is.na(homepage), code, homepage))
+
+col2 <- paste0('{',bold(software$short_desc), '}', ' NEWLINE ', 'URL', software$link)
+
+df = data.frame(title = bold(software$main),
+                desc = col2)
+
+print(xtable(df, align = c("l","p{4cm}", "p{12.0cm}")))
+```
+
+\vspace{8mm}
+\header{TEACHING ASSISTANT, DEPARTMENT OF GEOGRAPHY, UCSB:}
+```{r}
+teaching = read_excel("data.xlsx", sheet = "teaching")
+
+teaching <- teaching %>%
+  mutate(quarter = factor(quarter, levels = c("Fall", "Winter", "Spring", "Summer"), 
+                          ordered = T),
+         class_link = ifelse(is.na(link), class, 
+                             paste0('<a href="',link, '">', class, '</a>'))) %>% 
+  group_by(class, class_link, quarter, professor, type) %>%
+  mutate(points = as.numeric(year) + as.numeric(quarter)/10) %>% 
+  summarise(year = paste(year,collapse=', '), 
+            points = max(points)) %>% 
+  tidyr::unite(data, quarter, year, sep = " ") %>% 
+  arrange(desc(points)) 
+  
+col2 <- paste0('{', bold(teaching$class), '}', ' NEWLINE ', 
+               teaching$type, " - ", italic(teaching$professor))
+
+df = data.frame(date = bold(teaching$data),
+                class = col2)
+
+
+print(xtable(df, align = c("l","P{5cm}", "p{12.0cm}")))
+```
+
+\vspace{8mm}
+\header{UNDERGRADUATE RESEARCH MENTORSHIP, UCSB:}
+```{r}
+mentorship = read_excel("data.xlsx", sheet = "mentorship")
+
+df = data.frame(date = bold(mentorship$date), student = mentorship$name)
+
+rownames(df) <- nrow(df):1
+
+print(xtable(df, align = c("r","p{2.5cm}", "P{14.0cm}")),
+      inlcude.rownames = TRUE)
+```
