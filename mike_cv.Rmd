@@ -24,7 +24,10 @@ form = "Curriculum Vitae"
 <!-- HEADER Section -->
 
 
-\lfoot{\textcolor{gray}{J.M. Johnson}}
+\lfoot{\textcolor{gray}{J.M. Johnson}}  
+\cfoot{\textcolor{gray}{`r form`}}
+\rfoot{\textcolor{black}{\thepage}} 
+\renewcommand{\footrulewidth}{0.4pt}
 
 \header{EDUCATION:}
 \newline
