@@ -3,7 +3,7 @@ output:
   pdf_document:
     includes: 
       in_header: style.tex
-classoption: 10pt
+classoption: 11pt
 sansfont: Garamond
 subparagraph: yes
 ---
@@ -17,56 +17,69 @@ knitr::opts_chunk$set(
 )
 
 source("global.R")
+
+form = "Curriculum Vitae"
 ```
 
 <!-- HEADER Section -->
 
-\centerline{\huge {{\textbf{J. MICHAEL (MIKE) JOHNSON}}}}
-\vspace{7mm}
-\centerline{\LARGE {Curriculum Vitae}}
-\vspace{3mm}
-\centerline{\textsl{`r today`}}
-\vspace{4mm}
-\centerline{\large{Department of Geography $\cdot$ University of California, Santa Barbara, California}}
-\vspace{4mm}
-\centerline{\textcolor{header_blue}{\textcolor{gray}{\faGlobe} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $\cdot$ \textcolor{gray}{\faEnvelope} \hspace{0.2mm} \href{mailto:jmj00@ucsb.edu }{jmj00@ucsb.edu} $\cdot$ \textcolor{header_blue}{\textcolor{gray}{\faGithub} \hspace{0.2mm} \url{ https://github.com/mikejohnson51}}}
-\vspace{1mm}
-<!-- \hspace{-.5cm}{\rule{18cm}{3pt}} -->
-\vspace{2mm}
 
-<!-- EDUCATION Section -->
+\lfoot{\textcolor{gray}{J.M. Johnson}}
+\cfoot{\textcolor{gray}{`r form`}}
+\rfoot{\textcolor{black}{\thepage}}
+\renewcommand{\footrulewidth}{0.4pt}
+\futurelet\TMPfootrule\def\footrule{{\color{gray}\TMPfootrule}}
+
+\centerline{\LARGE {{\textbf{J. MICHAEL JOHNSON }}}}
+\vspace{3mm}
+\centerline{\textsl{`r form` $\cdot$ `r today`}}
+\vspace{2mm}
+\centerline{\textcolor{gray}{University of California, Santa Barbara, California $\cdot$ Department of Geography}}
+\vspace{2mm}
+\centerline{\textcolor{header_blue}{\textcolor{gray}{\faGlobe} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $\cdot$ 
+            \textcolor{gray}{\faEnvelope} \hspace{0.2mm} jmj00@ucsb.edu $\cdot$ 
+            \textcolor{header_blue}{\textcolor{gray}{\faGithub} \hspace{0.2mm} \url{ https://github.com/mikejohnson51}}
+            }
+\vspace{8mm}
+
 
 \header{EDUCATION:}
 \newline
 \hspace*{0mm}
-\begin{tabular}{p{3cm}P{13.5cm}}
-\textbf{2015 - present} & \textbf{PhD Candidate in Geography} 
+\begin{tabular}{p{4cm}P{13.5cm}}
+\textbf{2020 (Expected)} & \textbf{University of California, Santa Barbara, California (UCSB)} 
 \vspace{2mm}
-\newline \tab $>$ University of California, Santa Barbara, California (UCSB) \\
-\textbf{2010 - 2015} & \textbf{B.S. Anthropology \& Geography Cum Laude}
+\newline  $>$ \textbf{Degree:} \hspace{.95cm}PhD Candidate in Geography
 \vspace{2mm}
-\newline \tab $>$ California Polytechnic State University, San Luis Obispo, CA\\
-\ & \textbf{Minors} 
+\newline  $>$ \textbf{Advisor:} \hspace{.8cm}Dr. Keith C. Clarke
 \vspace{2mm}
-\newline \tab $>$ Geographic Information Systems (GIS) for Agriculture 
+\newline  $>$ \textbf{Committee:} \hspace{.15cm}Dr(s) Hugo Loaiciga, Kelly Caylor, Jeroen Aerts
 \vspace{2mm}
-\newline \tab $>$ Water Science (Watershed Management Emphasis) 
+\newline  $>$ \textbf{Dissertation:} Physical, human, and methodological aspects of modeling 
+\newline \tab \hspace{1.95cm} California’s Water Resources: Implications for 2100
 \vspace{2mm}
-\newline \tab $>$ Statistics 
+\vspace{2mm}\\
+\textbf{2015} & \textbf{California Polytechnic State University, San Luis Obispo, CA}
 \vspace{2mm}
-\newline \tab $>$ Environmental Studies
+\newline $>$ \textbf{Degree:} \hspace{.95cm}B.S. Anthropology \& Geography
 \vspace{2mm}
-\newline \tab $>$ Economics
+\newline $>$ \textbf{Honors:} \hspace{.95cm}Cum Laude
+\vspace{2mm}
+\newline $>$ \textbf{Minors:} \hspace{.95cm}Geographic Information Systems (GIS) for Agriculture
+\newline \tab \tab \hspace{1.1cm}Statistics
+\newline \tab \tab \hspace{1.1cm}Water Science (Watershed Management Emphasis)  
+\newline \tab \tab \hspace{1.1cm}Environmental Studies
+\newline \tab \tab \hspace{1.1cm}Economics
 \vspace{2mm}
 \end{tabular}
 \vspace{2mm}
 
-
-\header{AWARDS, FELLOWSHIPS, AND GRANTS:}
+\header{AWARDS AND FELLOWSHIPS:}
 \vspace{3mm}
+
 ```{r}
 awards = read_excel("data.xlsx", sheet = "awards")
-#names(awards) = NULL
+awards = awards[is.na(awards$include),]
 
 award_table <- function(awards) {
   
@@ -79,42 +92,67 @@ award_table <- function(awards) {
   awards$Funds <- ifelse(is.na(awards$Funds), "", sanitize(scales::dollar(awards$Funds), type = "latex"))
   awards$year = bold(awards$year)
   
-  names(awards) <- c("Year","Project", "Amount", "Funding Source")
+  names(awards) <- c("Year","Purpose", "Amount", "Funding Source")
   awards = awards[,c(1,2,4,3)]
   
-  print(xtable(awards, align = c("l","p{1.25cm}", "p{6.5cm}", "P{7cm}", "p{2.0cm}"),
+  print(xtable(awards, align = c("l","p{1.25cm}", "p{7.5cm}", "P{6cm}", "p{2.0cm}"),
                caption = paste0("\\hspace{-5mm}", type)),
         include.colnames = TRUE,
         floating = TRUE,
         tabular.environment = "tabular",
         sanitize.colnames.function = boldheader)
   
-  cat("\\vspace{4mm}")
+  #cat("\\vspace{4mm}")
 }
 
 awards %>% split(awards$type) %>% purrr::walk(award_table)
 
-
+cat("\\vspace{-8mm}")
 ```
-
-\header{EXPERIENCE:}
+ \vspace{8mm}
+\header{FUNDED RESEARCH PROJECTS:}
 ```{r}
-experience = read_excel("data.xlsx", sheet = "experience")
+grants = data.frame( role = c("Principal Investigator",
+                         "Co-Principal Investigator",
+                         "Contributor",
+                         "Co-Principal Investigator"),
+                name = c("Programmatic and GUI-driven retrieval and visualization of streamflow for all CONUS rivers",
+                         "A National Water Model R Package: Improving access and application of model output",
+                         "FOSSFlood: The LivingFlood Application Build on Free Open Source Software",
+                         "Integrating farmers’ adaptive behaviors in California’s Central Valley to assess water and food security risks under climate change"),
+                date = c("In Review",
+                         "2018-2019",
+                         "2017-2018",
+                         "2017-2018"),
+                
+                source = c("CUASHI",
+                           "UCAR COMET",
+                           "UCAR COMET",
+                           "UCGHI Planetary Health Seed Grant"),
+                amount = c("5,000", "15,000", '5,000', '10,000'))
 
-df = data.frame(date = bold(experience$data),
-                title = experience$title,
-                location = experience$location)
-names(df) = bold(c("Year", "Postition", "Location"))
 
-print(xtable(df, align = c("l","p{3cm}", "p{8.0cm}", "P{5.0cm}")),
-      include.colnames = TRUE,
-      booktabs = TRUE,
-      sanitize.text.function = bold.somerows,
-      latex.environments = "left")
+create_subsection <- function(grants) {
+  
+  cat("\\vspace{-3mm}")
+  
+  df <- data.frame(citation = paste0('\\textbf{',grants$role, '}: ',
+                                    "\\textit{" , grants$name, "}, ",
+                                    grants$source, " (",grants$date, ")", 
+                                    " \\$", grants$amount
+                                   ))
+  rownames(df) <- nrow(df):1
+  
+  print(xtable(df, align = c("r","P{15.5cm}")),
+      include.rownames = TRUE)
+}
+
+create_subsection(grants)
+
+cat("\\vspace{-3mm}")
 ```
 
-
-\header{PUBLISHED WORK:}
+\header{RESEARCH:}
 ```{r}
 publications = read_excel("data.xlsx", sheet = "publications") %>% 
   filter(status != "4")
@@ -128,9 +166,11 @@ create_subsection <- function(stat) {
   
   df <- data.frame(citation = paste0(data$authors, '.',
                                    ' (', data$year, '). ',
-                                   '{',  italic(data$title), '}', 
+                                   '{"',  (data$title), '"}', 
                                    ifelse(endsWith(data$title, "?"), ' ', '. '),
-                                   data$journal, '. ',
+                                   ifelse(rep(stat, nrow(data)) == "Working Papers", 
+                                          paste0(" In preparation", ifelse(!is.na(data$preprint),paste0('\\textsuperscript{1}'),"")),
+                                          paste0("\\textit{", data$journal, "}", ifelse(!is.na(data$preprint),paste0('\\textsuperscript{1}'),""))), '. ',
                                    ifelse(is.na(data$link), '',paste0('{',url(data$link), '}', '.'))
                                    )
                  )
@@ -138,15 +178,66 @@ create_subsection <- function(stat) {
   rownames(df) <- nrow(df):1
   
   print(xtable(df, align = c("r","P{15.5cm}"), caption = paste0("\\hspace{-5mm}", stat)),
-      include.rownames = TRUE)
+      include.rownames = TRUE,
+      floating = FALSE)
+  
+  if(any(!is.na(data$preprint))){
+    cat("\\vspace{-4mm}")
+    cat('\\tab\\textsuperscript{1}\\textcolor{gray}{Preprint available upon request.}')
+    cat("\\vspace{8mm}")
+  }
   
 }
 
-c("Peer-Reviewed Journal Papers", "In Review", "Technical Reports", "Cartography") %>% purrr::walk(create_subsection)
+c("Peer-Reviewed Journal Articles", "Technical Reports", "Cartography", "In Review Articles", "Working Papers") %>% purrr::walk(create_subsection)
+
 
 ```
 
+\header{SCIENTIFIC SOFTWARE:}
+```{r}
+cat("\\vspace{2mm}")
+software = read_excel("data.xlsx", sheet = "software")
 
+create_software_sections <- function(type) {
+  
+  cat("\\vspace{-3mm}")
+  
+  data <- filter(software, role == type)
+  
+  type <- stringr::str_to_title(type)
+
+  cat("\\vspace{-3mm}")
+
+  col2 <- paste0('{',bold(data$short_desc), '}', ' NEWLINE ', 'URL', data$link)
+
+  df = data.frame(title = bold(data$main), desc = col2)
+  
+  rownames(df) <- nrow(df):1
+
+  print(xtable(df, align = c("l","p{5cm}", "p{10.0cm}"),
+                caption = paste0("\\hspace{-5mm}", type)),
+        include.colnames = F,
+        include.rownames = T,
+        floating = TRUE,
+        tabular.environment = "tabular",
+        sanitize.colnames.function = boldheader)
+  
+  cat("\\vspace{2mm}")
+}
+  
+software <- software %>% 
+  filter(!is.na(short_desc)) %>% 
+  select(main, short_desc, homepage, code, role) %>% 
+  mutate(link = ifelse(is.na(homepage), code, homepage))
+
+c("Creator", "Contributor") %>% purrr::walk(create_software_sections)
+
+cat("\\vspace{-6mm}")
+
+```
+
+\newpage
 \header{PRESENTATIONS:}
 ```{r}
 presentations = read_excel("data.xlsx", sheet = "presentations")
@@ -161,31 +252,13 @@ df = data.frame(date = bold(presentations$data),
 
 rownames(df) <- nrow(df):1
 
-print(xtable(df, align = c("l","p{2.5cm}", "P{8.5cm}", "p{1cm}", "P{2cm}")),
+print(xtable(df, align = c("l","p{2.5cm}", "P{9.5cm}", "p{.5cm}", "P{2cm}")),
       include.rownames = TRUE,
       booktabs = TRUE)
 
 ```
 
-
-\header{SCIENTIFIC SOFTWARE:}
-```{r}
-software = read_excel("data.xlsx", sheet = "software")
-
-software <- software %>% 
-  filter(!is.na(short_desc)) %>% 
-  select(main, short_desc, homepage, code) %>% 
-  mutate(link = ifelse(is.na(homepage), code, homepage))
-
-col2 <- paste0('{',bold(software$short_desc), '}', ' NEWLINE ', 'URL', software$link)
-
-df = data.frame(title = bold(software$main),
-                desc = col2)
-
-print(xtable(df, align = c("l","p{4cm}", "p{12.0cm}")))
-```
-
-\vspace{8mm}
+\vspace{3mm}
 \header{TEACHING ASSISTANT, DEPARTMENT OF GEOGRAPHY, UCSB:}
 ```{r}
 teaching = read_excel("data.xlsx", sheet = "teaching")
@@ -201,6 +274,8 @@ teaching <- teaching %>%
             points = max(points)) %>% 
   tidyr::unite(data, quarter, year, sep = " ") %>% 
   arrange(desc(points)) 
+
+teaching[1,1] = paste0(teaching[1,1], "\\textsuperscript{1}")
   
 col2 <- paste0('{', bold(teaching$class), '}', ' NEWLINE ', 
                teaching$type, " - ", italic(teaching$professor))
@@ -208,19 +283,145 @@ col2 <- paste0('{', bold(teaching$class), '}', ' NEWLINE ',
 df = data.frame(date = bold(teaching$data),
                 class = col2)
 
+rownames(df) <- nrow(df):1
 
-print(xtable(df, align = c("l","P{5cm}", "p{12.0cm}")))
+
+
+print(xtable(df, align = c("l","P{5cm}", "p{12.0cm}")),
+      tabular.environment = 'longtable',
+      floating = FALSE,
+      include.rownames = T)
+
+cat("\\vspace{-6mm}")
+cat('\\tab\\textsuperscript{1}\\textcolor{gray}{Grader}')
+cat("\\vspace{3mm}")
+cat("\\vspace{-6mm}")
+
 ```
+
+\vspace{6mm}
+\header{SERVICE:}
+\vspace{-3mm}
+```{r}
+service = data.frame(
+                service = c("Chair's Graduate Advisory Committee:",
+                         "Spatial Data Science Faculty Search Committee:",
+                         "Reviewer for: European Journal of Environmental and Civil Engineering",
+                         "Department Outreach Committee:"
+                         ),
+                date = c("2019-2020 Academic Year",
+                         "2018",
+                         "",
+                         "2015-2017"))
+
+create_subsection <- function(grants) {
+  
+  cat("\\vspace{-3mm}")
+  
+  df <- data.frame(citation = paste0(service$service, ' \\textit{',service$date, "}" ))
+  rownames(df) <- nrow(df):1
+  
+  print(xtable(df, align = c("r","P{15.5cm}")),
+      include.rownames = TRUE)
+}
+
+create_subsection(grants)
+
+cat("\\vspace{-3mm}")
+```
+
+\header{EXPERIENCE:}
+```{r}
+experience = read_excel("data.xlsx", sheet = "experience")
+
+df = data.frame(date = bold(experience$data),
+                title = experience$title,
+                location = experience$location)
+names(df) = bold(c("Year", "Postition", "Location"))
+
+cat("\\vspace{-3mm}")
+
+print(xtable(df, align = c("l","p{3cm}", "p{7.0cm}", "P{6.0cm}")),
+      include.colnames = F,
+      booktabs = TRUE,
+      sanitize.text.function = bold.somerows,
+      latex.environments = "left")
+
+cat("\\vspace{-3mm}")
+```
+
 
 \vspace{8mm}
 \header{UNDERGRADUATE RESEARCH MENTORSHIP, UCSB:}
 ```{r}
+cat("\\vspace{-3mm}")
 mentorship = read_excel("data.xlsx", sheet = "mentorship")
 
 df = data.frame(date = bold(mentorship$date), student = mentorship$name)
 
 rownames(df) <- nrow(df):1
 
-print(xtable(df, align = c("r","p{2.5cm}", "P{14.0cm}")),
-      inlcude.rownames = TRUE)
+print(xtable(df, 
+             align = c("r","p{2.5cm}", "P{14.0cm}")),
+             inlcude.rownames = TRUE)
+
+cat("\\vspace{-6mm}")
+```
+
+
+\vspace{8mm}
+\header{REFERENCES:}
+\vspace{-3mm}
+```{r}
+print_ref = function(x, df){
+  df[nrow(df) + 1,] = paste0('{', bold(x[1]), '}', 
+         ' NEWLINE ', 
+         '{', italic(x[2]), '}', 
+         ' NEWLINE ',
+         '{', italic(x[3]), '}', 
+         "\\vspace{2mm}")
+  return(df)
+}
+
+
+df = data.frame(
+  name = 'Keith Clarke, PhD',
+  affil = 'Department of Geography University of California, Santa Barbara, USA',
+  email = 'kcclarke@ucsb.edu')
+
+df = add_row(df, 
+  name  = 'Krzysztof Janowicz, PhD',
+  affil = 'Department of Geography University of California, Santa Barbara, USA',
+  email ='janowicz@ucsb.edu')
+
+df = add_row(df, 
+             name = 'Trey Flowers, PhD', 
+affil = 'Director of the Analysis and Prediction Division at the National Water Center', 
+email = 'trey.flowers@noaa.gov') 
+
+df = add_row(df, 
+  name = 'David Blodgett', 
+  affil = 'Project coordinator with the USGS Office of Water Information Center for Integrated Data Analytics',
+email = 'dblodgett@usgs.gov')
+
+df = add_row(df, 
+  name = 'Aubrey Dugger', 
+  affil = 'Associate Scientist IV, National Center for Atmospheric Research',
+email = 'adugger@ucar.edu')
+
+df$name = paste0('{', bold(df$name), '} NEWLINE ')
+df$affil = paste0('{', (df$affil), '} NEWLINE ')
+df$email = italic(df$email)
+
+
+rownames(df) <- nrow(df):1
+
+
+print(xtable(data.frame(do.call(paste0, c(df[,1:3]))), align = c("l","p{20cm}"),
+        include.colnames = F,
+        include.rownames = T,
+        floating = TRUE,
+        tabular.environment = "tabular",
+        sanitize.colnames.function = boldheader))
+
 ```
