@@ -21,6 +21,14 @@ source("global.R")
 form = "Curriculum Vitae"
 ```
 
+<!-- HEADER Section -->
+
+
+\lfoot{\textcolor{gray}{J.M. Johnson}}
+\cfoot{\textcolor{gray}{`r form`}}
+\rfoot{\textcolor{black}{\thepage}}
+\renewcommand{\footrulewidth}{0.4pt}
+\futurelet\TMPfootrule\def\footrule{{\color{gray}{\TMPfootrule}}}
 
 
 \header{EDUCATION:}
