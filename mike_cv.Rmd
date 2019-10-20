@@ -27,7 +27,7 @@ form = "Curriculum Vitae"
 \cfoot{\textcolor{gray}{`r form`}}
 \rfoot{\textcolor{black}{\thepage}} 
 \renewcommand{\footrulewidth}{0.4pt}
-\futurelet\TMPfootrule\def\footrule{{\color{gray}{\TMPfootrule}}}
+\futurelet\TMPfootrule\def\footrule{\color{gray}{\TMPfootrule}}
 
  \centerline{\LARGE {{\textbf{J. MICHAEL JOHNSON }}}}
  \vspace{3mm}
