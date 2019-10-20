@@ -30,17 +30,17 @@ form = "Curriculum Vitae"
 <!-- \renewcommand{\footrulewidth}{0.4pt} -->
 <!-- \futurelet\TMPfootrule\def\footrule{{\color{gray}{\TMPfootrule}}} -->
 
-\centerline{\LARGE {{\textbf{J. MICHAEL JOHNSON }}}}
-\vspace{3mm}
-\centerline{\textsl{`r form` $\cdot$ `r today`}}
-\vspace{2mm}
-\centerline{\textcolor{gray}{University of California, Santa Barbara, California $\cdot$ Department of Geography}}
-\vspace{2mm}
-\centerline{\textcolor{header_blue}{\textcolor{gray}{\faGlobe} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $\cdot$
-            \textcolor{gray}{\faEnvelope} \hspace{0.2mm} jmj00@ucsb.edu $\cdot$
-            \textcolor{header_blue}{\textcolor{gray}{\faGithub} \hspace{0.2mm} \url{ https://github.com/mikejohnson51}}
-            }
-\vspace{8mm}
+<!-- \centerline{\LARGE {{\textbf{J. MICHAEL JOHNSON }}}} -->
+<!-- \vspace{3mm} -->
+<!-- \centerline{\textsl{`r form` $\cdot$ `r today`}} -->
+<!-- \vspace{2mm} -->
+<!-- \centerline{\textcolor{gray}{University of California, Santa Barbara, California $\cdot$ Department of Geography}} -->
+<!-- \vspace{2mm} -->
+<!-- \centerline{\textcolor{header_blue}{\textcolor{gray}{\faGlobe} \hspace{0.2mm} \url{ https://mikejohnson51.github.io}} $\cdot$ -->
+<!--             \textcolor{gray}{\faEnvelope} \hspace{0.2mm} jmj00@ucsb.edu $\cdot$ -->
+<!--             \textcolor{header_blue}{\textcolor{gray}{\faGithub} \hspace{0.2mm} \url{ https://github.com/mikejohnson51}} -->
+<!--             } -->
+<!-- \vspace{8mm} -->
 
 
 \header{EDUCATION:}
