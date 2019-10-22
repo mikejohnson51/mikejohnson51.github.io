@@ -64,7 +64,8 @@ grants = read_excel(data_file, sheet = "funded_research")
 #   select(record)
 
 grants_html <- grants %>% mutate(record = text_spec(grants$name, italic = TRUE),
-                                 amount = scales::dollar(grants$amount)) %>%
+                                 amount = scales::dollar(grants$amount),
+                                 role = text_spec(grants$role, bold = T)) %>%
   select(date, role, amount, record)
 
 create_table(table = grants_html, caption = "Funded Research", file_name = 'funding.html')
@@ -203,7 +204,7 @@ presentations = read_excel(data_file, sheet = "presentations")
 
 presentations_html <- presentations %>% filter(type == 'presentation') %>% 
   mutate(record = paste0(
-  '<i class="far fa-microphone-alt"></i>', "  ",
+  '<i class="fas fa-microphone-alt"></i>', "  ",
   text_spec(title, color = "#04859B", bold = T), ". ", 
   text_spec(location, italic = TRUE), ". ",
   data)) %>% 
