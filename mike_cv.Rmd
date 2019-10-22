@@ -110,25 +110,7 @@ cat("\\vspace{-8mm}")
  \vspace{8mm}
 \header{FUNDED RESEARCH PROJECTS:}
 ```{r}
-grants = data.frame( role = c("Principal Investigator",
-                         "Co-Principal Investigator",
-                         "Contributor",
-                         "Co-Principal Investigator"),
-                name = c("Programmatic and GUI-driven retrieval and visualization of streamflow for all CONUS rivers",
-                         "A National Water Model R Package: Improving access and application of model output",
-                         "FOSSFlood: The LivingFlood Application Build on Free Open Source Software",
-                         "Integrating farmers’ adaptive behaviors in California’s Central Valley to assess water and food security risks under climate change"),
-                date = c("In Review",
-                         "2018-2019",
-                         "2017-2018",
-                         "2017-2018"),
-                
-                source = c("CUASHI",
-                           "UCAR COMET",
-                           "UCAR COMET",
-                           "UCGHI Planetary Health Seed Grant"),
-                amount = c("5,000", "15,000", '5,000', '10,000'))
-
+grants = read_excel("data.xlsx", sheet = "funded_research")
 
 create_subsection <- function(grants) {
   
@@ -137,7 +119,7 @@ create_subsection <- function(grants) {
   df <- data.frame(citation = paste0('\\textbf{',grants$role, '}: ',
                                     "\\textit{" , grants$name, "}, ",
                                     grants$source, " (",grants$date, ")", 
-                                    " \\$", grants$amount
+                                    " \\",  scales::dollar(grants$amount)
                                    ))
   rownames(df) <- nrow(df):1
   

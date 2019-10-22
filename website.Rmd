@@ -39,11 +39,38 @@ awards = read_excel(data_file, sheet = "awards")
 awards_html <- awards %>%
   mutate(
     col2 = paste(text_spec(name, bold = TRUE), details, sep = " - ")
-  ) %>%
+  ) %>% filter(type == "Awards and Fellowships") %>% 
+  select(year, col2)
+  
+travel_html <- awards %>%
+  mutate(
+    col2 = paste(text_spec(name, bold = TRUE), details, sep = " - ")
+  )  %>% filter(type == "Travel Grants") %>% 
   select(year, col2)
 
-create_table(table = awards_html, file_name = 'awards.html')
+create_table(table = travel_html, caption = "Travel Grants", file_name = 'travel_grants.html')
+create_table(table = awards_html, caption = "Awards and Fellowships", file_name = 'awards.html')
 ```
+
+## Funded
+
+```{r}
+grants = read_excel(data_file, sheet = "funded_research")
+
+# grants_html <- grants %>% mutate(record = paste0(text_spec(grants$role, bold = TRUE), " ",
+#                                                  text_spec(grants$name, italic = TRUE), ". ",
+#                                                  grants$source," (", grants$date, ") ", 
+#                                                  scales::dollar(grants$amount))) %>% 
+#   select(record)
+
+grants_html <- grants %>% mutate(record = text_spec(grants$name, italic = TRUE),
+                                 amount = scales::dollar(grants$amount)) %>%
+  select(date, role, amount, record)
+
+create_table(table = grants_html, caption = "Funded Research", file_name = 'funding.html')
+```
+
+
 
 ## Publications
 
@@ -147,12 +174,12 @@ publication_section(stat = "Technical Reports",
                     caption = "Technical Reports", 
                     file_n = "non_peer_publications.html")
 
-publication_section(stat = "Peer-Reviewed Journal Papers", 
-                    caption = "Peer-Reviewed Journal Papers", 
+publication_section(stat = "Peer-Reviewed Journal Articles", 
+                    caption = "Peer-Reviewed Journal Articles", 
                     file_n = "peer_publications.html")
 
-publication_section(stat = "In Review", 
-                    caption = "In Review", 
+publication_section(stat = "In Review Articles", 
+                    caption = "In Review Articles", 
                     file_n = "review_publications.html")
 
 publication_section(stat = "Cartography", 
@@ -165,16 +192,33 @@ publication_section(stat = "Cartography",
 
 ```{r}
 presentations = read_excel(data_file, sheet = "presentations")
-presentations$blank = ""
+# presentations$blank = ""
+# 
+# presentations_html <- presentations %>%
+#   mutate(
+#     col1 = paste(text_spec(location, bold = TRUE), data, sep = "<br>"),
+#     col2 = paste(text_spec(title, bold = TRUE), type, sep = " - ")
+#   ) %>%
+#   select(col1, col2)
 
-presentations_html <- presentations %>%
-  mutate(
-    col1 = paste(text_spec(location, bold = TRUE), data, sep = "<br>"),
-    col2 = paste(text_spec(title, bold = TRUE), type, sep = " - ")
-  ) %>%
-  select(col1, col2)
+presentations_html <- presentations %>% filter(type == 'presentation') %>% 
+  mutate(record = paste0(
+  '<i class="far fa-microphone-alt"></i>', "  ",
+  title, ". ", 
+  text_spec(location, italic = TRUE), ". ",
+  data)) %>% 
+  select(record)
 
-create_table(table = presentations_html, file_name = 'presentations.html')
+posters_html <- presentations %>% filter(type != 'presentation') %>% 
+  mutate(record = paste0(
+  '<i class="far fa-map"></i>', "  ",
+  title, ". ", 
+  text_spec(location, italic = TRUE), ". ",
+  data)) %>% 
+  select(record)
+
+create_table(table = presentations_html, caption = "Presentations", file_name = 'presentations.html')
+create_table(table = posters_html, caption = "Posters", file_name = 'posters.html')
 
 ```
 
@@ -207,9 +251,6 @@ teaching_html <- teaching %>%
 create_table(table = teaching_html, file_name = 'teaching.html', removeHeaders = FALSE)
 
 ```
-
-## Affiliations
-
 
 ## Affiliations
 
@@ -275,7 +316,7 @@ footer = paste0('<div class=" container">
             <div class="row">
               <div class="col-md-6">
               <p>
-                Ellision Hall 1715<br />
+                Ellision Hall 1719<br />
                 University of California, Santa Barbara<br />
                 Santa Barbara, CA 93106<br />
               </p>
@@ -305,12 +346,12 @@ is.even <- function(x) x %% 2 == 0
 html = ''
 for (i in 1:nrow(current_work)) {
   data = current_work[i,]
-  if(!is.even(i)) {
+#  if(!is.even(i)) {
     html = paste0(html,
     '<div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
-        <p class="lead">', data$text,
+        <h4 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h4>
+        <p>', data$text,
         '<p><strong>Working with: </strong>', data$working_with, '</p>
       </div>
       <div class="col-md-5">
@@ -318,20 +359,20 @@ for (i in 1:nrow(current_work)) {
       </div>
      </div>'
     )
-  } else {
-    html = paste0(html,
-                  '<div class="row featurette">
-                    <div class="col-md-7 col-md-push-5">
-                      <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
-                      <p class="lead">', data$text, '</p>
-                      <p><strong>Working with: </strong>', data$working_with, '</p>
-                    </div>
-                  <div class="col-md-5 col-md-pull-7">
-                    <img class="featurette-image img-responsive center-block shadow-left" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-                  </div>
-                </div>'
-        )
-  }
+  # } else {
+  #   html = paste0(html,
+  #                 '<div class="row featurette">
+  #                   <div class="col-md-7 col-md-push-5">
+  #                     <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
+  #                     <p class="lead">', data$text, '</p>
+  #                     <p><strong>Working with: </strong>', data$working_with, '</p>
+  #                   </div>
+  #                 <div class="col-md-5 col-md-pull-7">
+  #                   <img class="featurette-image img-responsive center-block shadow-left" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+  #                 </div>
+  #               </div>'
+  #       )
+  # }
 
   if (i < nrow(current_work)) {
     html = paste0(html, '<hr class="featurette-divider">')
@@ -348,6 +389,7 @@ close(fileConn)
 
 ```{r}
 software = read_excel(data_file, sheet = "software")
+software = software[c(1,2,5,4,7,10,8,3,9),]
 
 software <- software %>% 
   filter(!is.na(text))  %>% 
@@ -358,43 +400,43 @@ is.even <- function(x) x %% 2 == 0
 html = ''
 for (i in 1:nrow(software)) {
   data = software[i,]
-  if(!is.even(i)) {
+#  if(!is.even(i)) {
     html = paste0(html,
     '<div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
-        <p class="lead">', data$text, '</p>',
-        ifelse(is.na(data$working_with), '', paste0('<p><strong>Working with: </strong>',data$working_with, '</p>')),
-        '<p>',
-            ifelse(is.na(data$app),'',paste0('<a class="btn btn-primary" href="', data$app ,'" role="button">Launch App</a>')),
+        <h4 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h4>
+        <h4><span><strong> Role:</strong> ', data$role, '</span></h4>',
+    ifelse(is.na(data$working_with), '', paste0('<h4><strong>Working with: </strong>', data$working_with, '</h4>')),
+        '<p>', data$text, '</p>',
+        '<p>', ifelse(is.na(data$app),'',paste0('<a class="btn btn-primary" href="', data$app ,'" role="button">Launch App</a>')),
             ifelse(is.na(data$homepage),'',paste0('<a class="btn btn-primary" href="', data$homepage ,'" role="button">Homepage</a>')),
             ifelse(is.na(data$code),'',paste0('<a class="btn btn-primary" href="', data$code ,'" role="button">Code</a>')),
         '</p>
       </div>
       <div class="col-md-5">
-        <img class="featurette-image img-responsive center-block shadow-right" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image"></img>
+        <img class="featurette-image img-responsive center-block shadow-right" src="', data$pic, '" style="width:250px;height:250px;" data-src="holder.js/500x500/auto" alt="Generic placeholder image"></img>
       </div>
      </div>'
     )
-  } else {
-    html = paste0(html,
-                  '<div class="row featurette">
-                    <div class="col-md-7 col-md-push-5">
-                      <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
-                      <p class="lead">', data$text, '</p>',
-                      ifelse(is.na(data$working_with), '', paste0('<p><strong>Working with: </strong>',data$working_with, '</p>')),
-                    '<p>',
-                      ifelse(is.na(data$app),'',paste0('<a class="btn btn-primary" href="', data$app ,'" role="button">Launch App</a>')),
-                      ifelse(is.na(data$homepage),'',paste0('<a class="btn btn-primary" href="', data$homepage ,'" role="button">Homepage</a>')),
-                      ifelse(is.na(data$code),'',paste0('<a class="btn btn-primary" href="', data$code ,'" role="button">Code</a>')),
-                  '</p>
-                    </div>
-                  <div class="col-md-5 col-md-pull-7">
-                    <img class="featurette-image img-responsive center-block shadow-left" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-                  </div>
-                </div>'
-        )
-  }
+  # } else {
+  #   html = paste0(html,
+  #                 '<div class="row featurette">
+  #                   <div class="col-md-7 col-md-push-5">
+  #                     <h2 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h2>
+  #                     <p class="lead">', data$text, '</p>',
+  #                     ifelse(is.na(data$working_with), '', paste0('<p><strong>Working with: </strong>',data$working_with, '</p>')),
+  #                   '<p>',
+  #                     ifelse(is.na(data$app),'',paste0('<a class="btn btn-primary" href="', data$app ,'" role="button">Launch App</a>')),
+  #                     ifelse(is.na(data$homepage),'',paste0('<a class="btn btn-primary" href="', data$homepage ,'" role="button">Homepage</a>')),
+  #                     ifelse(is.na(data$code),'',paste0('<a class="btn btn-primary" href="', data$code ,'" role="button">Code</a>')),
+  #                 '</p>
+  #                   </div>
+  #                 <div class="col-md-5 col-md-pull-7">
+  #                   <img class="featurette-image img-responsive center-block shadow-left" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+  #                 </div>
+  #               </div>'
+  #       )
+  # }
 
   if (i < nrow(software)) {
     html = paste0(html, '<hr class="featurette-divider">')
