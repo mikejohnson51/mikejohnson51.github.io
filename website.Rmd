@@ -204,7 +204,7 @@ presentations = read_excel(data_file, sheet = "presentations")
 presentations_html <- presentations %>% filter(type == 'presentation') %>% 
   mutate(record = paste0(
   '<i class="far fa-microphone-alt"></i>', "  ",
-  title, ". ", 
+  text_spec(title, color = "#04859B", bold = T), ". ", 
   text_spec(location, italic = TRUE), ". ",
   data)) %>% 
   select(record)
@@ -212,7 +212,7 @@ presentations_html <- presentations %>% filter(type == 'presentation') %>%
 posters_html <- presentations %>% filter(type != 'presentation') %>% 
   mutate(record = paste0(
   '<i class="far fa-map"></i>', "  ",
-  title, ". ", 
+  text_spec(title, color = "#04859B", bold = F), ". ", 
   text_spec(location, italic = TRUE), ". ",
   data)) %>% 
   select(record)
@@ -352,8 +352,8 @@ for (i in 1:nrow(current_work)) {
       <div class="col-md-7">
         <h4 class="featurette-heading">', data$main, '. <span class="text-muted">', ifelse(is.na(data$sub), '', paste0(data$sub, '.')), '</span></h4>
         <p>', data$text,
-        '<p><strong>Working with: </strong>', data$working_with, '</p>
-      </div>
+      #  '<p><strong>Working with: </strong>', data$working_with, '</p>
+      '</div>
       <div class="col-md-5">
         <img class="featurette-image img-responsive center-block shadow-right" src="', data$pic, '" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
       </div>
