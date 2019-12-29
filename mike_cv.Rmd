@@ -2,7 +2,7 @@
 output: 
   pdf_document:
     includes: 
-      in_header: style.tex
+      in_header: APPLICATION/style.tex
 classoption: 11pt
 sansfont: Garamond
 subparagraph: yes
