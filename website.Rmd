@@ -57,12 +57,6 @@ create_table(table = awards_html, caption = "Awards and Fellowships", file_name 
 ```{r}
 grants = read_excel(data_file, sheet = "funded_research")
 
-# grants_html <- grants %>% mutate(record = paste0(text_spec(grants$role, bold = TRUE), " ",
-#                                                  text_spec(grants$name, italic = TRUE), ". ",
-#                                                  grants$source," (", grants$date, ") ", 
-#                                                  scales::dollar(grants$amount))) %>% 
-#   select(record)
-
 grants_html <- grants %>% mutate(record = text_spec(grants$name, italic = TRUE),
                                  amount = scales::dollar(grants$amount),
                                  role = text_spec(grants$role, bold = T)) %>%
