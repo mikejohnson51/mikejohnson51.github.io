@@ -15,6 +15,11 @@ library(kableExtra)
 library(readxl)
 library(glue)
 
+data_file <- "data.xlsx"
+```
+
+
+```{r create-table}
 create_table <- function(table = NULL, file_name = NULL, removeHeaders = TRUE, caption = NULL) {
   table <- table %>%
     kable(escape = FALSE, caption = caption) %>%
@@ -27,9 +32,21 @@ create_table <- function(table = NULL, file_name = NULL, removeHeaders = TRUE, c
   writeLines(table, fileConn)
   close(fileConn)
 }
-
-data_file <- "data.xlsx"
 ```
+
+```{r update-scss}
+col <- system.file("scss/_color_variables.scss", package = "miketheme")
+
+fs::file_copy(col, "resources/scss/", overwrite = T)
+
+sass::sass(
+  sass::sass_file("resources/scss/miketheme.scss"),
+  output = "resources/css/bootstrap.css",
+  options = sass::sass_options(output_style = "nested")
+)
+```
+
+
 
 ## Awards, fellowships and grants
 
@@ -58,9 +75,12 @@ create_table(table = awards_html, caption = "Awards and Fellowships", file_name 
 grants = read_excel(data_file, sheet = "funded_research")
 
 grants_html <- grants %>% mutate(record = text_spec(grants$name, italic = TRUE),
-                                 amount = scales::dollar(grants$amount),
-                                 role = text_spec(grants$role, bold = T)) %>%
-  select(date, role, amount, record)
+                                 amount = grants$amount,
+                                 role = text_spec(grants$role, bold = T),
+                                 source = grants$source) %>%
+  select(date, role, record, source, amount) 
+
+grants$amount = ifelse(is.na(grants$amount), "Not Disclosed", scales::dollar(grants$amount))
 
 create_table(table = grants_html, caption = "Funded Research", file_name = 'funding.html')
 ```

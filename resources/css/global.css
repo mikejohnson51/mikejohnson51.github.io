@@ -1,10 +1,6 @@
 /* GLOBAL STYLES
 -------------------------------------------------- */
 
-body {
-  color: #5a5a5a;
-}
-
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 
@@ -129,17 +125,11 @@ table .btn-xs {
     float: none;
 }
 
-caption { 
-  font-weight: bold;
-  color: #FEBC11; 
-}
+
 
 
 /* Link colors */
 
-a:link, a:visited { color: #04859B !important;}
-
-.navbar-default .navbar-nav > li > a,
 .navbar-default .navbar-brand,
 .nav-pills > li.active > a, 
 .nav-pills > li.active > a:hover, 
@@ -177,9 +167,6 @@ a.btn-primary,
 
 .social-link { padding-right: 5px; }
 
-.social-link .fa-file-alt:hover { color: #FEBC11; }
-
-.fa-map-marker-alt { color: #FEBC11; }
 
 #publications a {text-decoration: none;}
 
@@ -288,6 +275,8 @@ footer .row { margin-top: 20px;}
     font-size: 50px;
   }
 }
+
+
 
 @media (max-width: 991px) {
   .carousel-inner > .item > img {
