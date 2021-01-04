@@ -54,7 +54,7 @@ options(
   xtable.sanitize.text.function = san_all,
   xtable.sanitize.rownames.function = name_rows,
   xtable.latex.environments = "flushleft",
-  xtable.hline.after = c(),
+  xtable.hline.after = c(-1),
   xtable.caption.placement = "top",
   xtable.include.colnames = FALSE,
   xtable.include.rownames = FALSE,

@@ -1,0 +1,44 @@
+---
+output: 
+  pdf_document:
+    includes: 
+      in_header: ../style_1_inchmargin.tex
+fontsize: 12pt
+subparagraph: yes
+---
+
+```{r setup, include=FALSE}
+source("../global.R")
+form = "Diversity Statement"
+```
+
+\let\oldrule=\rule
+\renewcommand{\rule}[1]{\vspace{-25pt}\oldrule{\linewidth}}
+
+\lfoot{\textcolor{gray}{J.M. Johnson}}
+\cfoot{\textcolor{gray}{`r form`}}
+\rfoot{\textcolor{black}{\thepage}}
+\renewcommand{\footrulewidth}{0.4pt}
+\futurelet\TMPfootrule\def\footrule{\color{gray}{\TMPfootrule}}
+
+\vspace{3mm}
+\centerline{\textbf{\textsl{J. Michael Johnson $\cdot$ `r form`}}}
+\centerline{\textcolor{gray}{University of California, Santa Barbara, California $\cdot$ Department of Geography}}
+\vspace{-3mm}
+\hspace{-3mm}{\uline{\textsc{\textcolor{black}{}}\hfill}\newline}
+
+Despite having significant Hispanic ancestry, I have always identified as white in large part because of my suburban geography. Opportunities were never closed to me or made more difficult because of who I was or economic limitations, and I benefited from a family that supported me and emphasized educational pursuits.  I never feared asking for help, always considered looking for opportunities, and felt that I had a fair shot in everything I did. Resulting, I entered college with the educational preparation and social perspective needed to succeed in an American university. 
+
+My early attraction to geography was the field’s embrace of, if not dependency on, an interdisciplinary perspective. As an undergraduate, I was a registered student (major or minor) in all six colleges at California State Polytechnic University San Luis Obispo and since coming to UCSB, I have been fortunate to collaborate with people who represent a diversity in ethnicity, culture, gender, and specialty of study. My education and life experiences have been reflective of the global scientific community, enriched by opportunities they have offered, humbled by the challenge’s others persevered through, and because of these, I am a far better scientist and person.  While striving for more equal representation in the college setting is certainty a matter of fairness, a diverse and inclusive campus environment also inspires creativity and innovation as well as compassion and empathy. Thus, a university’s commitment to diversity is also a commitment to preparing the next generation of engaged global citizens.
+
+While diversity can be embodied in many ways there are concrete aspects of modern society that have made opportunity less available to certain groups. It is also clear in our country that opportunity begets opportunity and work ethic alone is often not enough to overcome structural imbalances. While universities have a duty to recruit student populations that represent American society, professors must recognize the current system is meant to engage students with a certain academic and social preparation. It is unfair to bring someone who, through no fault of their own, hasn’t been prepared to succeed in a university classroom and expect them to thrive with no guidance. 
+
+As a Hispanic Serving Institution with almost 15% international enrollment, UCSB provides many resources for students. Mines too has a well-articulated mission to provide support services and resources through their Diversity, Inclusion and Access initiative. What has been notable in my experience, however, is that traditionally underrepresented students are not accustomed to seeking out opportunities tailored to help them succeed simply because it is antithetical to their life experience. Due to their day-to-day role with students, faculty have the ability to identify areas where students are struggling and provide a bridge between the university as an institution and the students as individuals.
+
+As a teaching assistant and instructor, I have taken this role seriously, and each quarter solicit feedback from students on a regular basis to adjust the way content is shared. These efforts have directly impacted the way I frame classes as a group of people working towards a common goal, the way I design evaluations, and the choices I make to use open-source textbooks and software everyone can afford. The group driven nature of classes indirectly exposes students to the ways others seek help and navigate a university system, and challenges students to bring their strengths to the forefront. Not only have these efforts made the classes more welcoming and interactive to all, but they have also improved the experience of everyone as the exposure to diverse backgrounds enriches the educational and social experience.
+
+Outside of the structured classroom, faculty have a unique ability to help develop young researchers. In my time as a graduate student, I have mentored eleven students representing a range of gender, nationality and study. In some cases, students asked for these opportunities, but in most it required an invitation or a passing comment that the opportunity was available. Of these mentees, two have been non-traditional students who came back to school. For one of them, I served as sponsor for the federally funded, Ronald E. McNair Scholars Program which aims to prepare underrepresented students for success in PhD programs with the long-term goal of diversifying the faculty in colleges across the country. My participation in this program gave me a lot of insight into the institutional efforts aiming to address disparities, but also the desperate need these programs have for faculty involvement and buy in. Other mentees have been a first-generation student for whom I am serving as the faculty sponsor for the Gene and Susan Lucas Undergraduate Research Fund (created to help first-generation undergraduate students experience STEM research), a military professional who is attending school on his GI bill and is a co-author on a set of research articles, and students from other departments who have found GIS and geography useful for their interests. 
+
+Lastly, one of the keys to success in an era of online applications, is “_who you know_”. I make a concentrated effort to actively grow a research community that includes current and past students. By getting the opportunity to simply be recognized and showcase what they can do, students can begin to propel their futures on their skills, talent, and work ethic. I am in regular contact with a number of my past students and have written letters of recommendation and helped craft their graduate school applications. Last quarter, following the course I taught in the summer, I started a weekly research group with four motivated students and their efforts have led to one being recently hired at an environmental consulting firm, and another, who never felt graduate school was an option, to spark a number of conversations with potential advisors. 
+
+While issues of representation at the faculty level are huge, and commitment to institutional programs is critical, what is equally important is that students know they have professors who support them, and that this support is demonstrated in actions.  If given the opportunity to join the Mines faculty, I am fully committed to learning about the programs in place to support students, to contribute to programs like the Multi-Cultural Engineering Challenge Program, and the CASA faculty group, and to continue adapting my classroom and material to meet the needs of current students. As a Faculty member, I believe the ability to influence the trajectories of student’s lives is equally important to our ability to shape a research agenda. In some cases, this will simply be helping them find a new passion, but in others it will be helping them work towards, and see, their full potential.

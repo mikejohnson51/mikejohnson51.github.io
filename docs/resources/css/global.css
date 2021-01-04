@@ -1,0 +1,313 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+
+.my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+@media (min-width:800px) {
+  .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:  flex;
+  }
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+.navbar-left img {
+  margin-top: 7px;
+  margin-right: 15px;
+}
+
+.nav-justified {
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper > .container {
+  padding-right: 0;
+  padding-left: 0;
+}
+.navbar-wrapper .navbar {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.navbar-wrapper .navbar .container {
+  width: auto;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 500px;
+  margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 500px;
+}
+
+.carousel-caption {
+  text-shadow: 2px 2px 6px #2c3e50;
+  background: rgba(204, 204, 204, 0.5);
+  border-radius: 10px;
+  margin-bottom: 160px;
+  padding: 0 !important;
+  left: 10%;
+  right: 10%;
+  color: #2c3e50
+}
+
+.carousel-caption p {
+    padding: 0 !important;
+    color: white;
+    padding-bottom: 130px;
+}
+
+.carousel-caption h1:hover {color: #FEBC11}
+
+
+
+.lead {
+    font-size: 18px !important;
+}
+
+.bottom_space { margin-bottom: 40px !important; }
+
+.indent { margin-left: 10px;  }
+
+.indent2 { margin-left: 77px;  }
+
+
+/* Tables */
+
+#home .table > tbody > tr > td { line-height: 1.6 }
+
+thead { border-bottom: 2px solid #2c3e50; }
+
+.table > thead > tr > th { padding-bottom: 0px; }
+
+#includedTeaching tr:first-of-type td { padding-top: 20px !important; }
+
+table .fa-file-alt {padding-right: 10px;}
+
+table .btn-xs { 
+  margin-top: 7px;
+  border: 1px solid #04859B;
+  background: none;
+  color: #04859B; 
+  margin-right: 2px;
+}
+
+#publications table { 
+  font-size: 15px;
+  max-width: 800px;
+}
+
+.table {
+    width: 75%;
+    margin: 0px auto;
+    float: none;
+}
+
+
+
+
+/* Link colors */
+
+.navbar-default .navbar-brand,
+.nav-pills > li.active > a, 
+.nav-pills > li.active > a:hover, 
+.nav-pills > li.active > a:focus,
+a.btn-primary,
+.carousel-control:focus, 
+.carousel-control:hover, 
+.carousel-control,
+.glyphicon-chevron-right,
+.glyphicon-chevron-left,
+.btn-default:hover,
+.btn-default:focus  { color: #ffffff !important; }
+
+.navbar-default .navbar-nav > li > a:hover, 
+.navbar-default .navbar-nav > li > a:focus { color: #FEBC11 !important; }
+
+
+.fa-github,
+.fa-researchgate,
+.ai-researchgate,
+.ai-google-scholar,
+.profile-links .fa-file-alt {
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+.fa-github:hover { color: #4078c0; }
+
+.fa-researchgate:hover,
+.ai-researchgate:hover { color: #00d0af; }
+
+.ai-google-scholar:hover { color: #4285f4; }
+
+.fa-envelope:hover { color: #d62d20; }
+
+.social-link { padding-right: 5px; }
+
+
+#publications a {text-decoration: none;}
+
+.grow {
+  -webkit-transition:all 0.5s ease-out;
+  -moz-transition:all 0.5s ease-out;
+  -ms-transition:all 0.5s ease-out;
+  -o-transition:all 0.5s ease-out;
+  transition:all 0.5s ease-out;
+}
+
+.grow:hover {
+  -webkit-transform:scale(1.3);
+  -moz-transform:scale(1.3);
+  -ms-transform:scale(1.3);
+  -o-transform:scale(1.3);
+  transform:scale(1.3);
+}
+
+
+.featurette:first-of-type { margin-top: 180px; }
+
+.featurette .btn-primary { margin-right: 5px; }
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider { margin: 60px 0; }
+
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.modal-body { background: black; }
+
+.img-fluid { border: 4px solid transparent; }
+
+.img-fluid:hover { border-color: #FEBC11; }
+
+.ekko-lightbox-item.fade.in.show img.img-fluid:hover { border-color: transparent !important; }
+
+.aoi_map { border: 1px solid grey !important; }
+
+.nav-pills,
+.header { margin-bottom: 30px; }
+
+.dark_text {color: #4c4c4c;}
+
+.shadow-right {
+    -moz-box-shadow: 6px 6px 8px 6px #ccc;
+    -webkit-box-shadow: 6px 6px 8px 6px #ccc;
+    box-shadow: 6px 6px 8px 6px #ccc;
+}
+
+.shadow-left {
+    -moz-box-shadow: -6px 6px 8px 6px #ccc;
+    -webkit-box-shadow: -6px 6px 8px 6px #ccc;
+    box-shadow: -6px 6px 8px 6px #ccc;
+}
+
+img[src="resources/images/software/R_logo.png"] {
+  box-shadow: none;
+}
+
+/* Footer */
+
+footer { 
+  margin-top: 60px; 
+  background: #ecf0f1;
+}
+
+footer .row { margin-top: 20px;}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+
+
+@media (max-width: 991px) {
+  .carousel-inner > .item > img {
+    min-width: 991px !important;
+    overflow-x: hidden;
+  }
+}
+
+@media (min-width: 992px) {
+  .carousel-inner > .item > img {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  footer .row, 
+  .text-right {
+    text-align: center; 
+  }
+}
