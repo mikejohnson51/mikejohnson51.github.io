@@ -48,24 +48,31 @@ sass::sass(
 library(scholar)
 
 cites = get_publications('MrXM9cgAAAAJ') %>% 
-   filter(!grepl("AGU|EGU|Meeting|meeting|Preprint|SUMMER INSTITUTE|University|Https|Universities|Frontiers in Hydrology", journal)) 
+   filter(!grepl("AGU|EGU|Meeting|meeting|Preprint|SUMMER INSTITUTE|University|Https|Universities|Frontiers in Hydrology", journal)) %>% 
+  filter(journal != "")
 
 for(i in 1:nrow(cites)){
-  if(!grepl("JM Johnson|J Johnson", cites$author[i])){
+  if(!grepl("JM Johnson|J Johnson|M Johnson", cites$author[i])){
     cites$author[i] = get_complete_authors(id = 'MrXM9cgAAAAJ', pubid = cites$pubid[i])
   }
 }
 
-cites <- cites %>%
+cites %>% 
   mutate(
+    url = glue::glue('https://scholar.google.com/citations?view_op=view_citation&hl=en&user=MrXM9cgAAAAJ&citation_for_view=MrXM9cgAAAAJ:{pubid}'),
     citation = paste0(gsub("JM Johnson", '<b>J.M Johnson</b>', author), 
                       ' (', year, "). ",
-                      text_spec(title, italic = TRUE), ". ",
+                      text_spec(title, italic = TRUE, link = url), ". ",
                       text_spec(journal, italic = FALSE), '.')
   ) %>%
-    arrange(-year) %>% 
-    mutate(citation = paste(paste0("[", n():1, "]     "), citation)) %>% 
-    select(`Peer Review Publications` = citation) %>% 
+    arrange(-year, - cites) %>% 
+    #mutate(citation = paste(paste0("[", n():1, "]     "), citation)) %>% 
+    select(Year = year, `Peer Review Publications` = citation) %>% 
+    group_by(Year) %>% 
+    mutate(Year = c(Year[1], rep("", n() - 1))) %>% 
+    ungroup() %>% 
+    mutate(` ` = n():1) %>% 
+  select(Year, ` `, `Peer Review Publications`) %>% 
     create_table(file_name = "peer_publications.html", removeHeaders = FALSE)
 
 ```
