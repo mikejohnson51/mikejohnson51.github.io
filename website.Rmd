@@ -22,7 +22,7 @@ data_file <- "mikes-data.xlsx"
 create_table <- function(table = NULL, file_name = NULL, removeHeaders = TRUE, caption = NULL) {
   
   table <- rbind(rep("", ncol(table)), table) %>%
-    kable(escape = FALSE, caption = caption, align = c("l")) %>%
+    kable(escape = FALSE, caption = caption, format = "html",  align = c("l")) %>%
     kable_styling(bootstrap_options = c("hover"))
   
   if (removeHeaders) {
